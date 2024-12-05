@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Just+Me+Again+Down+Here&family=Kablammo&family=Righteous&display=swap');
+html{
+    overflow-y: hidden;
+}
+header{
+    position: relative;
+    background-color: white;
+    top: -3vh;
+}
+body{
+    margin: 0;
+    height: 97vh;
+    max-height: 100%;
+    background-image: linear-gradient(to bottom,
+        #2a1f23 0%,
+        #362f31 50%,
+        #2a1f23 100%);
+}
+.welcome{
+    position: relative;
+    font-family: "Just Me Again Down Here", cursive;
+    color: white;
+    text-align: center;
+    width: fit-content;
+    height: fit-content;
+    top: 33vh;
+    left: 22vw;
+    font-size: 30px;
+}
+.welcome h1{
+    font-size: 100px;
+    font-weight: 100;
+    letter-spacing: 3px;
+}
+.welcome p{
+    position: relative;
+    top: -13vh;
+}
+.lagayan{
+    position: relative;
+    top: -36vh;
+    width: fit-content;
+}
+.bilog{
+    position: relative;
+    top: 8vh;
+    left: 73vw;;
+    width: 7vw;
+    height: 7vw;
+    border-radius: 100%;
+    background-color: white;
+}
+.title{
+width: fit-content;
+font-size: 30px;
+font-family:"Kablammo", system-ui;
+font-optical-sizing: auto;
+color: white;
+font-weight: 400;
+position: relative;
+top: 4vh;
+left: 66.3vw;
+letter-spacing: 0.15em;
+}
+.LoginForm{
+    display: flex;
+    position: relative;
+    top: -1vh;
+    left: 65vw;
+    background-color: white;
+    color: #321C24;
+    width: 23.56vw;
+    height: 40.65vh;
+    border-radius: .8em;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    box-sizing: border-box;
+    padding: 20px;
+    font-family: "Righteous", sans-serif;
+    font-style: normal;
+    font-weight: 100;
+}
+.LoginForm form{
+    height: fit-content;
+}
+.emailCont, .passCont{
+    position: relative;
+    padding: 1em;
+    left: -.8vw;
+    top: -1.5vh;
+}
+.EmailBox, .PasswordBox{
+    background-color: #eeeeee;
+    border: 0px transparent;
+    border-radius: .3em;
+    width: 20vw;
+    height: 4vh;
+}
+input[type="checkbox"]:checked{
+    accent-color: #000;
+}
+.rememberMe{
+    position: relative;
+    left: 2vh;
+    padding-top: 1em;
+    width: fit-content;
+    height: 3vh;
+    top: -3vh;
+}
+.rememberMe p{
+    position: relative;
+    top: -6vh;
+    left: 1.4vw;
+    font-size: 20px;
+}
+.ContinueButton{
+    position: relative;
+    left: .5vw;
+    background-color: black;
+    color: white;
+    text-align: center;
+    border-radius: 30em;
+    width: 20vw;
+    height: 5vh;
+    font-family: "Righteous", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    margin-bottom: 1em;
+}
+.Register{
+    position: relative;
+    display: block;
+    color:blue;
+    text-decoration: none;
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    font-size: 13px;
+}
+.errorMessage{
+    display: none;
+    white-space: nowrap;
+    position: relative;
+    top: 22.8vh;
+    left: -18vw;
+    color: red;
+    font-size: 15px;
+    font-family: "Righteous", sans-serif;
+    font-weight: 100;
+    width: 3em;
+    text-align: center;
+}
