@@ -12,7 +12,6 @@
 - **Reminders**: Set reminders for tasks to stay ahead of deadlines.
 - **Profile Customization**: Update your username and upload a profile picture (jpg, gif, png supported; max file size: 500k).
 - **Gallery Access for Images**: Attach images to your tasks directly from your device’s gallery.
-- **Responsive Design**: Accessible on both desktop and mobile devices for on-the-go productivity.
 
 ---
 
