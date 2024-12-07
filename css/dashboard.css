@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Just+Me+Again+Down+Here&family=Kablammo&family=Righteous&display=swap');
+a{
+    text-decoration: none;
+}
 html{
     overflow-y: hidden;
 }
@@ -22,6 +25,27 @@ body{
     height: 87vh;
     width: 20vw;
     border-radius: 1em;
+}
+.logoutCont{
+    position: relative;
+    top: 70vh;
+    left: 1vw;
+    width: fit-content;
+    cursor: pointer;
+}
+.logoutButton{
+    display: flex;
+    background-color: #272525;
+    color: #fffafa;
+    width: 18vw;
+    height: 5vh;
+    border-radius: 1em;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-family: "Righteous", sans-serif;
+    cursor: pointer;
+    pointer-events: auto;
 }
 .upperTab{
     background-color: #fffafa;
@@ -50,30 +74,50 @@ body{
 .searchInput{
     position: relative;
     background-color: #eeeeee;
-    top: 7.3vh;
+    top: 6.5vh;
+    width: 27vw;
     left: -2.5vw;
-    height: 5vh;
+    height: 6.5vh;
     border: 0px;
     border-radius: 1.2em;
     font-family: "Righteous", sans-serif;
 }
-.newTaskButton{
+.searchButton{
     position: relative;
-    display: flex;
+    top: -0.1vh;
+    left: 23vw;
+    width: 10vw;
+    height: 6.5vh;
     background-color: #8d2a4b;
     color: #fffafa;
     border-radius: 1em;
-    width: 10vw;
-    height: 5vh;
-    top: -2.7vh;
-    left: 42vw;
+    border: 0px;
+    font-family: "Righteous", sans-serif;
+    cursor: pointer;
+    pointer-events: auto;
+    box-shadow: 3px #0b1215;
+    font-size: 22px;
+}
+.newTaskButton{
+    position: relative;
+    display: flex;
+    background-color: #0b1215;
+    color: #fffafa;
+    border-radius: .9em;
+    width: 12vw;
+    height: 7vh;
+    top: -3.6vh;
+    left: 40vw;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    pointer-events: auto;
+    font-size: 22px;
 }
 .time{
     position: relative;
-    top: -10vh;
-    left: 59vw;
+    top: -12vh;
+    left: 58.5vw;
     height: fit-content;
     width: fit-content;
     color: #8d2a4b;

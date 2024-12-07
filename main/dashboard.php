@@ -5,13 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Management by MuseoAR</title>
     <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="icon" href="../img/logo.png" type="image/x-icon">
 </head>
 <body>
     <?php
-        echo "<h1 class='welcome'>Welcome, _SESSION['username']</h1>"
+        echo "<h1 class='welcome'>Welcome, " . `_SESSION['firstName']` . "</h1>";
     ?>
     <div class="underWelcome">
-
+        <div class="logoutCont">
+        <form action="" method="post">
+            <button type="submit" class="logoutButton">Logout</div>
+        </form>
+            <?php
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            session_start();
+            session_unset();
+            session_destroy();
+            header("Location: index.php");
+            exit();
+            }
+            ?>
+    </div>
     </div>
     <div class="upperTab">
         <div class="searchBar">

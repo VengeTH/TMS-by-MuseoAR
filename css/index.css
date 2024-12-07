@@ -82,6 +82,8 @@ letter-spacing: 0.15em;
 }
 .LoginForm form{
     height: fit-content;
+    position: relative;
+    left: -.7vw;
 }
 .emailCont, .passCont{
     position: relative;
@@ -93,7 +95,7 @@ letter-spacing: 0.15em;
     background-color: #eeeeee;
     border: 0px transparent;
     border-radius: .3em;
-    width: 20vw;
+    width: 21.5vw;
     height: 4vh;
 }
 input[type="checkbox"]:checked{
@@ -120,7 +122,7 @@ input[type="checkbox"]:checked{
     color: white;
     text-align: center;
     border-radius: 30em;
-    width: 20vw;
+    width: 21.5vw;
     height: 5vh;
     font-family: "Righteous", sans-serif;
     font-style: normal;
@@ -129,6 +131,7 @@ input[type="checkbox"]:checked{
 }
 .Register{
     position: relative;
+    left: 7.5vw;
     display: block;
     color:blue;
     text-decoration: none;
@@ -136,13 +139,14 @@ input[type="checkbox"]:checked{
     font-family: "Roboto", sans-serif;
     font-weight: 100;
     font-size: 13px;
+    width: fit-content;
 }
 .errorMessage{
     display: none;
     white-space: nowrap;
     position: relative;
-    top: 22.8vh;
-    left: -18vw;
+    top: -14vh;
+    left: 5vw;
     color: red;
     font-size: 15px;
     font-family: "Righteous", sans-serif;

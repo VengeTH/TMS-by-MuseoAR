@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Management by MuseoAR</title>
     <link rel="stylesheet" href="../css/index.css">
+    <link rel="icon" href="../img/logo.png" type="image/x-icon">
 </head>
 <body>
     <div class="welcome">
@@ -19,45 +20,28 @@
         <div class="LoginForm">
             <form action="" method="post">
                 <div class="emailCont">
-                Email
-                <input type="text" name="email" class="EmailBox" required>
+                    Email
+                    <input type="text" name="email" class="EmailBox" required>
                 </div>
                 <div class="passCont">
-                Password
-                <input type="password" name="password" class="PasswordBox" required>
+                    Password
+                    <input type="password" name="password" class="PasswordBox" required>
                 </div>
                 <div class="rememberMe">
                     <input type="checkbox" name="remember">
-                    <p>Remember me</p></div>
+                    <p>Remember me</p>
+                </div>
                 <button type="submit" class="ContinueButton">Continue</button>
                 <a href="register.php" class="Register">Don't have an account</a>
+                <div class="errorMessage" id="errorMessage">
+                    <p>Incorrect email or password.</p>
+                </div>
             </form>
-            <div class="errorMessage" id="errorMessage">
-                <p>Incorrect email or password.</p>
-            </div>
         </div>
     </div>
 </body>
 <?php
 session_start();
-
-// Database connection details
-$servername = "localhost";
-$username = "museoar";
-$password = "museoar2024";
-$database = "TaskManagementDB";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $database);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-echo "Connected successfully";
-
-// Close the connection
-$conn->close();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
@@ -75,7 +59,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             setcookie('email', $email, time() + (86400 * 30), "/"); // 30 days
             setcookie('password', $password, time() + (86400 * 30), "/"); // 30 days
         }
-
         header('Location: dashboard.php');
         exit();
     } else {
