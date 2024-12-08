@@ -173,8 +173,8 @@ letter-spacing: 0.15em;
     font-size: 13px;
     width: fit-content;
 }
-.errorMessage{
-    display: none;
+.errorMessage {
+    display: block; /* Change from none to block */
     white-space: nowrap;
     position: relative;
     top: -14vh;
@@ -183,8 +183,14 @@ letter-spacing: 0.15em;
     font-size: 15px;
     font-family: "Righteous", sans-serif;
     font-weight: 100;
-    width: 3em;
+    width: fit-content; /* Change from fixed width */
     text-align: center;
+    margin-top: 10px; /* Add some margin */
+}
+
+/* Optional: Add a style for when there's no error */
+.errorMessage:empty {
+    display: none; /* Hide when no error message */
 }
 .footer{
     position: fixed;

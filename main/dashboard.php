@@ -8,9 +8,16 @@
     <link rel="icon" href="../img/logo.png" type="image/x-icon">
 </head>
 <body>
+    <div class="welcome">
     <?php
-        echo "<h1 class='welcome'>Welcome, " . `_SESSION['firstName']` . "</h1>";
+    session_start();
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: index.php");
+        exit();
+    }
+    echo "Welcome, " . htmlspecialchars($_SESSION['first_name']) . "!";
     ?>
+    </div>
     <div class="underWelcome">
         <div class="logoutCont">
         <form action="" method="post">

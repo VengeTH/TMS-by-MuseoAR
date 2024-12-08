@@ -58,34 +58,52 @@
     </div>
 </body>
 <?php
-session_start();
+session_start(); // Start the session
+include 'db.php'; // Include the database connection
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $remember = isset($_POST['remember']);
+// Check if the user is already logged in
+if (isset($_SESSION['first_name'])) {
+    header("Location: dashboard.php");
+    exit();
+}
 
-    // Dummy credentials for demonstration
-    $correct_email = 'user@example.com';
-    $correct_password = 'password123';
+$login_error = ""; // Initialize error variable
 
-    if ($email === $correct_email && $password === $correct_password) {
-        $_SESSION['email'] = $email;
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
 
-        if ($remember) {
-            setcookie('email', $email, time() + (86400 * 30), "/"); // 30 days
-            setcookie('password', $password, time() + (86400 * 30), "/"); // 30 days
-        }
-        header('Location: dashboard.php');
-        exit();
+    if (empty($email) || empty($password)) {
+        $login_error = "Email and password are required.";
     } else {
-        echo '<script>document.getElementById("errorMessage").style.display = "block";</script>';
+        // Prepare and bind
+        $stmt = $conn->prepare("SELECT id, first_name, password FROM users WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $stmt->store_result();
+
+        if ($stmt->num_rows > 0) {
+            $stmt->bind_result($id, $first_name, $hashed_password);
+            $stmt->fetch();
+
+            // Verify the password
+            if (password_verify($password, $hashed_password)) {
+                // Store user info in the session
+                $_SESSION['user_id'] = $id;
+                $_SESSION['first_name'] = $first_name;
+
+                // Login successful, redirect to dashboard
+                header("Location: dashboard.php");
+                exit();
+            } else {
+                $login_error = "Invalid email or password.";
+            }
+        } else {
+            $login_error = "No user found with that email.";
+        }
+        $stmt->close();
     }
 }
-
-if (isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
-    $_POST['email'] = $_COOKIE['email'];
-    $_POST['password'] = $_COOKIE['password'];
-}
+$conn->close();
 ?>
 </html>
