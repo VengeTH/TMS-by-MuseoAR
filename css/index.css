@@ -181,19 +181,21 @@ letter-spacing: 0.15em;
     left: 5vw;
     color: red;
     font-size: 15px;
+    left: 50%;
+    transform: translateX(-50%);
     font-family: "Righteous", sans-serif;
     font-weight: 100;
     width: fit-content; /* Change from fixed width */
     text-align: center;
     margin-top: 10px; /* Add some margin */
 }
-
 /* Optional: Add a style for when there's no error */
 .errorMessage:empty {
     display: none; /* Hide when no error message */
 }
 .footer{
     position: fixed;
+    display: flex;
     background-color: #000;
     height: 9vh;
     left: 0;
