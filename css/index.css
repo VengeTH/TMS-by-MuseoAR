@@ -188,6 +188,7 @@ letter-spacing: 0.15em;
     width: fit-content; /* Change from fixed width */
     text-align: center;
     margin-top: 10px; /* Add some margin */
+    animation-delay: 1s; /* Delay the animation */
 }
 /* Optional: Add a style for when there's no error */
 .errorMessage:empty {

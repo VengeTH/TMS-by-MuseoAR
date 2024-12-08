@@ -1,7 +1,7 @@
 <?php
 session_start(); // Start the session
 include 'db.php'; // Include the database connection
-
+$login_error = '';
 // Check if the user is already logged in
 if (isset($_SESSION['first_name'])) {
     header("Location: dashboard.php"); // Redirect to dashboard if already logged in
@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $conn->close();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"></html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

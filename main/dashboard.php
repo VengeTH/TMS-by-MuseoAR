@@ -43,10 +43,13 @@
         <div class="time">
             <p id="currentTime"></p>
             <?php
-                echo "<script>function updateTime() {
-                var currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
-                document.getElementById(`currentTime`).textContent = currentTime;
-                }setInterval(updateTime, 1000);</script>";
+                echo "<script>
+                function updateTime() {
+                    const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
+                    document.getElementById(`currentTime`).textContent = currentTime;
+                }
+                updateTime();
+                setInterval(updateTime, 1000);</script>";
             ?>
         </div>
     </div>

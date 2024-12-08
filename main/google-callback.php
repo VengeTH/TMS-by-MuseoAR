@@ -1,25 +1,24 @@
 <?php
-require 'vendor/autoload.php';
+require_once "vendor/autoload.php";
 session_start();
-
-$client = new Google\Client();
+$client = new Google_Client();
 $client->setClientId('353540925058-rjjiqh9293el9qqn73100t8am2ahc4cm.apps.googleusercontent.com'); // Replace with actual Client ID
-$client->setClientSecret('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T'); // Replace with actual Client Secret
+$client->setClientSecret('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'); // Replace with actual Client Secret
 $client->setRedirectUri('http://localhost/Task%20Management/main/google-callback.php'); // Replace with actual Redirect URI
-$client->addScope(Google\Service\Oauth2::USERINFO_EMAIL);
-$client->addScope(Google\Service\Oauth2::USERINFO_PROFILE);
+$client->addScope(Google_Service_Oauth2::USERINFO_EMAIL);
+$client->addScope(Google_Service_Oauth2::USERINFO_PROFILE);
 
-if (isset($_GET['code'])) {
-    $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
-
+if (isset($_GET['code']) ) {
+    //error 1
+    $token =  $client->fetchAccessTokenWithAuthCode($_GET['code']);
+    echo 'token:'.$token;
     if (isset($token['error'])) {
         die('Error fetching the access token: ' . htmlspecialchars($token['error']));
     }
-
     $client->setAccessToken($token);
-
+    // error 2
     if ($client->getAccessToken()) {
-        $oauth2 = new Google\Service\Oauth2($client);
+        $oauth2 = new Google_Service_Oauth2($client);
         $userInfo = $oauth2->userinfo->get();
 
         // Extract user information
