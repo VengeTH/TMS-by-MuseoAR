@@ -45,26 +45,6 @@ body{
     background-color: #2c2c2c;
     color: white;
 }
-.welcome{
-    position: relative;
-    font-family: "Just Me Again Down Here", cursive;
-    color: #000;
-    text-align: center;
-    width: fit-content;
-    height: fit-content;
-    top: 13vh;
-    left: 22vw;
-    font-size: 30px;
-}
-.welcome h1{
-    font-size: 100px;
-    font-weight: 100;
-    letter-spacing: 3px;
-}
-.welcome p{
-    position: relative;
-    top: -13vh;
-}
 .createAccText{
     position: relative;
     top: -48.5vh;

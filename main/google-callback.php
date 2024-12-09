@@ -51,7 +51,7 @@ if (isset($_GET['code'])) {
         $_SESSION['first_name'] = $db_first_name;
         $_SESSION['profile_picture'] = $current_picture;
 
-        header('Location: dashboard.php');
+        header('Location: newPass.php');
         exit();
     } else {
         $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, profile_picture, profile_picture_source) VALUES (?, ?, ?, ?, 'google')");
@@ -62,7 +62,7 @@ if (isset($_GET['code'])) {
             $_SESSION['first_name'] = $first_name;
             $_SESSION['profile_picture'] = $google_picture;
 
-            header('Location: dashboard.php');
+            header('Location: newPass.php');
             exit();
         } else {
             echo "Error: " . $stmt->error;

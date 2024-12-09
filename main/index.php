@@ -56,15 +56,12 @@ $conn->close();
     <title>Task Management by MuseoAR</title>
     <link rel="stylesheet" href="../css/index.css">
     <link rel="icon" href="../img/logo.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <?php
     include 'header.php'; // Include the header
     ?>
-    <div class="welcome">
-        <h1>Welcome</h1>
-        <p>to your personal task Manager</p>
-    </div>
     <div class="lagayan">
         <img src="../img/logo.png" class="bilog">
         <div class="title">
@@ -86,16 +83,22 @@ $conn->close();
                 </div>
                 <button type="submit" class="ContinueButton">Continue</button>
                 <a href="register.php" class="Register">Don't have an account</a>
-                <div class="errorMessage" id="errorMessage">
-                    <?php
-                        echo "<p> $login_error </p>";
-                    ?>
-                </div>
             </form>
         </div>
     </div>
     <?php
     include 'footer.php'; // Include the footer
+
+    // Display SweetAlert2 alert if there is a login error
+    if (!empty($login_error)) {
+        echo "<script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '$login_error',
+            });
+        </script>";
+    }
     ?>
 </body>
 </html>

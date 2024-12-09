@@ -1,3 +1,65 @@
+<?php
+// Start output buffering to prevent premature output issues
+
+include 'db.php'; // Include the database connection
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Validate terms and conditions agreement
+    if (!isset($_POST['agreement'])) {
+        die("You must agree to the terms and conditions.");
+    }
+
+    // Sanitize and validate form inputs
+    $first_name = trim($_POST['firstName']);
+    $last_name = trim($_POST['lastName']);
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
+
+    if (empty($first_name) || empty($last_name) || empty($email) || empty($password)) {
+        die("All fields are required.");
+    }
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        die("Invalid email format.");
+    }
+
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+    // Check for duplicate email
+    $check_stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
+    $check_stmt->bind_param("s", $email);
+    $check_stmt->execute();
+    $check_stmt->store_result();
+
+    if ($check_stmt->num_rows > 0) {
+        die("This email is already registered.");
+    }
+    $check_stmt->close();
+
+    // Insert new user into the database
+    $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssss", $first_name, $last_name, $email, $hashed_password);
+
+    if ($stmt->execute()) {
+        // Start the session and redirect
+        session_start();
+        $_SESSION['user_id'] = $stmt->insert_id;
+        $_SESSION['first_name'] = $first_name;
+
+        header("Location: dashboard.php");
+        exit();
+    } else {
+        die("Error: " . $stmt->error);
+    }
+    $stmt->close();
+}
+$conn->close();
+ob_end_flush(); // End output buffering
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,13 +71,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-    <?php
-    include 'header.php'; // Include the header
-    ?>
-    <div class="welcome">
-        <h1>Welcome</h1>
-        <p>to your personal task Manager</p>
-    </div>
+    <?php include 'header.php'; ?>
     <div class="createAccText">
         <h1>Create Account</h1>
         <p>Already have an account? <a href="index.php">Log in</a></p>
@@ -68,68 +124,6 @@
             </div>
         </form>
     </div>
-    <?php
-    include 'footer.php'; // Include the footer
-    include 'db.php'; // Include the database connection
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    echo "Connected successfully";
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        echo "Form submission detected. ";
-        print_r($_POST); // Show form inputs to ensure they're being received.
-        // Check if the terms checkbox is checked
-        if (!isset($_POST['agreement'])) {
-            die("You must agree to the terms and conditions.");
-        }
-
-        // Sanitize and validate inputs
-        $first_name = trim($_POST['firstName']);
-        $last_name = trim($_POST['lastName']);
-        $email = trim($_POST['email']);
-        $password = trim($_POST['password']);
-
-        if (empty($first_name) || empty($last_name) || empty($email) || empty($password)) {
-            die("All fields are required.");
-        }
-
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            die("Invalid email format.");
-        }
-
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT); // Hash the password
-
-        // Check if email already exists
-        $check_stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
-        $check_stmt->bind_param("s", $email);
-        $check_stmt->execute();
-        $check_stmt->store_result();
-
-        if ($check_stmt->num_rows > 0) {
-            die("This email is already registered.");
-        }
-        $check_stmt->close();
-
-        // Insert the new user into the database
-        $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $first_name, $last_name, $email, $hashed_password);
-
-        if ($stmt->execute()) {
-            // Start a session and store user info
-            session_start();
-            $_SESSION['user_id'] = $stmt->insert_id;
-            $_SESSION['first_name'] = $first_name;
-
-            // Registration successful, redirect to dashboard
-            header("Location: dashboard.php");
-            exit();
-        } else {
-            echo "Error: " . $stmt->error;
-        }
-        $stmt->close();
-    }
-    $conn->close();
-    ?>
+    <?php include 'footer.php'; ?>
 </body>
 </html>

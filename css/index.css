@@ -1,62 +1,44 @@
 @import url('https://fonts.googleapis.com/css2?family=Just+Me+Again+Down+Here&family=Kablammo&family=Righteous&display=swap');
-html{
+
+html {
     overflow: hidden;
     height: 100%;
 }
-body{
+
+body {
     margin: 0;
     height: 97vh;
-    /* background-image: linear-gradient(to bottom,
-        #2a1f23 0%,
-        #362f31 50%,
-        #2a1f23 100%); */
     background-color: #e4e4e4;
 }
-.welcome{
-    position: relative;
-    font-family: "Just Me Again Down Here", cursive;
-    color: #000;
-    text-align: center;
-    width: fit-content;
-    height: fit-content;
-    top: 13vh;
-    left: 22vw;
-    font-size: 30px;
-}
-.welcome h1{
-    font-size: 100px;
-    font-weight: 100;
-    letter-spacing: 3px;
-}
-.welcome p{
-    position: relative;
-    top: -13vh;
-}
-.lagayan{
+
+.lagayan {
     position: relative;
     top: -55vh;
     width: fit-content;
 }
-.bilog{
+
+.bilog {
     position: relative;
     top: 8vh;
-    left: 72.5vw;;
+    left: 72.5vw;
     width: 8vw;
     height: 8vw;
 }
-.title{
-width: fit-content;
-font-size: 30px;
-font-family:"Kablammo", system-ui;
-font-optical-sizing: auto;
-color: black;
-font-weight: 400;
-position: relative;
-top: 4vh;
-left: 66.3vw;
-letter-spacing: 0.15em;
+
+.title {
+    width: fit-content;
+    font-size: 30px;
+    font-family: "Kablammo", system-ui;
+    font-optical-sizing: auto;
+    color: black;
+    font-weight: 400;
+    position: relative;
+    top: 4vh;
+    left: 66.3vw;
+    letter-spacing: 0.15em;
 }
-.LoginForm{
+
+.LoginForm {
     display: flex;
     position: relative;
     top: -1vh;
@@ -74,25 +56,29 @@ letter-spacing: 0.15em;
     font-style: normal;
     font-weight: 100;
 }
-.LoginForm form{
+
+.LoginForm form {
     height: fit-content;
     position: relative;
     left: -.7vw;
 }
-.emailCont, .passCont{
+
+.emailCont, .passCont {
     position: relative;
     padding: 1em;
     left: -.8vw;
     top: -1.5vh;
 }
-.EmailBox, .PasswordBox{
+
+.EmailBox, .PasswordBox {
     background-color: #eeeeee;
     border: 0px transparent;
     border-radius: .3em;
     width: 21.5vw;
     height: 4vh;
 }
-.rememberMe{
+
+.rememberMe {
     position: relative;
     left: 2vh;
     padding-top: 1em;
@@ -100,16 +86,19 @@ letter-spacing: 0.15em;
     height: 3vh;
     top: -3vh;
 }
-.rememberMe [type="checkbox"]:checked{
+
+.rememberMe [type="checkbox"]:checked {
     accent-color: #000;
 }
-.rememberMe p{
+
+.rememberMe p {
     position: relative;
     top: -6vh;
     left: 1.4vw;
     font-size: 20px;
 }
-.ContinueButton{
+
+.ContinueButton {
     position: relative;
     left: .5vw;
     background-color: black;
@@ -123,11 +112,12 @@ letter-spacing: 0.15em;
     font-weight: 400;
     margin-bottom: 1em;
 }
-.Register{
+
+.Register {
     position: relative;
     left: 7.5vw;
     display: block;
-    color:blue;
+    color: blue;
     text-decoration: none;
     text-align: center;
     font-family: "Roboto", sans-serif;
@@ -135,24 +125,24 @@ letter-spacing: 0.15em;
     font-size: 13px;
     width: fit-content;
 }
+
 .errorMessage {
-    display: block; /* Change from none to block */
+    display: block;
     white-space: nowrap;
     position: relative;
     top: -14vh;
-    left: 5vw;
+    left: 50%;
     color: red;
     font-size: 15px;
-    left: 50%;
     transform: translateX(-50%);
     font-family: "Righteous", sans-serif;
     font-weight: 100;
-    width: fit-content; /* Change from fixed width */
+    width: fit-content;
     text-align: center;
-    margin-top: 10px; /* Add some margin */
-    animation-delay: 1s; /* Delay the animation */
+    margin-top: 10px;
+    animation-delay: 1s;
 }
-/* Optional: Add a style for when there's no error */
+
 .errorMessage:empty {
-    display: none; /* Hide when no error message */
+    display: none;
 }
