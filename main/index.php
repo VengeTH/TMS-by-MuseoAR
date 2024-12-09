@@ -2,6 +2,7 @@
 include 'db.php'; // Include the database connection
 session_start(); // Start the session
 $login_error = '';
+$email = '';
 
 // Check if the user is already logged in
 if (isset($_SESSION['first_name'])) {
@@ -73,7 +74,7 @@ $conn->close();
             <form action="" method="post">
                 <div class="emailCont">
                     Email
-                    <input type="text" name="email" class="EmailBox" required>
+                    <input type="text" name="email" class="EmailBox" value="<?php echo htmlspecialchars($email);?>" required>
                 </div>
                 <div class="passCont">
                     Password
