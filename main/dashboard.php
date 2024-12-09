@@ -55,3 +55,6 @@
     </div>
 </body>
 </html>
+
+<!-- <img src="<?php echo htmlspecialchars($_SESSION['profile_picture']); ?>" alt="Profile Picture" width="100"> -->
+<!-- Save show profile picture using the code above -->

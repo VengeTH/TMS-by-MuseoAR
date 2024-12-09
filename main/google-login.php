@@ -8,7 +8,6 @@ $client->addScope(Google_Service_Oauth2::USERINFO_EMAIL);
 $client->addScope(Google_Service_Oauth2::USERINFO_PROFILE);
 
 // Redirect user to Google's OAuth 2.0 server
-// $authUrl = $client->createAuthUrl();
 $authUrl = $client->createAuthUrl();
 //Check if the authUrl is not empty
 if (!empty($authUrl)) {
