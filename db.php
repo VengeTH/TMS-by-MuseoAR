@@ -16,11 +16,25 @@ class db {
 			die("Connection failed: " . $this->conn->connect_error);
 		}
 	}
-	public function addUser($first_name, $last_name, $email, $image) {
-		$stmt = $this->conn->prepare(
-			"INSERT INTO users (first_name, last_name, email, profile_picture, profile_picture_source) VALUES (?, ?, ?, ?, 'google')",
+	public function addUser($first_name, $last_name, $email, $image, $password = null) {
+		if ($password == null) {
+			$stmt = $this->conn->prepare(
+				"INSERT INTO users (first_name, last_name, email, profile_picture, profile_picture_source) VALUES (?, ?, ?, ?, 'google')",
+			);
+			$stmt->bind_param("ssss", $first_name, $last_name, $email, $google_picture);
+			if ($stmt->execute()) {
+				$stmt->close();
+				return $stmt->insert_id;
+			} else {
+				$stmt->close();
+				return false;
+			}
+		}
+		$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+		$stmt = $conn->prepare(
+			"INSERT INTO users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)",
 		);
-		$stmt->bind_param("ssss", $first_name, $last_name, $email, $google_picture);
+		$stmt->bind_param("ssss", $first_name, $last_name, $email, $hashed_password);
 		// execute and check if the query was successful
 		if ($stmt->execute()) {
 			$userId = $stmt->id;

@@ -1,68 +1,33 @@
 <?php
-// // Start output buffering to prevent premature output issues
-//inantok na ko kaya kinomment ko nalnag muna to.
-// include "db.php"; // Include the database connection
-
-// if ($conn->connect_error) {
-// 	die("Connection failed: " . $conn->connect_error);
-// }
-
-// if ($_SERVER["REQUEST_METHOD"] == "POST") {
-// 	// Validate terms and conditions agreement
-// 	if (!isset($_POST["agreement"])) {
-// 		die("You must agree to the terms and conditions.");
-// 	}
-
-// 	// Sanitize and validate form inputs
-// 	$first_name = trim($_POST["firstName"]);
-// 	$last_name = trim($_POST["lastName"]);
-// 	$email = trim($_POST["email"]);
-// 	$password = trim($_POST["password"]);
-
-// 	if (empty($first_name) || empty($last_name) || empty($email) || empty($password)) {
-// 		die("All fields are required.");
-// 	}
-
-// 	if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-// 		die("Invalid email format.");
-// 	}
-
-// 	$hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-// 	// Check for duplicate email
-// 	$check_stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
-// 	$check_stmt->bind_param("s", $email);
-// 	$check_stmt->execute();
-// 	$check_stmt->store_result();
-
-// 	if ($check_stmt->num_rows > 0) {
-// 		die("This email is already registered.");
-// 	}
-// 	$check_stmt->close();
-
-// 	// Insert new user into the database
-// 	$stmt = $conn->prepare(
-// 		"INSERT INTO users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)",
-// 	);
-// 	$stmt->bind_param("ssss", $first_name, $last_name, $email, $hashed_password);
-
-// 	if ($stmt->execute()) {
-// 		// Start the session and redirect
-// 		session_start();
-// 		$_SESSION["user_id"] = $stmt->insert_id;
-// 		$_SESSION["first_name"] = $first_name;
-
-// 		header("Location: dashboard.php");
-// 		exit();
-// 	} else {
-// 		die("Error: " . $stmt->error);
-// 	}
-// 	$stmt->close();
-// }
-// $conn->close();
-// ob_end_flush();
-
-// End output buffering
+require_once "db.php";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	$db = new db();
+	if (!isset($_POST["agreement"])) {
+		die("You must agree to the terms and conditions.");
+	}
+	$first_name = trim($_POST["firstName"]);
+	$last_name = trim($_POST["lastName"]);
+	$email = trim($_POST["email"]);
+	$password = trim($_POST["password"]);
+	if (empty($first_name) || empty($last_name) || empty($email) || empty($password)) {
+		die("All fields are required.");
+	}
+	if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+		die("Invalid email format.");
+	}
+	$emailExists = $db->getUser($email);
+	if ($emailExists) {
+		die("Email already exists.");
+	}
+	$user = $db->addUser($first_name, $last_name, $email, $password);
+	if (!$user) {
+		die("Error: Unable to add user.");
+	}
+	session_start();
+	$_SESSION["user_id"] = $stmt->insert_id;
+	$_SESSION["first_name"] = $first_name;
+	header("Location: dashboard.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
