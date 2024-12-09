@@ -13,7 +13,8 @@ body{
     width: fit-content;
     height: fit-content;
     font-size: 26px;
-    left: 2vw;
+    left: 1.5vw;
+    transform: translateY(50%);
     font-family: "Righteous", sans-serif;
     font-weight: 100;
     color: #0b1215;
@@ -21,6 +22,7 @@ body{
 .underWelcome{
     background-color: #fffafa;
     position: relative;
+    top: 4vh;
     left: 1vw;
     height: 87vh;
     width: 20vw;

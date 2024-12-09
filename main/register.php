@@ -91,7 +91,6 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
     echo "Connected successfully";
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "Form submission detected. ";
     print_r($_POST); // Show form inputs to ensure they're being received.

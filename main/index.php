@@ -1,11 +1,15 @@
 <?php
-session_start(); // Start the session
 include 'db.php'; // Include the database connection
+session_start(); // Start the session
 $login_error = '';
+
 // Check if the user is already logged in
 if (isset($_SESSION['first_name'])) {
+    error_log("User is already logged in: " . $_SESSION['first_name']);
     header("Location: dashboard.php"); // Redirect to dashboard if already logged in
     exit();
+} else{
+    error_log("User is not logged in");
 }
 
 // Handle login form submission
@@ -14,22 +18,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
 
     // Prepare and bind
-    $stmt = $conn->prepare("SELECT first_name, password FROM users WHERE email = ?");
+    $stmt = $conn->prepare("SELECT id, first_name, password FROM users WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $stmt->store_result();
 
     // Check if the user exists
     if ($stmt->num_rows > 0) {
-        $stmt->bind_result($first_name, $hashed_password);
+        $stmt->bind_result($user_id, $first_name, $hashed_password);
         $stmt->fetch();
 
         // Verify the password
         if (password_verify($password, $hashed_password)) {
+            // Store the user ID in the session
+            $_SESSION['user_id'] = $user_id;
             // Store the first name in the session
             $_SESSION['first_name'] = $first_name;
-            // Login successful, redirect to dashboard
-            header("Location: dashboard.php");
+            header("Location: dashboard.php"); // Redirect to dashboard
             exit();
         } else {
             $login_error = "Invalid password.";
@@ -43,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $conn->close();
 ?>
 <!DOCTYPE html>
-<html lang="en"></html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
