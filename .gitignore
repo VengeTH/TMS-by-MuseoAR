@@ -1,0 +1,4 @@
+# ignore vendor files for composer
+vendor/*
+# ignore node_modules files for npm
+node_modules/*
