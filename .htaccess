@@ -4,25 +4,23 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^(.*)$ $1.php [L,QSA]
+# RewriteRule ^([^/.]+)$ $1.php [L,QSA]
 
 # Remove .html extension
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.html -f
 RewriteRule ^(.*)$ $1.html [L,QSA]
+# RewriteRule ^([^/.]+)$ $1.html [L,QSA]
 
-# Deny access to db.php
-<Files "db.php">
-    Order Allow,Deny
-    Deny from all
-</Files>
-
-# Alternatively, you can use this rule to deny access
-RewriteRule ^db\.php$ - [F,L]
-
+# Deny access to the database connections folder
+RewriteRule ^db/ - [F,L]
 <Files .htaccess>
-    Order Allow,Deny
-    Deny from all
+    order allow,deny
+    deny from all
 </Files>
+RewriteRule ^components/ - [F,L]
 
-# Disable directory browsing
+# disable directory browsing
 Options All -Indexes
+
+# temp
