@@ -1,6 +1,12 @@
 <?php
 require_once dirname(__DIR__) . "/vendor/autoload.php";
-
+/**
+ * Google Oauth class
+ * usage:
+ * $client = new googleOauth();
+ * $client->functionName($params);
+ * you can add your own functions here. use generateOauth2 to generate oauth2.
+ */
 class googleOauth {
 	private $client;
 	private $Oauth2;

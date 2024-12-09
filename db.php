@@ -1,5 +1,9 @@
 <?php
-
+/* usage: 
+	$db = new db();
+	$db->functionName($email, $password);
+	you can add your own functions here. to have a centralized database connection.
+*/
 class db {
 	private $conn;
 	public function __construct() {
