@@ -67,7 +67,7 @@ body{
 }
 .createAccText{
     position: relative;
-    top: -50vh;
+    top: -48.5vh;
     left: 60vw;
     font-family: "Righteous", sans-serif;
     font-size: 28px;
@@ -92,7 +92,7 @@ body{
     border-radius: 13px;
     height: 60vh;
     width: 27vw;
-    top: -53vh;
+    top: -51.5vh;
     left: 60vw;
     justify-content: center;
 }

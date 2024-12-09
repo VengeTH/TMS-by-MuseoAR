@@ -57,18 +57,9 @@ $conn->close();
     <link rel="icon" href="../img/logo.png" type="image/x-icon">
 </head>
 <body>
-    <div class="header">
-        <div class="logo">
-            <img src="../img/logo.png" class="logo" width=6% height=6%>
-        </div>
-        <div class="titleBesideLogo">
-            <h1>ORGANISS</h1>
-        </div>
-        <div class="menu">
-            <a href="index.php"><button>Sign in</button></a>
-            <a href="register.php"><button>Register</button></a>
-        </div>
-    </div>
+    <?php
+    include 'header.php'; // Include the header
+    ?>
     <div class="welcome">
         <h1>Welcome</h1>
         <p>to your personal task Manager</p>
@@ -102,10 +93,8 @@ $conn->close();
             </form>
         </div>
     </div>
-    <div class="footer">
-        <a href="aboutUs.php"><p>About Us</p></a>
-        <p>MuseoAR Developers</p>
-        <a href="contactUs.php"><p>Contact Us</p></a>
-    </div>
+    <?php
+    include 'footer.php'; // Include the footer
+    ?>
 </body>
 </html>

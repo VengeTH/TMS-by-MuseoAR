@@ -8,18 +8,9 @@
     <link rel="stylesheet" href="../css/register.css">
 </head>
 <body>
-    <div class="header">
-        <div class="logo">
-            <img src="../img/logo.png" class="logo" width=6% height=6%>
-        </div>
-        <div class="titleBesideLogo">
-            <h1>ORGANISS</h1>
-        </div>
-        <div class="menu">
-            <a href="index.php"><button>Sign in</button></a>
-            <a href="register.php"><button>Register</button></a>
-        </div>
-    </div>
+    <?php
+    include 'header.php'; // Include the header
+    ?>
     <div class="welcome">
         <h1>Welcome</h1>
         <p>to your personal task Manager</p>
@@ -85,6 +76,7 @@
         </form>
     </div>
     <?php
+    include 'footer.php'; // Include the footer
 include 'db.php'; // Include the database connection
 
 if ($conn->connect_error) {
