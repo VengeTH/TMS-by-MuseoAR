@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Management by MuseoAR</title>
-    <link rel="stylesheet" href="/css/dashboard.css">
-    <link rel="icon" href="/img/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/dashboard.css">
+    <link rel="icon" href="./img/logo.png" type="image/x-icon">
 </head>
 <body>
     <div class="welcome">
@@ -25,9 +25,9 @@
             <?php if (isset($_GET["logout"])) {
             	session_unset();
             	session_destroy();
-            	header("Location: /");
+            	header("Location: /index.php");
             	exit();
-            } ?> 
+            } ?>
     </div>
     </div>
     <div class="upperTab">
@@ -46,7 +46,7 @@
                 updateTime();
                 setInterval(updateTime, 1000);
             </script>
-                
+
         </div>
     </div>
     <script>
@@ -54,7 +54,7 @@
             window.location.href = '/dashboard?&logout=true';
         });
     </script>
-    
+
 
 </body>
 </html>

@@ -1,6 +1,6 @@
 <div class="header">
     <div class="logo">
-        <img src="../img/logo.png" class="logo" width=6% height=6%>
+        <img src="./img/logo.png" class="logo" width=6% height=6%>
     </div>
     <div class="titleBesideLogo">
         <h1>ORGANISS</h1>
