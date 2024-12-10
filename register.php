@@ -19,12 +19,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if ($emailExists) {
 		die("Email already exists.");
 	}
-	$user = $db->addUser($first_name, $last_name, $email, $password);
+	$user = $db->addUser($first_name, $last_name, $email, null, $password);
+	print_r($user);
 	if (!$user) {
 		die("Error: Unable to add user.");
 	}
 	session_start();
-	$_SESSION["user_id"] = $stmt->insert_id;
+	$_SESSION["user_id"] = $user;
 	$_SESSION["first_name"] = $first_name;
 	header("Location: /dashboard");
 }
