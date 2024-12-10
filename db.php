@@ -23,7 +23,6 @@ class db {
 			);
 			$stmt->bind_param("ssss", $first_name, $last_name, $email, $google_picture);
 			if ($stmt->execute()) {
-				$stmt->close();
 				return $stmt->insert_id;
 			} else {
 				$stmt->close();
@@ -31,7 +30,7 @@ class db {
 			}
 		}
 		$hashed_password = password_hash($password, PASSWORD_DEFAULT);
-		$stmt = $conn->prepare(
+		$stmt = $this->conn->prepare(
 			"INSERT INTO users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)",
 		);
 		$stmt->bind_param("ssss", $first_name, $last_name, $email, $hashed_password);
@@ -64,7 +63,7 @@ class db {
 	}
 	public function updateUserImage($id, $image) {
 		$update_stmt = $this->conn->prepare("UPDATE users SET profile_picture = ? WHERE id = ?");
-		$update_stmt->bind_param("si", $google_picture, $user["id"]);
+		$update_stmt->bind_param("si", $image, $id);
 		if ($update_stmt->execute()) {
 			$update_stmt->close();
 			return true;

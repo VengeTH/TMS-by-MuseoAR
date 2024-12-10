@@ -19,14 +19,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if ($emailExists) {
 		die("Email already exists.");
 	}
-	$user = $db->addUser($first_name, $last_name, $email, $password);
+	$user = $db->addUser($first_name, $last_name, $email, null, $password);
+	print_r($user);
 	if (!$user) {
 		die("Error: Unable to add user.");
 	}
 	session_start();
-	$_SESSION["user_id"] = $stmt->insert_id;
+	$_SESSION["user_id"] = $user;
 	$_SESSION["first_name"] = $first_name;
-	header("Location: dashboard.php");
+	header("Location: /dashboard");
 }
 ?>
 <!DOCTYPE html>
@@ -35,8 +36,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Management by MuseoAR</title>
-    <link rel="icon" href="../img/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="./css/register.css">
+    <link rel="icon" href="/img/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/register.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>

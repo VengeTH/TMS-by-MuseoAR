@@ -33,7 +33,7 @@ if ($user == null) {
 	exit();
 }
 if (
-	$user["profile_picture_source"] === "google" &&
+	$user["profile_picture_source"] == "google" &&
 	!$db->updateUserImage($user["id"], $google_picture)
 ) {
 	die("Error: Unable to update user image.");
@@ -42,6 +42,5 @@ $_SESSION["user_id"] = $user["id"];
 $_SESSION["first_name"] = $user["first_name"];
 $_SESSION["profile_picture"] = $google_picture;
 header("Location: /newPass");
-
 exit();
 ?>
