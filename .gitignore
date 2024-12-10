@@ -1,4 +1,6 @@
-# ignore vendor files for composer
-vendor/*
-# ignore node_modules files for npm
-node_modules/*
+/vendor/
+node_modules/
+npm-debug.log
+yarn-error.log
+composer.phar
+pnpm-lock.yaml
