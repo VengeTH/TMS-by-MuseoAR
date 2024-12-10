@@ -1,5 +1,64 @@
 @import url('https://fonts.googleapis.com/css2?family=Just+Me+Again+Down+Here&family=Kablammo&family=Righteous&display=swap');
 body{
     background-color: #e4e4e4;
+    font-family: "Righteous", sans-serif;
+}
+.contactUsUpper{
+    background-color: #e4e4e4;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    text-align: center;
+    background-color: black;
+    color: white;
+}
+.contactForm{
+    display: flex;
+    position: relative;
+    left: 56vw;
+    top: -15vh;
+    height: 80vh;
+    width: 30vw;
+    padding: 3.5vw;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    font-family: "Righteous", sans-serif;
+    background-color: white;
+    color: #737373;
+    font-size: 2.5vh;
+}
 
+.contactForm h1{
+    font-family: "Righteous", sans-serif;
+    color: black;
+}
+
+.contactForm input{
+    width: 80%;
+    height: 5vh;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+    background-color: #eee;
+}
+
+.contactForm input[type="checkbox"]{
+    width: 5%;
+    height: 5vh;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+    background-color: #eee;
+}
+
+.contactForm input[type="checkbox"]:checked{
+    accent-color: #65558f;
+}
+
+.contactForm [for="notice"]{
+    font-size: 1.5vh;
 }
