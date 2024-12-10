@@ -23,7 +23,6 @@ class db {
 			);
 			$stmt->bind_param("ssss", $first_name, $last_name, $email, $google_picture);
 			if ($stmt->execute()) {
-				$stmt->close();
 				return $stmt->insert_id;
 			} else {
 				$stmt->close();
