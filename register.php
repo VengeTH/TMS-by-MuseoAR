@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	session_start();
 	$_SESSION["user_id"] = $stmt->insert_id;
 	$_SESSION["first_name"] = $first_name;
-	header("Location: dashboard.php");
+	header("Location: /dashboard");
 }
 ?>
 <!DOCTYPE html>
@@ -35,8 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Management by MuseoAR</title>
-    <link rel="icon" href="../img/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="./css/register.css">
+    <link rel="icon" href="/img/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/register.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>

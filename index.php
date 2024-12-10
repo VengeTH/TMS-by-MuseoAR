@@ -8,7 +8,7 @@ $email = "";
 // Check if the user is already logged in
 if (isset($_SESSION["first_name"])) {
 	// error_log("User is already logged in: " . $_SESSION["first_name"]);
-	header("Location: dashboard.php"); // Redirect to dashboard if already logged in
+	header("Location: /dashboard"); // Redirect to dashboard if already logged in
 }
 
 // Handle login form submission
@@ -24,8 +24,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Management by MuseoAR</title>
-    <link rel="stylesheet" href="./css/index.css">
-    <link rel="icon" href="./img/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="icon" href="/img/logo.png" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Include the header
 ?>
     <div class="lagayan">
-        <img src="./img/logo.png" class="bilog">
+        <img src="/img/logo.png" class="bilog">
         <div class="title">
             <h1>ORGANISS</h1>
         </div>
