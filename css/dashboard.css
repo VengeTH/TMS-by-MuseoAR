@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Just+Me+Again+Down+Here&family=Kablammo&family=Righteous&display=swap');
+a{
+    text-decoration: none;
+}
+html{
+    overflow-y: hidden;
+}
+body{
+    background-color: #dfdadb;
+}
+.welcome{
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    font-size: 26px;
+    left: 1.5vw;
+    transform: translateY(50%);
+    font-family: "Righteous", sans-serif;
+    font-weight: 100;
+    color: #0b1215;
+}
+.underWelcome{
+    background-color: #fffafa;
+    position: relative;
+    top: 4vh;
+    left: 1vw;
+    height: 87vh;
+    width: 20vw;
+    border-radius: 1em;
+}
+.logoutCont{
+    position: relative;
+    top: 70vh;
+    left: 1vw;
+    width: fit-content;
+    cursor: pointer;
+}
+.logoutButton{
+    display: flex;
+    background-color: #272525;
+    color: #fffafa;
+    width: 18vw;
+    height: 5vh;
+    border-radius: 1em;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-family: "Righteous", sans-serif;
+    cursor: pointer;
+    pointer-events: auto;
+}
+.upperTab{
+    background-color: #fffafa;
+    position: relative;
+    border-radius: 1em;
+    width: 66vw;
+    height: 10vh;
+    top: -91.5vh;
+    left: 30vw;
+    text-align: center;
+    justify-content: center;
+    font-family: "Righteous", sans-serif;
+}
+.searchBar{
+    position: relative;
+    top: -5vh;
+    left: 2vw;
+    width: 15vw;
+    height: 5vh;
+    border-radius: 1em;
+    border: none;
+    padding-left: 1em;
+    font-family: "Righteous", sans-serif;
+    font-size: 20px;
+}
+.searchInput{
+    position: relative;
+    background-color: #eeeeee;
+    top: 6.5vh;
+    width: 27vw;
+    left: -2.5vw;
+    height: 6.5vh;
+    border: 0px;
+    border-radius: 1.2em;
+    font-family: "Righteous", sans-serif;
+}
+.searchButton{
+    position: relative;
+    top: -0.1vh;
+    left: 23vw;
+    width: 10vw;
+    height: 6.5vh;
+    background-color: #8d2a4b;
+    color: #fffafa;
+    border-radius: 1em;
+    border: 0px;
+    font-family: "Righteous", sans-serif;
+    cursor: pointer;
+    pointer-events: auto;
+    box-shadow: 3px #0b1215;
+    font-size: 22px;
+}
+.newTaskButton{
+    position: relative;
+    display: flex;
+    background-color: #0b1215;
+    color: #fffafa;
+    border-radius: .9em;
+    width: 12vw;
+    height: 7vh;
+    top: -3.6vh;
+    left: 40vw;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    pointer-events: auto;
+    font-size: 22px;
+}
+.time{
+    position: relative;
+    top: -12vh;
+    left: 58.5vw;
+    height: fit-content;
+    width: fit-content;
+    color: #8d2a4b;
+    font-size: 22px;
+}
