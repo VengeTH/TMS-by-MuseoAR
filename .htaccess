@@ -1,6 +1,7 @@
 RewriteEngine On
-# incase of 500 or 404 do this 
-# (change the first dashboard to be the url) 
+
+# In case of 500 or 404 do this
+# (change the first dashboard to be the url)
 # second dashboard is the file
 RewriteRule ^dashboard/?$ dashboard.php [NC,L] #force redirect to dashboard.php
 
@@ -10,8 +11,6 @@ RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^(.*)$ $1.php [L,QSA]
 RewriteRule ^([^/.]+)$ $1.php [L,QSA]
 
-
-
 # Remove .html extension
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.html -f
@@ -20,13 +19,21 @@ RewriteRule ^(.*)$ $1.html [L,QSA]
 
 # Deny access to the database connections folder
 RewriteRule ^db/ - [F,L]
-<Files .htaccess>
-    order allow,deny
-    deny from all
+
+# Deny access to db.php
+<Files "db.php">
+    Order Allow,Deny
+    Deny from all
 </Files>
+
+<Files .htaccess>
+    Order Allow,Deny
+    Deny from all
+</Files>
+
 RewriteRule ^components/ - [F,L]
 
-# disable directory browsing
+# Disable directory browsing
 Options All -Indexes
 
 # temp

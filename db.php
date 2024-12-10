@@ -1,11 +1,11 @@
 <?php
-/* usage: 
+/* usage:
 	$db = new db();
 	$db->functionName($email, $password);
 	you can add your own functions here. to have a centralized database connection.
 */
 class db {
-	private $conn;
+	public $conn;
 	public function __construct() {
 		$host = "localhost"; // Database host
 		$db = "TaskManagementDB"; // Database name
@@ -16,38 +16,18 @@ class db {
 			die("Connection failed: " . $this->conn->connect_error);
 		}
 	}
-	public function addUser($first_name, $last_name, $email, $image, $password = null) {
-		if ($password == null) {
-			$stmt = $this->conn->prepare(
-				"INSERT INTO users (first_name, last_name, email, profile_picture, profile_picture_source) VALUES (?, ?, ?, ?, 'google')",
-			);
-			$stmt->bind_param("ssss", $first_name, $last_name, $email, $google_picture);
-			if ($stmt->execute()) {
-				return $stmt->insert_id;
-			} else {
-				$stmt->close();
-				return false;
-			}
-		}
-		$hashed_password = password_hash($password, PASSWORD_DEFAULT);
-		$stmt = $this->conn->prepare(
-			"INSERT INTO users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)",
-		);
-		$stmt->bind_param("ssss", $first_name, $last_name, $email, $hashed_password);
-		// execute and check if the query was successful
-		if ($stmt->execute()) {
-			$userId = $stmt->id;
-			$stmt->close();
-			return $userId;
-		} else {
-			$stmt->close();
-			return false;
-		}
+	public function getConnection() {
+		return $this->conn;
+	}
+	public function addUser($first_name, $last_name, $email, $google_picture) {
+		$stmt = $this->conn->prepare("INSERT INTO users (first_name, last_name, email, profile_picture) VALUES (?, ?, ?, ?)");
+		$stmt->bind_param("ssss", $first_name, $last_name, $email, $google_picture);
+		$isSuccess = $stmt->execute();
+		$stmt->close();
+		return $isSuccess;
 	}
 	public function getUser($email) {
-		$stmt = $this->conn->prepare(
-			"SELECT id, first_name, profile_picture, profile_picture_source FROM users WHERE email = ?",
-		);
+		$stmt = $this->conn->prepare("SELECT * FROM users WHERE email = ?");
 		$stmt->bind_param("s", $email);
 		if ($stmt->execute()) {
 			$result = $stmt->get_result();
@@ -61,16 +41,12 @@ class db {
 		$stmt->close();
 		return null;
 	}
-	public function updateUserImage($id, $image) {
+	public function updateUserImage($id, $google_picture) {
 		$update_stmt = $this->conn->prepare("UPDATE users SET profile_picture = ? WHERE id = ?");
-		$update_stmt->bind_param("si", $image, $id);
-		if ($update_stmt->execute()) {
-			$update_stmt->close();
-			return true;
-		} else {
-			$update_stmt->close();
-			return false;
-		}
+		$update_stmt->bind_param("si", $google_picture, $id);
+		$isSuccess = $update_stmt->execute();
+		$update_stmt->close();
+		return $isSuccess;
 	}
 	public function updatePassword($id, $password) {
 		$hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -105,8 +81,17 @@ class db {
 		return $login_error;
 		$stmt->close();
 	}
-	public function __destruct() {
-		$this->conn->close();
+	public function getUserById($id) {
+		$stmt = $this->conn->prepare("SELECT * FROM users WHERE id = ?");
+		$stmt->bind_param("i", $id);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		$user = $result->fetch_assoc();
+		$stmt->close();
+		return $user;
+	}
+	public function getLastInsertId() {
+		return $this->conn->insert_id;
 	}
 }
 

@@ -6,5 +6,6 @@
   "phpVersion": "8.2",
   "trailingCommaPHP": true,
   "braceStyle": "1tbs",
-  "plugins": ["@prettier/plugin-php"]
+  "plugins": ["@prettier/plugin-php"],
+  "semi": true
 }

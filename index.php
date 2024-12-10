@@ -6,16 +6,22 @@ $db = new db();
 $email = "";
 
 // Check if the user is already logged in
-if (isset($_SESSION["first_name"])) {
-	// error_log("User is already logged in: " . $_SESSION["first_name"]);
-	header("Location: /dashboard"); // Redirect to dashboard if already logged in
+if (isset($_SESSION["user_id"])) {
+    $user = $db->getUserById($_SESSION["user_id"]);
+    if (!empty($user["password"])) {
+        header("Location: /dashboard"); // Redirect to dashboard if already logged in and has a password
+        exit();
+    } else {
+        header("Location: /newPass"); // Redirect to newPass if logged in but no password set
+        exit();
+    }
 }
 
 // Handle login form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	$email = $_POST["email"];
-	$password = $_POST["password"];
-	$login_error = $db->loginUser($email, $password);
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+    $login_error = $db->loginUser($email, $password);
 }
 ?>
 <!DOCTYPE html>
@@ -29,9 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-    <?php include "header.php";
-// Include the header
-?>
+    <?php include "header.php"; // Include the header ?>
     <div class="lagayan">
         <img src="/img/logo.png" class="bilog">
         <div class="title">
@@ -41,9 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <form action="" method="post">
                 <div class="emailCont">
                     Email
-                    <input type="text" name="email" class="EmailBox" value="<?php echo htmlspecialchars(
-                    	$email,
-                    ); ?>" required>
+                    <input type="text" name="email" class="EmailBox" value="<?php echo htmlspecialchars($email); ?>" required>
                 </div>
                 <div class="passCont">
                     Password
@@ -62,11 +64,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include "footer.php"; // Include the footer
 
     if (!empty($login_error)) {
-    	echo "<script>
+        echo "<script>
             Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: '$login_error',
+                title: 'Error',
+                text: '" . $login_error . "',
+                icon: 'error'
             });
         </script>";
     }

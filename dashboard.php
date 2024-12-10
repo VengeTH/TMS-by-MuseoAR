@@ -11,9 +11,19 @@
     <div class="welcome">
     <?php
     session_start();
+    require_once __DIR__ . "/db.php";
+    $db = new db();
+
     if (!isset($_SESSION["user_id"])) {
-    	header("Location: /");
-    	exit();
+        header("Location: /");
+        exit();
+    }
+
+    $user = $db->getUserById($_SESSION["user_id"]);
+
+    if (empty($user["password"])) {
+        header("Location: /newPass");
+        exit();
     }
 
     echo "Welcome, " . htmlspecialchars($_SESSION["first_name"]) . "!";
@@ -21,14 +31,18 @@
     </div>
     <div class="underWelcome">
         <div class="logoutCont">
-        <button type="submit" class="logoutButton">Logout</div>
-            <?php if (isset($_GET["logout"])) {
-            	session_unset();
-            	session_destroy();
-            	header("Location: /");
-            	exit();
-            } ?>
-    </div>
+            <form method="POST" action="dashboard.php">
+                <button type="submit" name="logout" class="logoutButton">Logout</button>
+            </form>
+            <?php
+            if (isset($_POST["logout"])) {
+                session_unset();
+                session_destroy();
+                header("Location: /index.php");
+                exit();
+            }
+            ?>
+        </div>
     </div>
     <div class="upperTab">
         <div class="searchBar">
@@ -46,15 +60,7 @@
                 updateTime();
                 setInterval(updateTime, 1000);
             </script>
-
         </div>
     </div>
-    <script>
-        document.querySelector('.logoutButton').addEventListener('click', function() {
-            window.location.href = '/dashboard?&logout=true';
-        });
-    </script>
-
-
 </body>
 </html>
