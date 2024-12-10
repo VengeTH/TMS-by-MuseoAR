@@ -14,7 +14,11 @@
         <input type="password" id="newPassword" name="newPassword" required><br><br>
         <label for="confirmPassword">Confirm Password:</label>
         <input type="password" id="confirmPassword" name="confirmPassword" required><br><br>
+<<<<<<< HEAD
         <button type="submit">Change Password</button>
+=======
+        <button type="submit">Insert Password</button>
+>>>>>>> 905370576414067c842ea190e5694863a1e593d8
     </form>
     <?php session_start(); ?>
     <script>

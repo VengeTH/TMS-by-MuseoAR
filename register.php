@@ -3,6 +3,7 @@ require_once "db.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$db = new db();
 	if (!isset($_POST["agreement"])) {
+<<<<<<< HEAD
         echo "<script>
             Swal.fire({
                 icon: 'error',
@@ -13,6 +14,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             });
         </script>";
         exit;
+=======
+		die("You must agree to the terms and conditions.");
+>>>>>>> 905370576414067c842ea190e5694863a1e593d8
 	}
 	$first_name = trim($_POST["firstName"]);
 	$last_name = trim($_POST["lastName"]);
