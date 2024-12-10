@@ -41,7 +41,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-    <?php include "header.php"; ?>
+    <?php include "header.php"; // Include the header
+    include "welcomeMessage.php"; //Include the welcome message?>
     <div class="createAccText">
         <h1>Create Account</h1>
         <p>Already have an account? <a href="index.php">Log in</a></p>

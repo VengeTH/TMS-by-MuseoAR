@@ -35,7 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-    <?php include "header.php"; // Include the header ?>
+    <?php include "header.php"; // Include the header
+    include "welcomeMessage.php"; //Include the welcome message?>
     <div class="lagayan">
         <img src="/img/logo.png" class="bilog">
         <div class="title">
