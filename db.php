@@ -71,14 +71,13 @@ class db {
 			if (password_verify($password, $hashed_password)) {
 				$_SESSION["user_id"] = $user_id;
 				$_SESSION["first_name"] = $first_name;
-				return "";
+				return ""; // No error
 			} else {
-				$login_error = "Invalid password.";
+				return "Invalid password.";
 			}
 		} else {
-			$login_error = "No user found with that email.";
+			return "No user found with that email.";
 		}
-		return $login_error;
 		$stmt->close();
 	}
 	public function getUserById($id) {

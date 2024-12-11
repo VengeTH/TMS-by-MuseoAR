@@ -22,6 +22,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $password = $_POST["password"];
     $login_error = $db->loginUser($email, $password);
+    if (empty($login_error)) {
+        // Redirect to dashboard if login is successful
+        header("Location: /dashboard");
+        exit();
+    }
 }
 ?>
 <!DOCTYPE html>

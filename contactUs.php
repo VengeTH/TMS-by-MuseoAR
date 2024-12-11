@@ -15,13 +15,12 @@
     </div>
     <div class="getInTouch">
         <h1>Get in Touch</h1>
-        <!-- input address -->
-        <p>Address: 1234 Main St, Springfield, IL 62701</p>
-        <!-- input phone number -->
-        <p>Phone: (217) 555-5555</p>
-        <!-- input email -->
+        <p>STI Academic Center, Alabang-Zapote Road, corner V.Guinto, Las Piñas, 1740 Metro Manila</p>
+        <p>Contact Number</p>
+        <p>+63 912 3456 789</p>
         <p>Email:
             <a href="mailto:museoar2024@gmail.com">
+                museoar2024@gmail.com
             </a>
         </p>
     </div>

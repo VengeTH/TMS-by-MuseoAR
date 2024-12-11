@@ -7,7 +7,8 @@ html {
 
 body {
     margin: 0;
-    height: 97vh;
+    min-height: 97vh;
+    height: auto;
     background-color: #e4e4e4;
 }
 
