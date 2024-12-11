@@ -17,12 +17,36 @@ if (isset($_SESSION["user_id"])) {
     }
 }
 
+// Check if "Remember Me" cookies are set
+if (isset($_COOKIE["user_id"]) && isset($_COOKIE["first_name"])) {
+    $_SESSION["user_id"] = $_COOKIE["user_id"];
+    $_SESSION["first_name"] = $_COOKIE["first_name"];
+    header("Location: /dashboard");
+    exit();
+}
+
 // Handle login form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $password = $_POST["password"];
+    $remember = isset($_POST["remember"]) ? $_POST["remember"] : 0;
     $login_error = $db->loginUser($email, $password);
     if (empty($login_error)) {
+        // Set session variables
+        $user = $db->getUser($email);
+        $_SESSION["user_id"] = $user["id"];
+        $_SESSION["first_name"] = $user["first_name"];
+
+        // Set cookies based on "Remember Me" checkbox
+        if ($remember) {
+            setcookie("user_id", $_SESSION["user_id"], time() + (86400 * 30), "/"); // 30 days
+            setcookie("first_name", $_SESSION["first_name"], time() + (86400 * 30), "/"); // 30 days
+        } else {
+            // Clear any existing cookies
+            setcookie("user_id", "", time() - 3600, "/");
+            setcookie("first_name", "", time() - 3600, "/");
+        }
+
         // Redirect to dashboard if login is successful
         header("Location: /dashboard");
         exit();
@@ -58,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="password" name="password" class="PasswordBox" required>
                 </div>
                 <div class="rememberMe">
-                    <input type="checkbox" name="remember">
+                    <input type="checkbox" name="remember" value="1">
                     <p>Remember me</p>
                 </div>
                 <button type="submit" class="ContinueButton">Continue</button>
