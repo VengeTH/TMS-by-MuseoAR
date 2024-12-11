@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="altContainer">
                 <a href="/oauth/google-callback?login=true">
                 <div class="googleButton">Google</div></a>
-                <a href="#">
+                <a href="/oauth/facebook.php">
                 <div class="facebookButton">Facebook</div></a>
             </div>
         </form>
