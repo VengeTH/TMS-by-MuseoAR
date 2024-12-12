@@ -2,7 +2,7 @@
     <a href="aboutUs.php">About Us</a>
     <p>MuseoAR Developers</p>
     <a href="contactUs.php">Contact Us</a>
-    <a href="mailto:museoar2024@gmail.cpm">museoar2024@gmail.com</a>
+    <a href="mailto:museoar2024@gmail.cpm">MuseoAR2024@gmail.com</a>
 </div>
 
 <style>

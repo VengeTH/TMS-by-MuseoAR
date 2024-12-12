@@ -15,14 +15,37 @@
     </div>
     <div class="getInTouch">
         <h1>Get in Touch</h1>
-        <p>STI Academic Center, Alabang-Zapote Road, corner V.Guinto, Las Piñas, 1740 Metro Manila</p>
-        <p>Contact Number</p>
-        <p>+63 912 3456 789</p>
-        <p>Email:
+        <div class="containerAddress">
+            <img src="/img/location.png" alt="Location Marker">
+            <h2>Address</h2>
+            <p>STI Academic Center, Alabang-Zapote Road, corner V.Guinto, Las Piñas, 1740 Metro Manila</p>
+        </div>
+        <div class="containerContact">
+            <img src="/img/telephone.png" alt="Phone Icon">
+            <h2>Contact Number</h2>
+            <p>+63 912 3456 789</p>
+        </div>
+        <div class="containerEmail">
+            <img src="/img/email.png" alt="Email Icon">
+            <h2>E-Mail:</h2>
             <a href="mailto:museoar2024@gmail.com">
-                museoar2024@gmail.com
+                <p>museoar2024@gmail.com</p>
             </a>
-        </p>
+        </div>
+        <div class="containerFollowUs">
+            <h2>Follow Us:</h2>
+            <div class="socialMedia">
+                <a href="https://www.facebook.com/STIMuseoAR" target="_blank">
+                    <img src="/img/facebook.png" alt="Facebook Icon">
+                </a>
+                <a href="https://twitter.com/STIMuseoAR" target="_blank">
+                    <img src="/img/twitter.png" alt="Twitter Icon">
+                </a>
+                <a href="https://www.instagram.com/stimuseoar/" target="_blank">
+                    <img src="/img/instagram.png" alt="Instagram Icon">
+                </a>
+            </div>
+        </div>
     </div>
     <div class="contactForm">
         <form action="" method="post">

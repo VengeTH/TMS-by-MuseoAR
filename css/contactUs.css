@@ -14,15 +14,15 @@ body{
 }
 .getInTouch{
     position: relative;
-    top: 15vh;
+    top: 20vh;
     left: 8vw;
 }
 .getInTouch h1{
-    font-size: 50px;
+    font-size: 60px;
     font-optical-sizing: auto;
     color: black;
-    font-weight: 200;
-    letter-spacing: 0.01em;
+    font-weight: 300;
+    letter-spacing: 0.03em;
 }
 .getInTouch p:first-of-type{
     width: 40vw;
@@ -31,11 +31,103 @@ body{
     color: black;
     text-decoration: none;
 }
+.containerAddress{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    gap: 10px;
+    align-items: start;
+    width: fit-content;
+    margin-top: 30px; /* Increase margin to lower the position */
+}
+.containerAddress img{
+    grid-row: span 2; /* Make the image span two rows */
+    width: 3.7vw;
+    height: auto;
+    justify-self: center; /* Center the image horizontally */
+    align-self: center; /* Center the image vertically */
+}
+.containerAddress h2{
+    color: black;
+    margin: 0;
+    padding-left: 10px; /* Push the heading slightly to the right */
+}
+.containerAddress p{
+    width: 50vw;
+    margin: 0;
+    padding-left: 10px; /* Push the paragraph slightly to the right */
+}
+.containerContact{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    gap: 10px;
+    align-items: start;
+    width: fit-content;
+    margin-top: 30px; /* Increase margin to lower the position */
+}
+.containerContact img{
+    grid-row: span 2; /* Make the image span two rows */
+    width: 3.7vw;
+    height: auto;
+    justify-self: center; /* Center the image horizontally */
+    align-self: center; /* Center the image vertically */
+}
+.containerContact h2{
+    color: black;
+    margin: 0;
+    padding-left: 10px; /* Push the heading slightly to the right */
+}
+.containerContact p{
+    width: 50vw;
+    margin: 0;
+    padding-left: 10px; /* Push the paragraph slightly to the right */
+}
+.containerEmail{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    gap: 10px;
+    align-items: start;
+    width: fit-content;
+    margin-top: 30px; /* Increase margin to lower the position */
+}
+.containerEmail img{
+    grid-row: span 2; /* Make the image span two rows */
+    width: 3.7vw;
+    height: auto;
+    justify-self: center; /* Center the image horizontally */
+    align-self: center; /* Center the image vertically */
+}
+.containerEmail h2{
+    color: black;
+    margin: 0;
+    padding-left: 10px; /* Push the heading slightly to the right */
+}
+.containerEmail p{
+    width: 50vw;
+    margin: 0;
+    padding-left: 10px; /* Push the paragraph slightly to the right */
+}
+.containerEmail a{
+    color: black;
+    text-decoration: none;
+}
+.containerFollowUs a{
+    color: black;
+    text-decoration: none;
+}
+.containerFollowUs img{
+    width: 3.7vw;
+    height: auto;
+    justify-self: center; /* Center the image horizontally */
+    align-self: center; /* Center the image vertically */
+}
 .contactForm{
     display: flex;
     position: relative;
     left: 56vw;
-    top: -15vh;
+    top: -40vh;
     height: 80vh;
     width: 30vw;
     padding: 3.5vw;
@@ -53,7 +145,7 @@ body{
     color: black;
 }
 
-.contactForm label[for = "name"], .contactForm label[for = "email"], .contactForm label[for = "message"]{
+.contactForm label[for="name"], .contactForm label[for="email"], .contactForm label[for="message"]{
     position: relative;
     left: 1.5vw;
 }
