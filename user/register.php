@@ -1,5 +1,10 @@
 <?php
-require_once "db.php";
+require_once dirname(__DIR__) . "/db/db.php"; // Include the database file
+session_start();
+if (isset($_SESSION["user_id"])) {
+	header("Location: /dashboard");
+	exit();
+}
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$db = new db();
 	if (!isset($_POST["agreement"])) {
@@ -24,7 +29,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (!$user) {
 		die("Error: Unable to add user.");
 	}
-	session_start();
 	$_SESSION["user_id"] = $user;
 	$_SESSION["first_name"] = $first_name;
 	header("Location: /dashboard");
@@ -38,11 +42,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Task Management by MuseoAR</title>
     <link rel="icon" href="/img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="/css/register.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/js/sweetalert.js"></script>
 </head>
 <body>
-    <?php include "header.php"; // Include the header
-    include "welcomeMessage.php"; //Include the welcome message?>
+    <?php
+    include dirname(__DIR__) . "/components/header.php"; // Include the header
+    include dirname(__DIR__) . "/components/welcomeMessage.php";
+
+//Include the welcome message
+?>
     <div class="createAccText">
         <h1>Create Account</h1>
         <p>Already have an account? <a href="index.php">Log in</a></p>
@@ -95,6 +103,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </form>
     </div>
-    <?php include "footer.php"; ?>
+    <?php include_once dirname(__DIR__) . "/components/footer.php"; ?>
 </body>
 </html>

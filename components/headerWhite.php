@@ -52,7 +52,7 @@
         margin: 2px;
         text-align: center;
     }
-    .menu a[href="register.php"] button{
+    .menu a[href="/user/register.php"] button{
         background-color: #2c2c2c;
         color: white;
     }

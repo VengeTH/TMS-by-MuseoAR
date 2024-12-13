@@ -6,54 +6,54 @@
     <title>Task Management by MuseoAR</title>
     <link rel="icon" href="/img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="/css/newPass.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script  src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <?php
     session_start();
-    require_once __DIR__ . "/db.php";
+    require_once dirname(__DIR__) . "/db/db.php";
     $db = new db();
     $id = null;
-    if (isset($_SESSION['user_id'])) {
-        $id = $_SESSION['user_id'];
-        $user = $db->getUserById($id);
-        if (!empty($user["password"])) {
-            header("Location: /dashboard");
-            exit();
-        }
+    if (isset($_SESSION["user_id"])) {
+    	$id = $_SESSION["user_id"];
+    	$user = $db->getUserById($id);
+    	if (!empty($user["password"])) {
+    		header("Location: /dashboard");
+    		exit();
+    	}
     } else {
-        header("Location: /");
-        exit();
+    	header("Location: /");
+    	exit();
     }
 
     // Handle form submission
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $newPassword = $_POST['newPassword'];
-        $confirmPassword = $_POST['confirmPassword'];
+    	$newPassword = $_POST["newPassword"];
+    	$confirmPassword = $_POST["confirmPassword"];
 
-        if ($newPassword === $confirmPassword) {
-            $hashedPassword = password_hash($newPassword, PASSWORD_BCRYPT);
-            $stmt = $db->conn->prepare("UPDATE users SET password = ? WHERE id = ?");
-            $stmt->bind_param("si", $hashedPassword, $id);
+    	if ($newPassword === $confirmPassword) {
+    		$hashedPassword = password_hash($newPassword, PASSWORD_BCRYPT);
+    		$stmt = $db->conn->prepare("UPDATE users SET password = ? WHERE id = ?");
+    		$stmt->bind_param("si", $hashedPassword, $id);
 
-            if ($stmt->execute()) {
-                echo "<script>
-                    Swal.fire('Success', 'Password changed successfully', 'success').then(() => {
+    		if ($stmt->execute()) {
+    			echo "<script>
+                    swal.fire('Success', 'Password changed successfully', 'success').then(() => {
                         window.location.href = '/dashboard';
                     });
                 </script>";
-            } else {
-                echo "<script>
-                    Swal.fire('Error', 'Failed to change password', 'error');
+    		} else {
+    			echo "<script>
+                    swal.fire('Error', 'Failed to change password', 'error');
                 </script>";
-            }
+    		}
 
-            $stmt->close();
-        } else {
-            echo "<script>
-                Swal.fire('Error', 'Passwords do not match', 'error');
+    		$stmt->close();
+    	} else {
+    		echo "<script>
+                swal.fire('Error', 'Passwords do not match', 'error');
             </script>";
-        }
+    	}
     }
     ?>
 <div class="header">
@@ -65,7 +65,7 @@
     </div>
 </div>
 <div class="form">
-    <form method="POST" action="newPass.php">
+    <form method="POST" >
         <label for="newPassword">New Password:</label>
         <input type="password" id="newPassword" name="newPassword" required><br><br>
         <label for="confirmPassword">Confirm Password:</label>
@@ -74,6 +74,7 @@
         <button type="button" id="logoutButton" onclick="window.location.href='logout.php'">Cancel</button>
     </form>
 </div>
-    <?php include "footer.php"; ?>
+
+    <?php require_once dirname(__DIR__) . "/components/footer.php"; ?>
 </body>
 </html>

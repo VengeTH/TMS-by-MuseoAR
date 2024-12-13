@@ -1,3 +1,4 @@
+<!-- updated -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,44 +11,20 @@
 <body>
     <div class="welcome">
     <?php
-    session_start();
-    require_once __DIR__ . "/db.php";
+    require_once dirname(__DIR__) . "/helpers/sessionHandler.php";
+    require_once dirname(__DIR__) . "/db/db.php";
     $db = new db();
-
-    if (!isset($_SESSION["user_id"])) {
-        header("Location: /");
-        exit();
-    }
-
     $user = $db->getUserById($_SESSION["user_id"]);
-
     if (empty($user["password"])) {
-        header("Location: /newPass");
-        exit();
+    	header("Location: /verify/password");
+    	exit();
     }
-
     echo "Welcome, " . htmlspecialchars($_SESSION["first_name"]) . "!";
     ?>
     </div>
     <div class="underWelcome">
         <div class="logoutCont">
-            <form method="POST" action="dashboard.php">
-                <button type="submit" name="logout" class="logoutButton">Logout</button>
-            </form>
-            <?php
-            if (isset($_POST["logout"])) {
-                session_start();
-                session_unset();
-                session_destroy();
-
-                // Clear the "Remember Me" cookies
-                setcookie("user_id", "", time() - 3600, "/");
-                setcookie("first_name", "", time() - 3600, "/");
-
-                header("Location: /index.php");
-                exit();
-            }
-            ?>
+            <a href="/user/logout" class="logoutButton">Logout</a>
         </div>
     </div>
     <div class="upperTab">
@@ -64,7 +41,11 @@
                     document.getElementById(`currentTime`).textContent = currentTime;
                 }
                 updateTime();
-                setInterval(updateTime, 1000);
+                const interval = setInterval(updateTime, 1000);
+                window.addEventListener('beforeunload', () => {
+                    clearInterval(interval);
+                });
+                delete updateTime; // cleanup
             </script>
         </div>
     </div>
