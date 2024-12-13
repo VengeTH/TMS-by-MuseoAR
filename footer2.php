@@ -1,5 +1,8 @@
 <div class="footer">
-    test
+    <div class="containerDev">
+        <p>&copy; 2024 OrgaNiss Developers. All Rights Reserved.</p>
+        <p>Email: <a href="mailto:museoar2024@gmail.com">museoar2024@gmail.com</a></p>
+    </div>
 </div>
 
 <style>
@@ -17,5 +20,10 @@
         height: 10vh;
         width: 100%;
         margin-top: auto; /* Ensure the footer is pushed to the bottom */
+        color: white;
+        font-size: 150%;
+    }
+    .containerDev a{
+        color: white;
     }
 </style>
