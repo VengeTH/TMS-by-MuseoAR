@@ -10,24 +10,25 @@
         <a href="/user/register.php" id="register">Register</button></a>
     </div>
 </div>
-
+<!-- welcome css -->
 <style>
 /* LESSON : NEVER USE COPILOT WITHOUT UNDERSTANDING THE MEANING OF THE CODE.  */
 /* this is a good example on where you could use display grid. msg me pag di mo gets. --gelo */
-.body::before {
+/* .body::before {
     content: "";
-    background-image: url('/img/bg.jpg'); /* Replace with your image URL */
-    background-size: cover; /* Cover the area */
-    background-position: center; /* Center the image */
-    position: absolute; /* Position it absolutely */
+    background-image: url('/img/bg.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    position: absolute;
     top: 0;
     left: 0;
-    width: 50%; /* Cover only half the width */
-    height: 100%; /* Full height */
-    z-index: -1; /* Send it to the back */
-}
+    width: 50%; 
+    height: 100%; 
+    z-index: -1; 
+} */
 /* THIS LINE OF CODE IS NOT EVEN BEING APPLIED! */
 .header{
+    width: 100%;
     background-color: black !important;
     display: flex;
 }

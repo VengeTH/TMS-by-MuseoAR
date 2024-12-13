@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Just+Me+Again+Down+Here&family=Kablammo&family=Righteous&display=swap");
 html {
-	overflow: hidden;
+	/* overflow: hidden; */
 	height: 100%;
 }
 body {
@@ -8,20 +8,20 @@ body {
 	margin: 0;
 }
 .header {
-	left: 0;
+	/* left: 0; */
 	right: 0;
 	height: 12vh;
 	background-color: #fffafa;
 }
 .logo {
 	position: relative;
-	top: 0.2vh;
-	left: 0.8vw;
+	/* top: 0.2vh; */
+	/* left: 0.8vw; */
 }
 .titleBesideLogo {
 	position: relative;
-	top: -13vh;
-	left: 7.5vw;
+	/* top: -13vh; */
+	/* left: 7.5vw; */
 	font-family: "Kablammo", system-ui;
 	font-size: 20px;
 	font-weight: 100;
@@ -29,8 +29,8 @@ body {
 }
 .menu {
 	position: relative;
-	top: -22.5vh;
-	left: 88.5vw;
+	/* top: -22.5vh; */
+	/* left: 88.5vw; */
 	width: fit-content;
 }
 .menu button {
@@ -47,8 +47,8 @@ body {
 }
 .createAccText {
 	position: relative;
-	top: -48.5vh;
-	left: 60vw;
+	/* top: -48.5vh; */
+	/* left: 60vw; */
 	font-family: "Righteous", sans-serif;
 	font-size: 28px;
 	color: #000;
@@ -56,7 +56,7 @@ body {
 .createAccText p {
 	position: inherit;
 	font-size: 14px;
-	top: -4vh;
+	/* top: -4vh; */
 }
 .createAccText a {
 	text-decoration: none;
@@ -74,24 +74,24 @@ body {
 	border-radius: 13px;
 	height: 60vh;
 	width: 27vw;
-	top: -51.5vh;
-	left: 60vw;
+	/* top: -51.5vh; */
+	/* left: 60vw; */
 	justify-content: center;
 }
 .nameCont {
 	display: flex;
 	width: 100%;
-	margin-top: 1em;
+	/* margin-top: 1em; */
 }
 .firstNameCont,
 .lastNameCont {
-	padding-left: 5px;
+	/* padding-left: 5px; */
 	padding-right: 5px;
 	width: fit-content;
 }
 .firstNameCont input,
 .lastNameCont input {
-	margin-top: 10px;
+	/* margin-top: 10px; */
 	background-color: #eee;
 	border: 0px transparent;
 	border-radius: 6px;
@@ -100,7 +100,7 @@ body {
 	width: 102%;
 }
 .lastNameCont input {
-	margin-left: 5px;
+	/* margin-left: 5px; */
 }
 .emailCont input,
 .passCont input {
@@ -110,8 +110,8 @@ body {
 	box-shadow: 2px 2px #c3c3c3;
 	height: 6vh;
 	width: 100%;
-	margin-top: 10px;
-	margin-left: 5px;
+	/* margin-top: 10px; */
+	/* margin-left: 5px; */
 	margin-right: 5px;
 }
 .agreement {
@@ -157,7 +157,7 @@ body {
 }
 .altContainer {
 	display: flex;
-	top: -3vh;
+	/* top: -3vh; */
 	justify-content: center;
 	width: 100%;
 }
@@ -178,5 +178,5 @@ body {
 	line-height: 35px;
 }
 .facebookButton {
-	margin-left: 30px;
+	/* margin-left: 30px; */
 }

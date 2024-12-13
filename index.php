@@ -64,36 +64,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body class="index">
-    <?php
-    include_once __DIR__ . "/components/header.php"; // Include the header
-    include_once __DIR__ . "/components/welcomeMessage.php";
-    ?>
+    <?php include_once __DIR__ . "/components/header.php"; ?>
     <!-- culprit of why there is a scroll...  -->
-    <div class="lagayan">
-        <img src="/img/logo.png" class="bilog">
-        <div class="title">
-            <h1>ORGANISS</h1>
-        </div>
-        <div class="LoginForm">
-            <form action="" method="post">
-                <div class="emailCont">
+    <div class="wrapper">
+        <?php include_once __DIR__ . "/components/welcomeMessage.php"; ?>
+        <div class="right">
+                <img src="/img/logo.png" class="bilog">
+                <h1 class="title">ORGANISS</h1>
+            <form action="" method="post" class="LoginForm">
+                <div class="form-wrapper">
                     Email
-                    <input type="text" name="email" class="EmailBox" value="<?php echo htmlspecialchars(
+                    <input type="text" name="email" class="form-text" value="<?php echo htmlspecialchars(
                     	$email,
                     ); ?>" required>
                 </div>
-                <div class="passCont">
+                <div class="form-wrapper">
                     Password
-                    <input type="password" name="password" class="PasswordBox" required>
+                    <input type="password" name="password" class="form-text" required>
                 </div>
                 <div class="rememberMe">
-                    <input type="checkbox" name="remember" value="1">
-                    <p>Remember me</p>
+                    <!-- value and checked are two different things. -->
+                    <p><input type="checkbox" name="remember" checked>Remember me</p>
                 </div>
                 <button type="submit" class="ContinueButton">Continue</button>
                 <a href="/user/register" class="Register">Don't have an account</a>
             </form>
         </div>
+
     </div>
     <?php
     include_once __DIR__ . "/components/footer.php"; // Include the footer

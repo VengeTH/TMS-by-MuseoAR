@@ -4,23 +4,46 @@ body.index {
 	margin: 0;
 	height: auto;
 	background-color: #e4e4e4;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
-
-.lagayan {
+/* 
+*  1. use relative to change the position if it'you want it to be overlapping.
+*  2. How did I get 12rem? 6rem for the header and 6rem for the footer. (estimated only) 
+*  3. Another variant of layouting
+*/
+.wrapper {
+	/* 2 */
+	min-height: calc(100vh - 12rem);
+	display: flex;
 	position: relative;
-	top: -55vh;
-	width: fit-content;
+	width: 100%;
+	/* use relative to change the position if it'you want it to be overlapping. */
+	/* top: -55vh; */
+}
+.right {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	min-width: 50%;
 }
 
 .bilog {
 	position: relative;
+	/* 1. */
+	/* 
 	top: 8vh;
 	left: 72.5vw;
-	width: 8vw;
+	width: 8vw; */
 	height: 8vw;
 }
 
 .title {
+	margin: 0 0 0.5rem 0;
 	width: fit-content;
 	font-size: 30px;
 	font-family: "Kablammo", system-ui;
@@ -28,20 +51,22 @@ body.index {
 	color: black;
 	font-weight: 400;
 	position: relative;
-	top: 4vh;
-	left: 66.3vw;
+	/* 1. */
+	/* top: 4vh;
+	left: 66.3vw; */
 	letter-spacing: 0.15em;
 }
 
 .LoginForm {
 	display: flex;
 	position: relative;
-	top: -1vh;
-	left: 65vw;
+	flex-direction: column;
+	/* top: -1vh;
+	left: 65vw; */
 	background-color: white;
 	color: #321c24;
-	width: 23.56vw;
-	height: 40.65vh;
+	min-height: 50vh;
+	min-width: 50vh;
 	border-radius: 0.8em;
 	justify-content: space-evenly;
 	align-items: flex-start;
@@ -52,36 +77,36 @@ body.index {
 	font-weight: 100;
 }
 
-.LoginForm form {
-	height: fit-content;
+.form-wrapper {
+	width: 100%;
 	position: relative;
-	left: -0.7vw;
+	/* padding: 1em; */
+	/* 1. */
+	/* left: -0.8vw;
+	top: -1.5vh; */
 }
 
-.emailCont,
-.passCont {
-	position: relative;
-	padding: 1em;
-	left: -0.8vw;
-	top: -1.5vh;
-}
-
-.EmailBox,
-.PasswordBox {
+.form-text {
 	background-color: #eeeeee;
 	border: 0px transparent;
 	border-radius: 0.3em;
-	width: 21.5vw;
-	height: 4vh;
+	/* width: 21.5vw; */
+	width: 100%;
+	font-size: 1rem;
+	padding: 1rem 30px;
+	max-width: calc(100% - 60px);
 }
 
 .rememberMe {
 	position: relative;
-	left: 2vh;
-	padding-top: 1em;
+	/* 1. */
+	/* left: 2vh;
+	top: -3vh; */
+	/* padding-top: 1em;
 	width: fit-content;
-	height: 3vh;
-	top: -3vh;
+	height: 3vh; */
+	/* 3. */
+	display: inline-block;
 }
 
 .rememberMe [type="checkbox"]:checked {
@@ -90,24 +115,27 @@ body.index {
 
 .rememberMe p {
 	position: relative;
-	top: -6vh;
-	left: 1.4vw;
+	/* 1. */
+	/* top: -6vh;
+	left: 1.4vw; */
 	font-size: 20px;
 }
 
 .ContinueButton {
 	position: relative;
-	left: 0.5vw;
+	/* 1. */
+	/* left: 0.5vw; */
 	background-color: black;
 	color: white;
 	text-align: center;
 	border-radius: 30em;
+	margin-left: auto;
 	width: 21.5vw;
 	height: 5vh;
 	font-family: "Righteous", sans-serif;
 	font-style: normal;
 	font-weight: 400;
-	margin-bottom: 1em;
+	/* margin-bottom: 1em; */
 }
 
 .Register {
