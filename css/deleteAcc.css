@@ -1,4 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Just+Me+Again+Down+Here&family=Kablammo&family=Righteous&display=swap');
+
 body{
-    background-color: #e4e4e4;
+    background-color: white;
     font-family: "Righteous", sans-serif;
+}
+.deleteAccUpper{
+    display: flex;
+    background-color: black;
+    color: white;
+    left: 0;
+    right: 0;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height: 15vh;
+    font-size: 24px;
+    letter-spacing: .1em;
+}
+.nilalaman, .steps{
+    padding: 2% 2% 0% 2%;
+}
+.steps{
+    padding-bottom: 2%;
+}
+.nilalaman h1, .steps h1{
+    font-size: 60px;
+    font-weight: 300;
+}
+.nilalaman p, .steps li{
+    font-size: 20px;
+    font-weight: 100;
+    text-wrap: wrap;
+    width: 90vw;
+}
+.importantNotes{
+    position: relative;
+    background-color: #e4e4e4;
+    width: 50vw;
+    left: 25%;
+    text-align: center;
+}
+.importantNotes ol{
+display: inline-block;
 }
