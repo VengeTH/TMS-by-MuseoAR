@@ -115,6 +115,7 @@ body{
 }
 .agreement a{
     text-decoration: none;
+    color: blue;
 }
 .agreement [type="checkbox"]:checked{
     accent-color: #000;
