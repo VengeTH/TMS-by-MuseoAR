@@ -3,7 +3,6 @@ RewriteEngine On
 # In case of 500 or 404 do this
 # (change the first dashboard to be the url)
 # second dashboard is the file
-RewriteRule ^dashboard/?$ dashboard.php [NC,L] #force redirect to dashboard.php
 
 # Remove .php extension
 RewriteCond %{REQUEST_FILENAME} !-d

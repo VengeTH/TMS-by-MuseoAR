@@ -1,86 +1,86 @@
-@import url('https://fonts.googleapis.com/css2?family=Just+Me+Again+Down+Here&family=Kablammo&family=Righteous&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Just+Me+Again+Down+Here&family=Kablammo&family=Righteous&display=swap");
 
 html {
-    overflow: hidden;
+	overflow: hidden;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    padding-top: 12vh; /* Add padding to the top to account for the fixed header height */
-    background-color: #e4e4e4;
+	margin: 0;
+	padding: 0;
+	padding-top: 12vh; /* Add padding to the top to account for the fixed header height */
+	background-color: #e4e4e4;
 }
 
 body::before {
-    content: "";
-    background-image: url('/img/bg.jpg'); /* Replace with your image URL */
-    background-size: cover; /* Cover the area */
-    background-position: center; /* Center the image */
-    position: absolute; /* Position it absolutely */
-    top: 0;
-    left: 0;
-    width: 50%; /* Cover only half the width */
-    height: 100%; /* Full height */
-    z-index: -1; /* Send it to the back */
+	content: "";
+	background-image: url("/img/bg.jpg"); /* Replace with your image URL */
+	background-size: cover; /* Cover the area */
+	background-position: center; /* Center the image */
+	position: absolute; /* Position it absolutely */
+	top: 0;
+	left: 0;
+	width: 50%; /* Cover only half the width */
+	height: 100%; /* Full height */
+	z-index: -1; /* Send it to the back */
 }
 
 .header {
-    position: fixed; /* Ensure the header is fixed at the top */
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 12vh;
-    background-color: black;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 1vw;
-    z-index: 1000; /* Ensure the header is above other elements */
+	position: fixed; /* Ensure the header is fixed at the top */
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 12vh;
+	background-color: black;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 1vw;
+	z-index: 1000; /* Ensure the header is above other elements */
 }
 
 .logo {
-    position: relative;
-    top: .2vh;
-    left: .8vw;
-    height: 10vh;
-    width: 10vh;
+	position: relative;
+	top: 0.2vh;
+	left: 0.8vw;
+	height: 10vh;
+	width: 10vh;
 }
 
 .logo img {
-    height: 100%;
+	height: 100%;
 }
 
 .titleBesideLogo {
-    font-family: "Kablammo", system-ui;
-    font-size: 20px;
-    font-weight: 100;
-    color: white;
+	font-family: "Kablammo", system-ui;
+	font-size: 20px;
+	font-weight: 100;
+	color: white;
 }
 
 .menu {
-    display: flex;
-    gap: 10px;
+	display: flex;
+	gap: 10px;
 }
 
 .menu button {
-    border-radius: 7px;
-    border: 1px solid black;
-    height: 4vh;
-    width: 4.5vw;
-    margin: 2px;
-    text-align: center;
-    cursor: pointer;
+	border-radius: 7px;
+	border: 1px solid black;
+	height: 4vh;
+	width: 4.5vw;
+	margin: 2px;
+	text-align: center;
+	cursor: pointer;
 }
 
-.menu a[href="register.php"] button {
-    background-color: #2c2c2c;
-    color: white;
+.menu a[href="/user/register.php"] button {
+	background-color: #2c2c2c;
+	color: white;
 }
 
 .form {
-    position: relative;
-    top: 10vh;
-    left: 60vw;
-    width: 20vw;
-    height: 40vh;
+	position: relative;
+	top: 10vh;
+	left: 60vw;
+	width: 20vw;
+	height: 40vh;
 }
