@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Just+Me+Again+Down+Here&family=Kablammo&family=Righteous&display=swap');
 html{
-    height: 80vh;
+    height: 118.5rem;
+    overflow-x: hidden;
 }
 body{
     background-color: #e4e4e4;
@@ -156,6 +157,8 @@ body{
     color: black;
     font-size: 3vh;
     margin: 0;
+    margin-bottom: 3rem;
+    font-size: 2em;
 }
 
 .contactForm label{

@@ -56,7 +56,7 @@ body {
 .createAccText p {
 	position: inherit;
 	font-size: 14px;
-	/* top: -4vh; */
+	top: -4vh;
 }
 .createAccText a {
 	text-decoration: none;
@@ -74,33 +74,34 @@ body {
 	border-radius: 13px;
 	height: 60vh;
 	width: 27vw;
-	/* top: -51.5vh; */
+	top: -3vh;
 	/* left: 60vw; */
 	justify-content: center;
+	text-align: center;
 }
 .nameCont {
 	display: flex;
 	width: 100%;
-	/* margin-top: 1em; */
+	margin-top: 2em;
 }
 .firstNameCont,
 .lastNameCont {
-	/* padding-left: 5px; */
+	padding-left: 5px;
 	padding-right: 5px;
 	width: fit-content;
 }
 .firstNameCont input,
 .lastNameCont input {
-	/* margin-top: 10px; */
+	margin-top: 10px;
 	background-color: #eee;
 	border: 0px transparent;
 	border-radius: 6px;
 	box-shadow: 2px 2px #c3c3c3;
 	height: 6vh;
-	width: 102%;
+	width: 112%;
 }
 .lastNameCont input {
-	/* margin-left: 5px; */
+	margin-left: 25px;
 }
 .emailCont input,
 .passCont input {
@@ -110,8 +111,8 @@ body {
 	box-shadow: 2px 2px #c3c3c3;
 	height: 6vh;
 	width: 100%;
-	/* margin-top: 10px; */
-	/* margin-left: 5px; */
+	margin-top: 20px;
+	margin-left: 5px;
 	margin-right: 5px;
 }
 .agreement {
@@ -178,5 +179,5 @@ body {
 	line-height: 35px;
 }
 .facebookButton {
-	/* margin-left: 30px; */
+	margin-left: 30px;
 }

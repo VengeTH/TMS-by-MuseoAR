@@ -8,7 +8,7 @@
     <link rel="icon" href="/img/logo.png" type="image/x-icon">
 </head>
 <body>
-    <?php include "headerWhite.php" ?>
+    <?php include "components/headerWhite.php" ?>
     <div class="contactUsUpper">
         <h1>Contact Us</h1>
         <p>We’d love to hear from you! If you have any questions, feedback, or suggestions about OrgaNiss, feel free to reach out using the form below.</p>
@@ -48,7 +48,7 @@
         </div>
     </div>
     <div class="contactForm">
-        <form action="" method="post">
+        <form action="" method="post" onsubmit="return validateForm()">
             <h1>Send a Message</h1>
             <label for="name">Name</label>
             <input type="text" id="name" name="name" required>
@@ -59,29 +59,59 @@
             <label for="message">Message</label>
             <textarea id="message" name="message" required></textarea>
 
-            <input type="checkbox" id="notice" name="notice" value="notice">
+            <input type="checkbox" id="notice" name="notice" value="notice" required>
             <label for="notice">By submitting this form, you agree to the processing of your personal information in accordance with our Privacy Policy. Your data will be used solely to respond to your inquiries and provide the assistance you requested. We value your privacy and ensure the protection of your information.</label>
 
             <button type="submit">Submit</button>
         </form>
     </div>
+    <script>
+        function validateForm() {
+            var checkbox = document.getElementById('notice');
+            if (!checkbox.checked) {
+                alert('You must agree to the privacy policy before submitting.');
+                return false;
+            }
+            return true;
+        }
+    </script>
 </body>
             <?php
-            include "footer2.php";
+            use PHPMailer\PHPMailer\PHPMailer;
+            use PHPMailer\PHPMailer\Exception;
+
+            require 'vendor/autoload.php';
+
+            include "components/footer2.php";
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $name = htmlspecialchars($_POST['name']);
                 $email = htmlspecialchars($_POST['email']);
                 $message = htmlspecialchars($_POST['message']);
 
-                $to = "museoar2024@gmail.com";
-                $subject = "Contact Us Form Submission";
-                $body = "Name: $name\nEmail: $email\nMessage: $message";
-                $headers = "From: $email";
+                $mail = new PHPMailer(true);
+                try {
+                    //Server settings
+                    $mail->isSMTP();
+                    $mail->Host = 'smtp.gmail.com'; // Update with your SMTP host
+                    $mail->SMTPAuth = true;
+                    $mail->Username = 'your-email@gmail.com'; // Update with your email
+                    $mail->Password = 'your-email-password'; // Update with your email password
+                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                    $mail->Port = 587;
 
-                if (mail($to, $subject, $body, $headers)) {
-                    echo "Email successfully sent.";
-                } else {
-                    echo "Email sending failed.";
+                    //Recipients
+                    $mail->setFrom($email, $name);
+                    $mail->addAddress('museoar2024@gmail.com');
+
+                    //Content
+                    $mail->isHTML(true);
+                    $mail->Subject = 'Contact Us Form Submission';
+                    $mail->Body    = "Name: $name<br>Email: $email<br>Message: $message";
+
+                    $mail->send();
+                    echo 'Email successfully sent.';
+                } catch (Exception $e) {
+                    echo "Email sending failed. Mailer Error: {$mail->ErrorInfo}";
                 }
             }
             ?>

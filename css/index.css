@@ -10,9 +10,9 @@ body.index {
 	justify-content: center;
 	align-items: center;
 }
-/* 
+/*
 *  1. use relative to change the position if it'you want it to be overlapping.
-*  2. How did I get 12rem? 6rem for the header and 6rem for the footer. (estimated only) 
+*  2. How did I get 12rem? 6rem for the header and 6rem for the footer. (estimated only)
 *  3. Another variant of layouting
 */
 .wrapper {
@@ -35,7 +35,7 @@ body.index {
 .bilog {
 	position: relative;
 	/* 1. */
-	/* 
+	/*
 	top: 8vh;
 	left: 72.5vw;
 	width: 8vw; */

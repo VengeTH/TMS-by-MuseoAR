@@ -9,7 +9,7 @@ $facebook_oauth_redirect_uri = "http://localhost/oauth/facebook.php";
 $facebook_oauth_version = "v18.0";
 
 // Include the database connection file
-require_once __DIR__ . "/../db.php"; // Update the path to db.php
+require_once __DIR__ . "/../db/db.php"; // Update the path to db.php
 $db = new db();
 
 // If the captured code param exists and is valid

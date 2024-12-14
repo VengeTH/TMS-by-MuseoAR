@@ -16,15 +16,15 @@
 /* this is a good example on where you could use display grid. msg me pag di mo gets. --gelo */
 /* .body::before {
     content: "";
-    background-image: url('/img/bg.jpg'); 
-    background-size: cover; 
-    background-position: center; 
+    background-image: url('/img/bg.jpg');
+    background-size: cover;
+    background-position: center;
     position: absolute;
     top: 0;
     left: 0;
-    width: 50%; 
-    height: 100%; 
-    z-index: -1; 
+    width: 50%;
+    height: 100%;
+    z-index: -1;
 } */
 /* THIS LINE OF CODE IS NOT EVEN BEING APPLIED! */
 .header{
@@ -67,8 +67,10 @@
     /* top: -22.5vh;
     left: 88.5vw; */
     width: fit-content;
+    font-family: "Righteous", sans-serif;
 }
 .menu a{
+    display: flex;
     text-decoration: none;
     color: black;
     background-color : white;
@@ -76,6 +78,8 @@
     border: 1px solid black;
     padding: 1rem 2rem;
     text-align: center;
+    height: .5rem;
+    align-items: center;
 }
 /* just use id for here. Lemme guess, used copilot and never thought of it again. */
 /* .menu a[href="/user/register.php"] button{

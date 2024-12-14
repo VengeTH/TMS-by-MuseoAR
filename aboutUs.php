@@ -9,11 +9,11 @@
 </head>
 <body>
     <?php
-        include "headerWhite.php";
+        include "components/headerWhite.php";
     ?>
     content here
     <?php
-        include "footer2.php";
+        include "components/footer2.php";
     ?>
 </body>
 </html>
