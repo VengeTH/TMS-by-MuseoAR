@@ -20,7 +20,9 @@ class db {
 		return $this->conn;
 	}
 	public function addUser($first_name, $last_name, $email, $google_picture) {
-		$stmt = $this->conn->prepare("INSERT INTO users (first_name, last_name, email, profile_picture) VALUES (?, ?, ?, ?)");
+		$stmt = $this->conn->prepare(
+			"INSERT INTO users (first_name, last_name, email, profile_picture) VALUES (?, ?, ?, ?)",
+		);
 		$stmt->bind_param("ssss", $first_name, $last_name, $email, $google_picture);
 		$isSuccess = $stmt->execute();
 		$stmt->close();
@@ -81,6 +83,21 @@ class db {
 		return $login_error;
 		$stmt->close();
 	}
+
+	// you can set a cache here to avoid multiple queries
+	public function checkUser($id, $first_name) {
+		$stmt = $this->conn->prepare("SELECT id FROM users WHERE id = ? AND first_name = ?");
+		$stmt->bind_param("is", $id, $first_name);
+		$stmt->execute();
+		$stmt->store_result();
+		if ($stmt->num_rows > 0) {
+			$stmt->close();
+			return true;
+		}
+		$stmt->close();
+		return false;
+	}
+
 	public function getUserById($id) {
 		$stmt = $this->conn->prepare("SELECT * FROM users WHERE id = ?");
 		$stmt->bind_param("i", $id);
@@ -92,6 +109,9 @@ class db {
 	}
 	public function getLastInsertId() {
 		return $this->conn->insert_id;
+	}
+	public function __destruct() {
+		$this->conn->close();
 	}
 }
 

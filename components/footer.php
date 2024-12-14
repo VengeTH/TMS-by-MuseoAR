@@ -7,7 +7,9 @@
 
 <style>
 .footer {
-    position: fixed;
+    /* position fixed is a double edged sword. */
+    /* position: fixed; */
+    width: 100%;
     display: flex;
     justify-content: space-around; /* Distribute space evenly */
     align-items: center; /* Center items vertically */

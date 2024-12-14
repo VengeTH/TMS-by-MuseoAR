@@ -1,7 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Just+Me+Again+Down+Here&family=Kablammo&family=Righteous&display=swap');
+html{
+    height: 80vh;
+}
 body{
     background-color: #e4e4e4;
     font-family: "Righteous", sans-serif;
+    height: 90vh;
 }
 .contactUsUpper{
     padding: 10px;
