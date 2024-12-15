@@ -11,6 +11,8 @@
 <body>
     <div class="welcome">
     <?php
+    require 'vendor/autoload.php';
+    use benhall14\phpCalendar\Calendar as Calendar;
     require_once dirname(__DIR__) . "/helpers/sessionHandler.php";
     require_once dirname(__DIR__) . "/db/db.php";
     $db = new db();
