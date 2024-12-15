@@ -114,6 +114,18 @@ class db {
 	public function __destruct() {
 		$this->conn->close();
 	}
-}
 
+	public function checkPassword($id) {
+		$stmt = $this->conn->prepare("SELECT password FROM users WHERE id = ?");
+		$stmt->bind_param("i", $id);
+		$stmt->execute();
+		$stmt->store_result();
+		if ($stmt->num_rows > 0) {
+			$stmt->close();
+			return true;
+		}
+		$stmt->close();
+		return false;
+	}
+}
 ?>
