@@ -27,6 +27,7 @@ body{
     height: 87vh;
     width: 20vw;
     border-radius: 1em;
+    padding-top: 1rem;
 }
 .dashboardDiv, .myTaskDiv, .help, .settings{
     font-family: "Righteous", sans-serif;
@@ -38,6 +39,9 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.help {
+    border-top: 1px solid #ccc;
 }
 .dashboardDiv:hover,
 .myTaskDiv:hover,
@@ -54,6 +58,7 @@ body{
     background-color: #931414;
     color: #fff;
     border-bottom-color: #931414;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 .dashboardDiv.active + .myTaskDiv:hover,
 .myTaskDiv.active + .help:hover,
@@ -63,16 +68,22 @@ body{
     color: #fff;
     border-top-color: #931414;
 }
+.otherText{
+    margin: 8rem 1rem 1rem 2rem;
+    font-family: "Righteous", sans-serif;
+    font-size: 20px;
+    color: #351f27
+}
 .logoutCont{
     position: relative;
-    top: 50vh;
+    top: 30vh;
     left: 1vw;
     width: fit-content;
     cursor: pointer;
 }
 .logoutButton{
     display: flex;
-    background-color: #272525;
+    background-color: #931414;
     color: #fffafa;
     width: 18vw;
     height: 5vh;
@@ -85,13 +96,13 @@ body{
     pointer-events: auto;
 }
 .upperTab{
-    background-color: #fffafa;
+    background-color: #171717;
     position: relative;
     border-radius: 1em;
-    width: 66vw;
+    width: 70vw;
     height: 10vh;
     top: -91.5vh;
-    left: 30vw;
+    left: 26vw;
     text-align: center;
     justify-content: center;
     font-family: "Righteous", sans-serif;
@@ -117,12 +128,13 @@ body{
     height: 6.5vh;
     border: 0px;
     border-radius: 1.2em;
+    font-size: 18px;
     font-family: "Righteous", sans-serif;
 }
 .searchButton{
     position: relative;
     top: -0.1vh;
-    left: 23vw;
+    left: 22.8vw;
     width: 10vw;
     height: 6.5vh;
     background-color: #931414;
@@ -138,25 +150,39 @@ body{
 .newTaskButton{
     position: relative;
     display: flex;
-    background-color: #0b1215;
+    background-color: black;
     color: #fffafa;
     border-radius: .9em;
     width: 12vw;
     height: 7vh;
     top: -3.6vh;
-    left: 40vw;
+    left: 39.6vw;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     pointer-events: auto;
     font-size: 22px;
 }
+.profile {
+    position: relative;
+    top: -12.75vh;
+    left: 54vw;
+    text-align: center;
+    margin-top: 1rem;
+    width: fit-content;
+}
+.profile-picture {
+    width: 65%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #931414;
+}
 .time{
     position: relative;
-    top: -11vh;
-    left: 58.5vw;
+    top: -20.5vh;
+    left: 63vw;
     height: fit-content;
     width: fit-content;
-    color: #8d2a4b;
+    color: white;
     font-size: 22px;
 }

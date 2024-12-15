@@ -64,17 +64,32 @@
         <h1>ORGANISS</h1>
     </div>
 </div>
+<div class="upperlogo">
+    <img src="/img/logo.png" class="logo" width=6% height=6%>
+    <h1>Change Password</h1>
+</div>
+<div class="textInfo">
+    <h1>Create a strong password</h1>
+    <p>Create a new, strong password that you don’t use for other websites.</p>
+</div>
 <div class="form">
-    <form method="POST" >
-        <label for="newPassword">New Password:</label>
-        <input type="password" id="newPassword" name="newPassword" required><br><br>
-        <label for="confirmPassword">Confirm Password:</label>
-        <input type="password" id="confirmPassword" name="confirmPassword" required><br><br>
+    <form method="POST">
+        <div class="password-container">
+            <label for="newPassword">Create Password</label>
+            <input type="password" id="newPassword" name="newPassword" required>
+        </div>
+        <br>
+        <div class="password-container">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+        </div>
+        <br>
+        <div class="buttons">
+        <button type="button" id="logoutButton" onclick="window.location.href='/user/logout.php'">Cancel</button>
         <button type="submit" id="submitButton">Change Password</button>
-        <button type="button" id="logoutButton" onclick="window.location.href='logout.php'">Cancel</button>
+        </div>
     </form>
 </div>
-
-    <?php require_once dirname(__DIR__) . "/components/footer.php"; ?>
+    <?php require_once dirname(__DIR__) . "/components/newFooter.php"; ?>
 </body>
 </html>

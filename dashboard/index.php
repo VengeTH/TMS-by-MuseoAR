@@ -35,6 +35,9 @@
                 My Task
             </div>
         </a>
+        <div class="otherText">
+            OTHER
+        </div>
         <a href="?tab=help" class="helpButton">
             <div class="help <?php echo $activeTab === 'help' ? 'active' : ''; ?>" style="color: <?php echo $activeTab === 'help' ? '#fff' : '#321c24'; ?>;">
                 Help
@@ -55,6 +58,9 @@
             <button class="searchButton">Search</button>
         </div>
         <div class="newTaskButton">+ New Task</div>
+        <div class="profile">
+            <img src="<?php echo htmlspecialchars($user['profile_picture']); ?>" alt="Profile Picture" class="profile-picture">
+        </div>
         <div class="time">
             <p id="currentTime"></p>
             <script>

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Just+Me+Again+Down+Here&family=Kablammo&family=Righteous&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Just+Me+Again+Down+Here&family=Kablammo&family=Rethink+Sans:ital,wght@0,400..800;1,400..800&family=Righteous&display=swap');
 
 html {
 	overflow: hidden;
@@ -77,10 +77,82 @@ body::before {
 	color: white;
 }
 
+.upperlogo{
+	position: relative;
+	top: 2vh;
+	left: 70vw;
+	width: fit-content;
+	text-align: center;
+}
+.textInfo{
+	position: relative;
+	top: 5vh;
+	left: 62vw;
+	width: 30vw;
+}
+.textInfo h1{
+	font-family: "Righteous", sans-serif;
+	font-weight: 300;
+}
+.textInfo p{
+	font-family: "Rethink Sans", sans-serif;
+}
 .form {
 	position: relative;
 	top: 10vh;
 	left: 60vw;
 	width: 20vw;
 	height: 40vh;
+}
+
+.password-container {
+	position: relative;
+	left: 6.5vw;
+    display: flex;
+    flex-direction: column;
+    width: 300px; /* Adjust the width as needed */
+    margin: 0 auto; /* Center the container */
+}
+
+.password-container label {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.password-container input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.buttons{
+	position: relative;
+	left: 8.75vw;
+	display: flex;
+	justify-content: space-between;
+	width: fit-content; /* Increase the width to separate the buttons */
+}
+
+#logoutButton, #submitButton {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 16px; /* Slightly increase the font size */
+    padding: 8px 20px; /* Increase the padding to make the buttons longer */
+    height: 40px; /* Adjust the height slightly */
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 10px; /* Add margin to separate the buttons */
+}
+
+#logoutButton{
+	border: 1px solid black;
+}
+
+#submitButton{
+	background-color: #4377de;
+	border: 0px transparent;
+	border-radius: 3px;
+	color: white;
 }
