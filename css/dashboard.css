@@ -19,7 +19,7 @@ body{
     font-weight: 100;
     color: #0b1215;
 }
-.underWelcome{
+.container{
     background-color: #fffafa;
     position: relative;
     top: 4vh;
@@ -28,9 +28,44 @@ body{
     width: 20vw;
     border-radius: 1em;
 }
+.dashboardDiv, .myTaskDiv, .help, .settings{
+    font-family: "Righteous", sans-serif;
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    height: 6%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.dashboardDiv:hover,
+.myTaskDiv:hover,
+.help:hover,
+.settings:hover {
+    background-color: #931414;
+    color: #fff;
+    border-bottom-color: #931414;
+}
+.dashboardDiv.active,
+.myTaskDiv.active,
+.help.active,
+.settings.active {
+    background-color: #931414;
+    color: #fff;
+    border-bottom-color: #931414;
+}
+.dashboardDiv.active + .myTaskDiv:hover,
+.myTaskDiv.active + .help:hover,
+.help.active + .settings:hover,
+.settings.active + .logoutCont:hover {
+    background-color: #931414;
+    color: #fff;
+    border-top-color: #931414;
+}
 .logoutCont{
     position: relative;
-    top: 70vh;
+    top: 50vh;
     left: 1vw;
     width: fit-content;
     cursor: pointer;
@@ -90,7 +125,7 @@ body{
     left: 23vw;
     width: 10vw;
     height: 6.5vh;
-    background-color: #8d2a4b;
+    background-color: #931414;
     color: #fffafa;
     border-radius: 1em;
     border: 0px;
@@ -118,7 +153,7 @@ body{
 }
 .time{
     position: relative;
-    top: -12vh;
+    top: -11vh;
     left: 58.5vw;
     height: fit-content;
     width: fit-content;

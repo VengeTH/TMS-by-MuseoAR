@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="right">
         <div class="createAccText">
             <h1>Create Account</h1>
-            <p>Already have an account? <a href="index.php">Log in</a></p>
+            <p>Already have an account? <a href="/">Log in</a></p>
         </div>
         <div class="infoContainer">
             <form action="" method="POST">
@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             event.preventDefault();
                             Swal.fire({
                                 title: 'Terms and Conditions',
-                                html: '<iframe src="termsAndConditions.html" width="100%" height="550px" style="border:none;"></iframe>',
+                                html: '<iframe src="/termsAndConditions.html" width="100%" height="550px" style="border:none;"></iframe>',
                                 width: '80%',
                                 showCloseButton: true,
                                 focusConfirm: false,

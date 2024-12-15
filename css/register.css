@@ -98,10 +98,10 @@ body {
 	border-radius: 6px;
 	box-shadow: 2px 2px #c3c3c3;
 	height: 6vh;
-	width: 112%;
+	width: 100%;
 }
 .lastNameCont input {
-	margin-left: 25px;
+	margin-left: 14px;
 }
 .emailCont input,
 .passCont input {

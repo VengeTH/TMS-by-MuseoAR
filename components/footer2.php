@@ -18,7 +18,7 @@
         justify-content: center;
         z-index: 100;
         height: 10vh;
-        width: 100%;
+        width: 100% !;
         margin-top: auto; /* Ensure the footer is pushed to the bottom */
         color: white;
         font-size: 150%;

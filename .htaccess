@@ -19,7 +19,7 @@ RewriteRule ^(.*)$ $1.html [L,QSA]
 # Deny access to the database connections folder
 RewriteRule ^db/ - [F,L]
 
-# Deny access to db.php
+# Deny access to db.php and .htaccess
 <Files "db.php">
     Order Allow,Deny
     Deny from all
@@ -30,6 +30,7 @@ RewriteRule ^db/ - [F,L]
     Deny from all
 </Files>
 
+# Deny access to the components folder
 RewriteRule ^components/ - [F,L]
 
 # Disable directory browsing

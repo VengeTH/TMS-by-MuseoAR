@@ -20,9 +20,31 @@
     	exit();
     }
     echo "Welcome, " . htmlspecialchars($_SESSION["first_name"]) . "!";
+
+    $activeTab = isset($_GET['tab']) ? $_GET['tab'] : 'dashboard';
     ?>
     </div>
-    <div class="underWelcome">
+    <div class="container">
+        <a href="?tab=dashboard" class="dashboardButton">
+            <div class="dashboardDiv <?php echo $activeTab === 'dashboard' ? 'active' : ''; ?>" style="color: <?php echo $activeTab === 'dashboard' ? '#fff' : '#321c24'; ?>;">
+                Dashboard
+            </div>
+        </a>
+        <a href="?tab=myTask" class="myTaskButton">
+            <div class="myTaskDiv <?php echo $activeTab === 'myTask' ? 'active' : ''; ?>" style="color: <?php echo $activeTab === 'myTask' ? '#fff' : '#321c24'; ?>;">
+                My Task
+            </div>
+        </a>
+        <a href="?tab=help" class="helpButton">
+            <div class="help <?php echo $activeTab === 'help' ? 'active' : ''; ?>" style="color: <?php echo $activeTab === 'help' ? '#fff' : '#321c24'; ?>;">
+                Help
+            </div>
+        </a>
+        <a href="?tab=settings" class="settingsButton">
+            <div class="settings <?php echo $activeTab === 'settings' ? 'active' : ''; ?>" style="color: <?php echo $activeTab === 'settings' ? '#fff' : '#321c24'; ?>;">
+                Settings
+            </div>
+        </a>
         <div class="logoutCont">
             <a href="/user/logout" class="logoutButton">Logout</a>
         </div>
