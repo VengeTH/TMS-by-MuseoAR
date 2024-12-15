@@ -187,3 +187,85 @@ body{
     color: white;
     font-size: 22px;
 }
+
+.date{
+    position: relative;
+    top: -99vh;
+    left: 20vw;
+    height: fit-content;
+    width: 35vw; /* Adjusted width */
+    color: black;
+    font-size: 20px; /* Further reduced font size */
+    transform: scale(0.6); /* Further scale down the calendar */
+    border-radius: 10px;
+}
+
+.tasks{
+    position: relative;
+    background-color: white;
+    top: -139.5vh;
+    left: 49vw;
+    width: 46.5vw;
+    border-radius: 10px;
+}
+
+.stats{
+    position: relative;
+    top: -138vh;
+    left: 27vw;
+    background-color: white;
+    width: 21vw;
+    height: 35vh;
+    border-radius: 10px;
+}
+
+.news{
+    background-color: white;
+    position: relative;
+    top: -173vh;
+    left: 49vw;
+    width: 46.5vw;
+    height: 35vh;
+    border-radius: 10px;
+}
+
+.task-item {
+    padding: 15px;
+    margin: 10px;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.task-item.high {
+    border-left: 4px solid #dc3545;
+}
+
+.task-item.medium {
+    border-left: 4px solid #ffc107;
+}
+
+.task-item.low {
+    border-left: 4px solid #28a745;
+}
+
+.task-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.priority-badge {
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    text-transform: capitalize;
+}
+
+/* SweetAlert2 customization */
+.swal2-input, .swal2-textarea, .swal2-select {
+    margin: 10px auto;
+    width: 90% !important;
+}

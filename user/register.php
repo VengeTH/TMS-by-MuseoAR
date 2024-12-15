@@ -24,14 +24,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if ($emailExists) {
 		die("Email already exists.");
 	}
-	$user = $db->addUser($first_name, $last_name, $email, null, $password);
-	print_r($user);
+	$user = $db->addUser($first_name, $last_name, $email, $password); // Remove the last parameter
 	if (!$user) {
 		die("Error: Unable to add user.");
 	}
 	$_SESSION["user_id"] = $user;
 	$_SESSION["first_name"] = $first_name;
 	header("Location: /dashboard");
+	exit();
 }
 ?>
 <!DOCTYPE html>

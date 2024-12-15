@@ -19,11 +19,12 @@ class db {
 	public function getConnection() {
 		return $this->conn;
 	}
-	public function addUser($first_name, $last_name, $email, $google_picture) {
+	public function addUser($first_name, $last_name, $email, $password) {
+		$hashed_password = password_hash($password, PASSWORD_DEFAULT);
 		$stmt = $this->conn->prepare(
-			"INSERT INTO users (first_name, last_name, email, profile_picture) VALUES (?, ?, ?, ?)",
+			"INSERT INTO users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)",
 		);
-		$stmt->bind_param("ssss", $first_name, $last_name, $email, $google_picture);
+		$stmt->bind_param("ssss", $first_name, $last_name, $email, $password);
 		$isSuccess = $stmt->execute();
 		$stmt->close();
 		return $isSuccess;
