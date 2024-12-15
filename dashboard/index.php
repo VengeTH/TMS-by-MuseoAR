@@ -11,7 +11,7 @@
 <body>
     <div class="welcome">
     <?php
-    require 'vendor/autoload.php';
+    require '../vendor/autoload.php';
     use benhall14\phpCalendar\Calendar as Calendar;
     require_once dirname(__DIR__) . "/helpers/sessionHandler.php";
     require_once dirname(__DIR__) . "/db/db.php";
@@ -60,9 +60,14 @@
             <button class="searchButton">Search</button>
         </div>
         <div class="newTaskButton">+ New Task</div>
+        <a href="#">
         <div class="profile">
-            <img src="<?php echo htmlspecialchars($user['profile_picture']); ?>" alt="Profile Picture" class="profile-picture">
+            <?php
+            $profilePicture = !empty($user['profile_picture']) ? htmlspecialchars($user['profile_picture']) : '/img/defaultPFP.png';
+            ?>
+            <img src="<?php echo $profilePicture; ?>" alt="Profile Picture" class="profile-picture" style="width: 70px; height: 70px;">
         </div>
+        </a>
         <div class="time">
             <p id="currentTime"></p>
             <script>

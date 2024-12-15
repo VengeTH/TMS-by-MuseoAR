@@ -166,10 +166,11 @@ body{
 .profile {
     position: relative;
     top: -12.75vh;
-    left: 54vw;
+    left: 55vw;
     text-align: center;
     margin-top: 1rem;
     width: fit-content;
+    height: fit-content;
 }
 .profile-picture {
     width: 65%;
@@ -179,7 +180,7 @@ body{
 }
 .time{
     position: relative;
-    top: -20.5vh;
+    top: -21vh;
     left: 63vw;
     height: fit-content;
     width: fit-content;
