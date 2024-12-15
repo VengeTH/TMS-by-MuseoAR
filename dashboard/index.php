@@ -66,7 +66,7 @@
             <?php
             $profilePicture = !empty($user['profile_picture']) ? htmlspecialchars($user['profile_picture']) : '/img/defaultPFP.png';
             ?>
-            <img src="<?php echo $profilePicture; ?>" alt="Profile Picture" class="profile-picture" style="width: 70px; height: 70px;">
+            <img src="<?php echo $profilePicture; ?>" alt="Profile Picture" class="profile-picture">
         </div>
         </a>
         <div class="time">

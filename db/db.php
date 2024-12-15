@@ -24,7 +24,7 @@ class db {
 		$stmt = $this->conn->prepare(
 			"INSERT INTO users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)",
 		);
-		$stmt->bind_param("ssss", $first_name, $last_name, $email, $password);
+		$stmt->bind_param("ssss", $first_name, $last_name, $email, $hashed_password);
 		$isSuccess = $stmt->execute();
 		$stmt->close();
 		return $isSuccess;

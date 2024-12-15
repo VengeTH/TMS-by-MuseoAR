@@ -6,7 +6,7 @@
 <style>
 .welcome {
 	min-height: calc(100vh - 12rem);
-     background-image: url('/img/bg.jpg'); /* Replace with your image URL */
+    background-image: url('/img/bg.jpg'); /* Replace with your image URL */
     background-size: cover; /* Cover the area */
     background-position: center; /* Center the image */
     flex-grow:1;
@@ -32,8 +32,8 @@
 /* center using absolute */
 .welcome p, .welcome h1 {
     width: 100%;
-    top: 50%;  
-    left: 50%; 
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
 }
 </style>

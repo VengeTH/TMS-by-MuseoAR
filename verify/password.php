@@ -38,20 +38,20 @@
 
     		if ($stmt->execute()) {
     			echo "<script>
-                    swal.fire('Success', 'Password changed successfully', 'success').then(() => {
+                    Swal.fire('Success', 'Password changed successfully', 'success').then(() => {
                         window.location.href = '/dashboard';
                     });
                 </script>";
     		} else {
     			echo "<script>
-                    swal.fire('Error', 'Failed to change password', 'error');
+                    Swal.fire('Error', 'Failed to change password', 'error');
                 </script>";
     		}
 
     		$stmt->close();
     	} else {
     		echo "<script>
-                swal.fire('Error', 'Passwords do not match', 'error');
+                Swal.fire('Error', 'Passwords do not match', 'error');
             </script>";
     	}
     }
