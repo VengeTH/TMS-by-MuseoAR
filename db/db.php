@@ -127,5 +127,13 @@ class db {
 		$stmt->close();
 		return false;
 	}
+
+	public function addTask($userId, $title, $details, $finishDate, $priority) {
+		$stmt = $this->conn->prepare("INSERT INTO tasks (user_id, title, details, finish_date, priority) VALUES (?, ?, ?, ?, ?)");
+		$stmt->bind_param("issss", $userId, $title, $details, $finishDate, $priority);
+		$isSuccess = $stmt->execute();
+		$stmt->close();
+		return $isSuccess;
+	}
 }
 ?>
