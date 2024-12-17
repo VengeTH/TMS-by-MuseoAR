@@ -9,8 +9,8 @@ class db {
 	public function __construct() {
 		$host = "localhost"; // Database host
 		$db = "TaskManagementDB"; // Database name
-		$user = "aisukurimu"; // Database username
-		$pass = "Password123"; // Database password
+		$user = "root"; // Database username
+		$pass = ""; // Database password
 		$this->conn = new mysqli($host, $user, $pass, $db);
 		if ($this->conn->connect_error) {
 			die("Connection failed: " . $this->conn->connect_error);
@@ -19,12 +19,27 @@ class db {
 	public function getConnection() {
 		return $this->conn;
 	}
-	public function addUser($first_name, $last_name, $email, $password) {
-		$hashed_password = password_hash($password, PASSWORD_DEFAULT);
-		$stmt = $this->conn->prepare(
-			"INSERT INTO users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)",
-		);
-		$stmt->bind_param("ssss", $first_name, $last_name, $email, $hashed_password);
+	public function addUser($first_name, $last_name, $email, $image = null, $password = null) {
+		$stmt = "";
+		if($password == null && $image == null){
+			$stmt = $this->conn->prepare(
+				"INSERT INTO users (first_name, last_name, email) VALUES (?, ?, ?)",
+			);
+			$stmt->bind_param("sss", $first_name, $last_name, $email);
+		}
+		if($image == null && $password != null){
+			$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+			$stmt = $this->conn->prepare(
+				"INSERT INTO users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)",
+			);
+			$stmt->bind_param("ssss", $first_name, $last_name, $email, $hashed_password);
+		}
+		if($image != null && $password == null){
+			$stmt = $this->conn->prepare(
+				"INSERT INTO users (first_name, last_name, email, profile_picture) VALUES (?, ?, ?, ?)",
+			);
+			$stmt->bind_param("ssss", $first_name, $last_name, $email, $image);
+		}
 		$isSuccess = $stmt->execute();
 		$stmt->close();
 		return $isSuccess;

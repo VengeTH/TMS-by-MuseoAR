@@ -16,18 +16,18 @@
         <!-- welcome text -->
         <div class="welcome">
             <?php
-            require '../vendor/autoload.php';
+            require "../vendor/autoload.php";
             use benhall14\phpCalendar\Calendar as Calendar;
             require_once dirname(__DIR__) . "/helpers/sessionHandler.php";
             require_once dirname(__DIR__) . "/db/db.php";
             $db = new db();
             $user = $db->getUserById($_SESSION["user_id"]);
             if (empty($user["password"])) {
-                header("Location: /verify/password");
-                exit();
+            	header("Location: /verify/password");
+            	exit();
             }
             echo "Welcome, " . htmlspecialchars($_SESSION["first_name"]) . "!";
-            $activeTab = isset($_GET['tab']) ? $_GET['tab'] : 'dashboard';
+            $activeTab = isset($_GET["tab"]) ? $_GET["tab"] : "dashboard";
             ?>
         </div>
         <a href="?tab=dashboard" class="dashboardButton links active">
@@ -60,9 +60,9 @@
             <div style="margin-left:auto; margin-right:3rem;display:flex;align-items:center;gap:1rem;">
                 <button class="newTaskButton" onclick="showNewTaskModal()">+ New Task</button>
                 <a href="#" class="user-profile">
-                        <?php
-                        $profilePicture = !empty($user['profile_picture']) ? htmlspecialchars($user['profile_picture']) : '/img/defaultPFP.png';
-                        ?>
+                        <?php $profilePicture = !empty($user["profile_picture"])
+                        	? htmlspecialchars($user["profile_picture"])
+                        	: "/img/defaultPFP.png"; ?>
                         <img src="<?php echo $profilePicture; ?>" alt="Profile Picture" class="profile-picture">
                 </a>
                 <span class="time" id="currentTime">
@@ -83,35 +83,45 @@
 
         </div>
         <div class="middleContent">
-            <div class="date">
-                <?php
-                include '../components/calendar.php';
-                ?>
+            <div class="firstChild">
+                <div class="date">
+                    <?php include "../components/calendar.php"; ?>
+                </div>
+                <div class="stats">
+                    stats
+                </div>
             </div>
-            <div class="tasks">
-                <?php
-                $tasks = $db->getTasks();
-                if ($tasks->num_rows > 0) {
-                    while($task = $tasks->fetch_assoc()) {
-                        $finishDate = new DateTime($task["finish_date"]);
-                        $formattedFinishDate = $finishDate->format('F d, Y h:i A'); // Format to include month name
-                        echo "<div class='task'>";
-                        echo "<p>" . htmlspecialchars($task["title"]) . " - " . htmlspecialchars($task["details"]) . " - Priority: " . htmlspecialchars($task["priority"]) . " - Finish Date: " . htmlspecialchars($formattedFinishDate) . "</p>";
-                        echo "</div>";
+            <div class="secondChild">
+                <div class="tasks">
+                    <?php
+                    $tasks = $db->getTasks();
+                    if ($tasks->num_rows > 0) {
+                        while ($task = $tasks->fetch_assoc()) {
+                            $finishDate = new DateTime($task["finish_date"]);
+                            $formattedFinishDate = $finishDate->format("F d, Y h:i A"); // Format to include month name
+                            echo "<div class='task'>";
+                            echo "<p>" .
+                                htmlspecialchars($task["title"]) .
+                                " - " .
+                                htmlspecialchars($task["details"]) .
+                                " - Priority: " .
+                                htmlspecialchars($task["priority"]) .
+                                " - Finish Date: " .
+                                htmlspecialchars($formattedFinishDate) .
+                                "</p>";
+                            echo "</div>";
+                        }
+                    } else {
+                        echo "<p>No tasks found</p>";
                     }
-                } else {
-                    echo "<p>No tasks found</p>";
-                }
-                ?>
-            </div>
-            <div class="stats">
-                stats
-            </div>
-            <div class="news">
-                news
+                    ?>
+                </div>
+                <div class="news">
+                    news
+                </div>
             </div>
         </div>
-     </div>
+    </div>
     <script>
 function showNewTaskModal() {
     Swal.fire({
