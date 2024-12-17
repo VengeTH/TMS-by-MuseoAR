@@ -9,8 +9,8 @@ class db {
 	public function __construct() {
 		$host = "localhost"; // Database host
 		$db = "TaskManagementDB"; // Database name
-		$user = "root"; // Database username
-		$pass = ""; // Database password
+		$user = "aisukurimu"; // Database username
+		$pass = "Password123"; // Database password
 		$this->conn = new mysqli($host, $user, $pass, $db);
 		if ($this->conn->connect_error) {
 			die("Connection failed: " . $this->conn->connect_error);
