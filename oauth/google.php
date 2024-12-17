@@ -18,7 +18,7 @@ class googleOauth {
 		);
 		$this->client->setClientSecret("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");
 		// $this->client->setRedirectUri("http://localhost/Task%20Management/main/google-callback.php");
-		$this->client->setRedirectUri("http://localhost/oauth/google-callback");
+		$this->client->setRedirectUri("http://dev.aisukuri.mu/oauth/google-callback.php");
 		$this->client->addScope(Google_Service_Oauth2::USERINFO_EMAIL);
 		$this->client->addScope(Google_Service_Oauth2::USERINFO_PROFILE);
 	}

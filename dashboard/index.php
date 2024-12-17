@@ -9,110 +9,109 @@
     <link rel="icon" href="/img/logo.png" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-<body>
-    <div class="welcome">
-    <?php
-    require '../vendor/autoload.php';
-    use benhall14\phpCalendar\Calendar as Calendar;
-    require_once dirname(__DIR__) . "/helpers/sessionHandler.php";
-    require_once dirname(__DIR__) . "/db/db.php";
-    $db = new db();
-    $user = $db->getUserById($_SESSION["user_id"]);
-    if (empty($user["password"])) {
-    	header("Location: /verify/password");
-    	exit();
-    }
-    echo "Welcome, " . htmlspecialchars($_SESSION["first_name"]) . "!";
-    $activeTab = isset($_GET['tab']) ? $_GET['tab'] : 'dashboard';
-    ?>
-    </div>
+<body style="display:flex; min-height:100vh;">
+
+    <!-- left side -->
     <div class="container">
-        <a href="?tab=dashboard" class="dashboardButton">
-            <div class="dashboardDiv <?php echo $activeTab === 'dashboard' ? 'active' : ''; ?>" style="color: <?php echo $activeTab === 'dashboard' ? '#fff' : '#321c24'; ?>;">
-                Dashboard
-            </div>
-        </a>
-        <a href="?tab=myTask" class="myTaskButton">
-            <div class="myTaskDiv <?php echo $activeTab === 'myTask' ? 'active' : ''; ?>" style="color: <?php echo $activeTab === 'myTask' ? '#fff' : '#321c24'; ?>;">
-                My Task
-            </div>
-        </a>
-        <div class="otherText">
-            OTHER
-        </div>
-        <a href="?tab=help" class="helpButton">
-            <div class="help <?php echo $activeTab === 'help' ? 'active' : ''; ?>" style="color: <?php echo $activeTab === 'help' ? '#fff' : '#321c24'; ?>;">
-                Help
-            </div>
-        </a>
-        <a href="?tab=settings" class="settingsButton">
-            <div class="settings <?php echo $activeTab === 'settings' ? 'active' : ''; ?>" style="color: <?php echo $activeTab === 'settings' ? '#fff' : '#321c24'; ?>;">
-                Settings
-            </div>
-        </a>
-        <div class="logoutCont">
-            <a href="/user/logout" class="logoutButton">Logout</a>
-        </div>
-    </div>
-    <div class="upperTab">
-        <div class="searchBar">
-            <input type="text" placeholder="Search" class="searchInput">
-            <button class="searchButton">Search</button>
-        </div>
-        <div class="newTaskButton" onclick="showNewTaskModal()">+ New Task</div>
-        <a href="#kalokohan">
-        <div class="profile">
+        <!-- welcome text -->
+        <div class="welcome">
             <?php
-            $profilePicture = !empty($user['profile_picture']) ? htmlspecialchars($user['profile_picture']) : '/img/defaultPFP.png';
-            ?>
-            <img src="<?php echo $profilePicture; ?>" alt="Profile Picture" class="profile-picture">
-        </div>
-        </a>
-        <div class="time">
-            <p id="currentTime"></p>
-            <script>
-                function updateTime() {
-                    const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
-                    document.getElementById(`currentTime`).textContent = currentTime;
-                }
-                updateTime();
-                const interval = setInterval(updateTime, 1000);
-                window.addEventListener('beforeunload', () => {
-                    clearInterval(interval);
-                });
-                delete updateTime; // cleanup
-            </script>
-        </div>
-    </div>
-    <div class="middleContent">
-        <div class="date">
-            <?php
-            include '../components/calendar.php';
-            ?>
-        </div>
-        <div class="tasks">
-            <?php
-            $tasks = $db->getTasks();
-            if ($tasks->num_rows > 0) {
-                while($task = $tasks->fetch_assoc()) {
-                    $finishDate = new DateTime($task["finish_date"]);
-                    $formattedFinishDate = $finishDate->format('F d, Y h:i A'); // Format to include month name
-                    echo "<div class='task'>";
-                    echo "<p>" . htmlspecialchars($task["title"]) . " - " . htmlspecialchars($task["details"]) . " - Priority: " . htmlspecialchars($task["priority"]) . " - Finish Date: " . htmlspecialchars($formattedFinishDate) . "</p>";
-                    echo "</div>";
-                }
-            } else {
-                echo "<p>No tasks found</p>";
+            require '../vendor/autoload.php';
+            use benhall14\phpCalendar\Calendar as Calendar;
+            require_once dirname(__DIR__) . "/helpers/sessionHandler.php";
+            require_once dirname(__DIR__) . "/db/db.php";
+            $db = new db();
+            $user = $db->getUserById($_SESSION["user_id"]);
+            if (empty($user["password"])) {
+                header("Location: /verify/password");
+                exit();
             }
+            echo "Welcome, " . htmlspecialchars($_SESSION["first_name"]) . "!";
+            $activeTab = isset($_GET['tab']) ? $_GET['tab'] : 'dashboard';
             ?>
         </div>
-        <div class="stats">
-            stats
-        </div>
-        <div class="news">
-            news
-        </div>
+        <a href="?tab=dashboard" class="dashboardButton links active">
+                Dashboard
+        </a>
+        <a href="?tab=myTask" class="myTaskButton links">
+                My Task
+        </a>
+        <span class="otherText">
+            OTHER
+        </span>
+        <a href="?tab=help" class="helpButton links">
+                Help
+        </a>
+        <a href="?tab=settings" class="settingsButton links">
+                Settings
+        </a>
+            <a href="/user/logout" class="logoutButton">Logout</a>
     </div>
+    <!-- right-side -->
+     <div class="container-right">
+        <div class="upperTab">
+            <img src="/img/logo.png" alt="" srcset="" style="min-height:1rem; max-height:5rem;">
+            <div class="searchBar">
+                <input type="text" placeholder="Search" class="searchInput">
+                <button class="searchButton">
+                    <img src="/img/Search.png" alt="" srcset="" style="max-width:2rem;">
+                </button>
+            </div>
+            <div style="margin-left:auto; margin-right:3rem;display:flex;align-items:center;gap:1rem;">
+                <button class="newTaskButton" onclick="showNewTaskModal()">+ New Task</button>
+                <a href="#" class="user-profile">
+                        <?php
+                        $profilePicture = !empty($user['profile_picture']) ? htmlspecialchars($user['profile_picture']) : '/img/defaultPFP.png';
+                        ?>
+                        <img src="<?php echo $profilePicture; ?>" alt="Profile Picture" class="profile-picture">
+                </a>
+                <span class="time" id="currentTime">
+                    <script>
+                        function updateTime() {
+                            const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
+                            document.getElementById(`currentTime`).textContent = currentTime;
+                        }
+                        updateTime();
+                        const interval = setInterval(updateTime, 1000);
+                        window.addEventListener('beforeunload', () => {
+                            clearInterval(interval);
+                        });
+                        delete updateTime; // cleanup
+                    </script>
+                </span>
+            </div>
+
+        </div>
+        <div class="middleContent">
+            <div class="date">
+                <?php
+                include '../components/calendar.php';
+                ?>
+            </div>
+            <div class="tasks">
+                <?php
+                $tasks = $db->getTasks();
+                if ($tasks->num_rows > 0) {
+                    while($task = $tasks->fetch_assoc()) {
+                        $finishDate = new DateTime($task["finish_date"]);
+                        $formattedFinishDate = $finishDate->format('F d, Y h:i A'); // Format to include month name
+                        echo "<div class='task'>";
+                        echo "<p>" . htmlspecialchars($task["title"]) . " - " . htmlspecialchars($task["details"]) . " - Priority: " . htmlspecialchars($task["priority"]) . " - Finish Date: " . htmlspecialchars($formattedFinishDate) . "</p>";
+                        echo "</div>";
+                    }
+                } else {
+                    echo "<p>No tasks found</p>";
+                }
+                ?>
+            </div>
+            <div class="stats">
+                stats
+            </div>
+            <div class="news">
+                news
+            </div>
+        </div>
+     </div>
     <script>
 function showNewTaskModal() {
     Swal.fire({
