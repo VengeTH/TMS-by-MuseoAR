@@ -135,5 +135,10 @@ class db {
 		$stmt->close();
 		return $isSuccess;
 	}
+
+	public function getTasks() {
+		$sql = "SELECT * FROM tasks";
+		return $this->conn->query($sql);
+	}
 }
 ?>

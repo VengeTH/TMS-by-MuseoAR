@@ -163,6 +163,10 @@ body{
     pointer-events: auto;
     font-size: 22px;
 }
+a [href="#kalokohan"]{
+    width: fit-content;
+    height: fit-content;
+}
 .profile {
     position: relative;
     top: -12.75vh;
@@ -188,43 +192,53 @@ body{
     font-size: 22px;
 }
 
-.date{
+.middleContent {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 1rem;
     position: relative;
-    top: -99vh;
-    left: 20vw;
+    top: -91.5vh;
+    left: 26vw;
+    width: 70vw;
+    height: auto;
+}
+
+.date {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
     height: fit-content;
-    width: 35vw; /* Adjusted width */
+    width: 100%;
     color: black;
-    font-size: 20px; /* Further reduced font size */
-    transform: scale(0.6); /* Further scale down the calendar */
+    font-size: 20px;
+    transform: scale(0.6);
     border-radius: 10px;
 }
 
-.tasks{
-    position: relative;
+.tasks {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
     background-color: white;
-    top: -139.5vh;
-    left: 49vw;
-    width: 46.5vw;
+    width: 100%;
     border-radius: 10px;
+    height: auto;
+    overflow-y: auto; /* Added to make tasks scrollable */
 }
 
-.stats{
-    position: relative;
-    top: -138vh;
-    left: 27vw;
+.stats {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
     background-color: white;
-    width: 21vw;
+    width: 100%;
     height: 35vh;
     border-radius: 10px;
 }
 
-.news{
+.news {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
     background-color: white;
-    position: relative;
-    top: -173vh;
-    left: 49vw;
-    width: 46.5vw;
+    width: 100%;
     height: 35vh;
     border-radius: 10px;
 }
