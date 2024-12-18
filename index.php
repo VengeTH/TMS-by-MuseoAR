@@ -25,7 +25,7 @@ if (isset($_COOKIE["user_id"]) && isset($_COOKIE["first_name"])) {
     exit();
 }
 
-// Handle login form submission
+// Handle 1 form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $password = $_POST["password"];

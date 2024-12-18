@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__DIR__, 2) . "/db/db.php";
+require_once dirname(__DIR__,2) . "/db/tasks.php";
 session_start();
 
 $title = $_POST['title'];
@@ -8,8 +8,8 @@ $finishDate = $_POST['finishDate'];
 $priority = $_POST['priority'];
 $userId = $_SESSION['user_id'];
 
-$db = new db();
-$success = $db->addTask($userId, $title, $details, $finishDate, $priority);
+$db = new Task();
+$success = $db->addTask($title, $details, $finishDate, $priority, $userId);
 
 header("Content-Type: application/json; charset=utf-8");
 if ($success) {

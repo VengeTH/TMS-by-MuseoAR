@@ -5,6 +5,7 @@
 	you can add your own functions here. to have a centralized database connection.
 */
 class db {
+	
 	public $conn;
 	public function __construct() {
 		$host = "localhost"; // Database host
@@ -45,8 +46,8 @@ class db {
 		return $isSuccess;
 	}
 	public function getUser($email) {
-		$stmt = $this->conn->prepare("SELECT * FROM users WHERE email = ?");
-		$stmt->bind_param("s", $email);
+		$stmt = $this->conn->prepare("SELECT * FROM users WHERE email = ? or id = ?");
+		$stmt->bind_param("si", $email, $email);
 		if ($stmt->execute()) {
 			$result = $stmt->get_result();
 			if ($result->num_rows > 0) {
@@ -145,6 +146,13 @@ class db {
 
 	public function addTask($userId, $title, $details, $finishDate, $priority) {
 		$stmt = $this->conn->prepare("INSERT INTO tasks (user_id, title, details, finish_date, priority) VALUES (?, ?, ?, ?, ?)");
+		if ($priority == "High") {
+			$priority = 3;
+		} else if ($priority == "Medium") {
+			$priority = 2;
+		} else {
+			$priority = 1;
+		}
 		$stmt->bind_param("issss", $userId, $title, $details, $finishDate, $priority);
 		$isSuccess = $stmt->execute();
 		$stmt->close();

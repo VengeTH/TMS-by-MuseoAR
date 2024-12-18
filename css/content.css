@@ -35,6 +35,26 @@
     border-radius: 10px;
 }
 
+.calendar{
+color: #9D7884 !important;
+background: white !important;
+font-weight: 600;
+font-family: "Righteous", sans-serif !important;
+}
+
+.calendar-title{
+    color: black;
+}
+
+.cal-th{
+    color: black;
+}
+.today{
+    border-radius: 50%;
+    background: #8D2A4B !important;
+    color: white !important;
+}
+
 .tasks {
     /* grid-column: 2 / 3;
     grid-row: 1 / 2; */

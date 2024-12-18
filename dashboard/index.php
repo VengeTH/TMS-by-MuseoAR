@@ -11,7 +11,11 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body style="display:flex; min-height:100vh;">
-
+    <?php
+        if(!isset($_GET['tab'])) {
+            header("Location: /dashboard?tab=dashboard");
+        }
+    ?>
     <!-- left side -->
     <div class="nilalaman">
         <!-- welcome text -->
@@ -31,19 +35,22 @@
             $activeTab = isset($_GET["tab"]) ? $_GET["tab"] : "dashboard";
             ?>
         </div>
-        <a href="?tab=dashboard" class="dashboardButton links active">
+        <!-- links -->
+
+        <a href="?tab=dashboard" class="dashboardButton links <?php echo ($_GET["tab"]== 'dashboard') ? ' active' : ''; ?>">
                 Dashboard
         </a>
-        <a href="?tab=myTask" class="myTaskButton links">
+
+        <a href="?tab=myTask" class="myTaskButton links <?php echo ($_GET["tab"] == 'myTask') ? 'active' : ''; ?>">
                 My Task
         </a>
         <span class="otherText">
             OTHER
         </span>
-        <a href="?tab=help" class="helpButton links">
+        <a href="?tab=help" class="helpButton links <?php echo ($_GET["tab"] == 'help') ? 'active' : ''; ?>">
                 Help
         </a>
-        <a href="?tab=settings" class="settingsButton links">
+        <a href="?tab=settings" class="settingsButton links <?php echo ($_GET["tab"] == 'settings') ? 'active' : ''; ?>">
                 Settings
         </a>
             <a href="/user/logout" class="logoutButton">Logout</a>

@@ -1,3 +1,28 @@
+<?php
+    require_once dirname(__DIR__) . "/db/tasks.php";
+    $db = new task();
+?>
+<script>
+    var tasks = <?php echo json_encode($db->getTasks($_SESSION['user_id'])); ?> ?? [];
+    function loadTasks() {
+        const taskContainer = document.getElementById('taskContainer');
+        taskContainer.innerHTML = '';
+        tasks.sort((a, b) => b.priority - a.priority);
+        tasks.forEach(task => {
+            const taskElement = document.createElement('div');
+            taskElement.classList.add('task');
+            taskElement.innerHTML = `
+                <div class="taskTitle">${task.title}</div>
+                <div class="taskDetails">${task.details}</div>
+                <div class="taskFinish
+                Date">${task.finish_date}</div>
+                <div class="taskPriority">${task.priority}</div>
+            `;
+            taskContainer.appendChild(taskElement);
+        });
+    }
+    window.onload = loadTasks;
+</script>
 <div class="container-right">
         <div class="upperTab">
             <img src="/img/logo.png" alt="" srcset="" style="min-height:1rem; max-height:5rem;">
@@ -17,6 +42,7 @@
                 </a>
                 <span class="time" id="currentTime">
                     <script>
+
                         function updateTime() {
                             const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
                             document.getElementById(`currentTime`).textContent = currentTime;
@@ -37,34 +63,12 @@
                 <div class="date">
                     <?php include "../components/calendar.php"; ?>
                 </div>
-                <div class="stats">
-                    stats
+                <div class="tasks" id="taskContainer">
                 </div>
             </div>
             <div class="secondChild">
-                <div class="tasks">
-                    <?php
-                    $tasks = $db->getTasks();
-                    if ($tasks->num_rows > 0) {
-                        while ($task = $tasks->fetch_assoc()) {
-                            $finishDate = new DateTime($task["finish_date"]);
-                            $formattedFinishDate = $finishDate->format("F d, Y h:i A"); // Format to include month name
-                            echo "<div class='task'>";
-                            echo "<p>" .
-                                htmlspecialchars($task["title"]) .
-                                " - " .
-                                htmlspecialchars($task["details"]) .
-                                " - Priority: " .
-                                htmlspecialchars($task["priority"]) .
-                                " - Finish Date: " .
-                                htmlspecialchars($formattedFinishDate) .
-                                "</p>";
-                            echo "</div>";
-                        }
-                    } else {
-                        echo "<p>No tasks found</p>";
-                    }
-                    ?>
+                <div class="stats">
+                    stats
                 </div>
                 <div class="news">
                     news
@@ -112,18 +116,24 @@
             }).then((result) => {
                 const postBody = new FormData();
                 if (result.isConfirmed) {
-                    FormData.append('title', result.value.title);
-                    FormData.append('details', result.value.details);
-                    FormData.append('finishDate', result.value.finishDate);
-                    FormData.append('priority', result.value.priority);
+                    postBody.append('title', result.value.title);
+                    postBody.append('details', result.value.details);
+                    postBody.append('finishDate', result.value.finishDate);
+                    postBody.append('priority', result.value.priority);
                     // Send data to server
-                    fetch('/api/tasks/create.php', {
+                    fetch('/api/tasks/create', {
                         method: 'POST',
-                        body: JSON.stringify(result.value)
+                        body: postBody
                     })
                     .then(response => response.json())
                     .then(data => {
                         if(data.success) {
+                            tasks = [...tasks, {
+                                title: result.value.title,
+                                details: result.value.details,
+                                finish_date: result.value.finishDate,
+                                priority: result.value.priority
+                            }];
                             Swal.fire('Success!', 'Task created successfully', 'success');
                             loadTasks();
                         } else {
