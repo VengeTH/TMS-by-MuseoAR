@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Just+Me+Again+Down+Here&family=Kablammo&family=Righteous&display=swap");
+
+*{
+    font-family: "Righteous", sans-serif;
+}
+.container{
+    flex-direction: column;
+    margin-left: 1rem;
+    width: 100%;
+    height: 100%;
+}
+.upperContainer{
+position: relative;
+    background-color: #f5f5f5;
+}
+.cover{
+    flex-direction: row;
+}
+.profile{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0 1rem 2rem 1rem;
+}
+.profilePic{
+    width: fit-content;
+    position: absolute;
+    left: 5%;
+    top: 45%;
+}
+.profilePic img{
+    min-height: 10rem;
+    min-width: 10rem;
+    max-height: 12rem !important;
+    max-width: 15rem !important;
+    border-radius: 50%;
+}
+.settingsTitle{
+    width: fit-content;
+    height: fit-content;
+    font-size: 20px;
+    font-family: "Righteous", sans-serif;
+    font-weight: 100;
+    color: #0b1215;
+    margin-left: 20%;
+    margin-right: auto;
+    margin-top: auto;
+}
+.menu{
+    flex-direction: row;
+}
+.menu li{
+    display: flex;
+    list-style-type: none;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    border-radius: 1em;
+    background-color: #f5f5f5;
+    cursor: pointer;
+    gap: 3rem;
+}
