@@ -6,14 +6,15 @@
     a{
         text-decoration: none;
     }
-    html{
-        overflow-y: hidden;
-    }
     body{
         background-color: #dfdadb;
     }
     .welcome{
         /* position: relative; */
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
         width: fit-content;
         height: fit-content;
         font-size: 26px;
@@ -23,7 +24,8 @@
         font-weight: 100;
         color: #0b1215;
     }
-    .container{
+    .nilalaman{
+        padding: 0.5rem;
         /* position:sticky;
         right:0; */
         display: flex;
@@ -37,7 +39,7 @@
         border-radius: 1em;
         /* padding-top: 1rem; */
     }
-    .container-right{
+    .nilalaman-right{
         display: flex;
         flex-direction: column;
         padding:1rem;
@@ -88,6 +90,7 @@
         background: rgba(147,20,20,1);
         color: white;
      }
+
      a.links.active::before{
         height: 100%;
         position: absolute;
@@ -238,6 +241,7 @@
         height: fit-content; */
     }
     .profile-picture {
+        max-height: 3rem;
         max-width: 5rem;
         /* width: 65%; */
         border-radius: 50%;
@@ -251,113 +255,4 @@
         width: 8ch;
         color: white;
         font-size: 22px;
-    }
-
-    .middleContent {
-        display: flex !important;
-        flex-direction: row;
-        flex-grow: 1;
-        width: 100%;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto auto;
-        gap: 1rem;
-        /* position: relative; */
-        /* top: -91.5vh; */
-        /* left: 26vw; */
-        height: auto;
-    }
-
-    .firstChild{
-        display: flex;
-        justify-content: space-around;
-        flex-direction: column;
-        width: 50%;
-        height: 100%;
-    }
-    .secondChild{
-        display: flex;
-        justify-content: space-around;
-        flex-direction: column;
-        width: 50%;
-        height: 100%;
-    }
-    .date {
-        /* grid-column: 1 / 2;
-        grid-row: 1 / 2; */
-        height: fit-content;
-        width: 100%;
-        color: black;
-        font-size: 20px;
-        transform: scale(0.6);
-        border-radius: 10px;
-    }
-
-    .tasks {
-        /* grid-column: 2 / 3;
-        grid-row: 1 / 2; */
-        background-color: white;
-        width: 100%;
-        border-radius: 10px;
-        height: auto;
-        min-height: 50%;
-        overflow-y: auto; /* Added to make tasks scrollable */
-    }
-
-    .stats {
-        /* grid-column: 1 / 2;
-        grid-row: 2 / 3; */
-        background-color: white;
-        width: 100%;
-        height: 35vh;
-        border-radius: 10px;
-    }
-
-    .news {
-        /* grid-column: 2 / 3;
-        grid-row: 2 / 3; */
-        background-color: white;
-        width: 100%;
-        height: 35vh;
-        border-radius: 10px;
-    }
-
-    .task-item {
-        padding: 15px;
-        margin: 10px;
-        border-radius: 8px;
-        background: #fff;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    .task-item.high {
-        /* border-left: 4px solid #dc3545; */
-    }
-
-    .task-item.medium {
-        /* border-left: 4px solid #ffc107; */
-    }
-
-    .task-item.low {
-        /* border-left: 4px solid #28a745; */
-    }
-
-    .task-meta {
-        display: flex;
-        justify-content: space-between;
-        /* margin-top: 10px; */
-        color: #666;
-        font-size: 0.9em;
-    }
-
-    .priority-badge {
-        padding: 2px 8px;
-        border-radius: 12px;
-        font-size: 0.8em;
-        text-transform: capitalize;
-    }
-
-    /* SweetAlert2 customization */
-    .swal2-input, .swal2-textarea, .swal2-select {
-        margin: 10px auto;
-        width: 90% !important;
     }

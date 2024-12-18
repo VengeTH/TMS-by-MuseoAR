@@ -2,11 +2,10 @@
 require_once dirname(__DIR__, 2) . "/db/db.php";
 session_start();
 
-$data = json_decode(file_get_contents("php://input"), true);
-$title = $data['title'];
-$details = $data['details'];
-$finishDate = $data['finishDate'];
-$priority = $data['priority'];
+$title = $_POST['title'];
+$details = $_POST['details'];
+$finishDate = $_POST['finishDate'];
+$priority = $_POST['priority'];
 $userId = $_SESSION['user_id'];
 
 $db = new db();
