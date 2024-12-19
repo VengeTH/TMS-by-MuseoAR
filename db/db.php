@@ -5,13 +5,13 @@
 	you can add your own functions here. to have a centralized database connection.
 */
 class db {
-	
+
 	public $conn;
 	public function __construct() {
 		$host = "localhost"; // Database host
 		$db = "TaskManagementDB"; // Database name
-		$user = "aisukurimu"; // Database username
-		$pass = "Password123"; // Database password
+		$user = "root"; // Database username
+		$pass = ""; // Database password
 		$this->conn = new mysqli($host, $user, $pass, $db);
 		if ($this->conn->connect_error) {
 			die("Connection failed: " . $this->conn->connect_error);

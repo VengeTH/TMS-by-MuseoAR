@@ -2,8 +2,8 @@
 class Task{
     private $conn;
     private $host = "localhost";
-    private $username = "aisukurimu";
-    private $password = "Password123";
+    private $username = "root";
+    private $password = "";
     private $database = "TaskManagementDB";
     private $tableName = "tasks";
     public function __construct(){
@@ -14,9 +14,9 @@ class Task{
    }
     public function addTask($title, $details, $finishDate, $priority, $userId){
         $stmt = $this->conn->prepare("INSERT INTO $this->tableName (user_id, title, details, finish_date, priority) VALUES (?, ?, ?, ?, ?)");
-        if ($priority == "High") {
+        if ($priority === "high") {
             $priority = 3;
-        } else if ($priority == "Medium") {
+        } else if ($priority === "medium") {
             $priority = 2;
         } else {
             $priority = 1;
@@ -56,15 +56,15 @@ class Task{
         return $task;
     }
     public function updateTask( $userId, $taskId, $title, $details, $finishDate, $priority){
-        $stmt = $this->conn->prepare("UPDATE $this->tableName SET title = ?, details = ?, finish_date = ?, priority = ? WHERE id = ?");
-        if ($priority == "High") {
+        $stmt = $this->conn->prepare("UPDATE $this->tableName SET title = ?, details = ?, finish_date = ?, priority = ? WHERE id = ? AND user_id = ?");
+        if ($priority === "high") {
             $priority = 3;
-        } else if ($priority == "Medium") {
+        } else if ($priority === "medium") {
             $priority = 2;
         } else {
             $priority = 1;
         }
-        $stmt->bind_param("sssii", $title, $details, $finishDate, $priority, $taskId);
+        $stmt->bind_param("sssiii", $title, $details, $finishDate, $priority, $taskId, $userId);
         $isSuccess = $stmt->execute();
         $stmt->close();
         return $isSuccess;
@@ -76,8 +76,25 @@ class Task{
         $stmt->close();
         return $isSuccess;
     }
-
-
+    public function deleteTasks($taskIds, $userId) {
+        $placeholders = implode(',', array_fill(0, count($taskIds), '?'));
+        $types = str_repeat('i', count($taskIds)) . 'i';
+        $stmt = $this->conn->prepare("DELETE FROM $this->tableName WHERE id IN ($placeholders) AND user_id = ?");
+        $params = array_merge($taskIds, [$userId]);
+        $stmt->bind_param($types, ...$params);
+        $isSuccess = $stmt->execute();
+        $stmt->close();
+        return $isSuccess;
+    }
+    public function getTaskCount($userId) {
+        $stmt = $this->conn->prepare("SELECT COUNT(*) as task_count FROM $this->tableName WHERE user_id = ?");
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $count = $result->fetch_assoc()["task_count"];
+        $stmt->close();
+        return $count;
+    }
     public function __destruct(){
         $this->conn->close();
     }
