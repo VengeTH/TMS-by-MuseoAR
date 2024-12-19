@@ -30,17 +30,17 @@ if (isset($_SESSION["user_id"])) {
                 <form action="" method="POST">
                     <div class="nameCont">
                         <div class="firstNameCont">
-                            <input type="text" name="firstName" class="firstNameBox" placeholder="First Name" required>
+                            <input type="text" name="firstName" class="firstNameBox" placeholder="First Name" value="<?php echo isset($_POST['firstName']) ? htmlspecialchars($_POST['firstName']) : ''; ?>" required>
                         </div>
                         <div class="lastNameCont">
-                            <input type="text" name="lastName" class="lastNameBox" placeholder="Last Name" required>
+                            <input type="text" name="lastName" class="lastNameBox" placeholder="Last Name" value="<?php echo isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName']) : ''; ?>" required>
                         </div>
                     </div>
                     <div class="emailCont">
-                        <input type="text" name="email" class="emailBox" placeholder="Email" required>
+                        <input type="text" name="email" class="emailBox" placeholder="Email" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>" required>
                     </div>
                     <div class="passCont">
-                        <input type="password" name="password" class="passwordBox" placeholder="Password" required>
+                        <input type="password" name="password" class="passwordBox" placeholder="Password" value="<?php echo isset($_POST['password']) ? htmlspecialchars($_POST['password']) : ''; ?>" required>
                     </div>
                     <div class="agreement">
                         <input type="checkbox" name="agreement" id="agreementCheckbox" required disabled>
