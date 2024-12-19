@@ -16,7 +16,7 @@
             ?>
             <h3 class="text-xl">My Task (<span id="taskCount"><?php echo $taskCount; ?></span>)</h3>
             <div class="ml-auto flex gap-4">
-                <button class="text-xl" onclick="deleteMarkedTasks()">Delete</button>
+                <button class="text-xl text-red-600" onclick="deleteMarkedTasks()">Delete</button>
                 <button class="text-xl">Mark as Read</button>
             </div>
         </div>
@@ -38,6 +38,9 @@
             </div>
             <?php
             $tasks = $db->getTasks($_SESSION["user_id"]);
+            if ($tasks == null){
+                $tasks = [];
+            }
             foreach ($tasks as $task) {
                 $finishDate = new DateTime($task["finish_date"]);
                 $formattedFinishDate = $finishDate->format("m-d-y h:i A");

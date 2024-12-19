@@ -9,7 +9,7 @@
                 <?php $profilePicture = !empty($user["profile_picture"])
                     ? htmlspecialchars($user["profile_picture"])
                     : "/img/defaultPFP.png"; ?>
-                <img src="<?php echo $profilePicture; ?>" alt="Profile Picture" class="profile-picture">
+                <img src="<?php echo $profilePicture; ?>" alt="Profile Picture" class="profile-picture" style="background-color:#627885;">
             </div>
             <div class="settingsTitle">
                 <h2>Settings</h2>
