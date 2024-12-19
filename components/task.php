@@ -42,19 +42,22 @@
                 $tasks = [];
             }
             foreach ($tasks as $task) {
-                $finishDate = new DateTime($task["finish_date"]);
+
+                $currentDate = new DateTime('now', new DateTimeZone('Asia/Manila'));
+                $finishDate = new DateTime($task["finish_date"], new DateTimeZone('Asia/Manila'));
                 $formattedFinishDate = $finishDate->format("m-d-y h:i A");
-                $isToday = $finishDate->format('Y-m-d') === (new DateTime())->format('Y-m-d');
+                $isToday = $finishDate->format('Y-m-d') === $currentDate->format('Y-m-d');
+                $isPastDue = $finishDate < $currentDate;
 
                 echo '<div class="flex w-full border-b-2 border-black p-2 task">';
                 echo '<div class="flex gap-4 items-center justify-center">';
                 echo '<input type="checkbox" name="Task' . htmlspecialchars($task["id"]) . '" id="Task' . htmlspecialchars($task["id"]) . '" class="peer task-checkbox" data-task-id="' . htmlspecialchars($task["id"]) . '" />';
-                echo '<label for="Task' . htmlspecialchars($task["id"]) . '" class="text-xl cursor-pointer peer-checked:line-through peer-checked:text-gray-500">';
+                echo '<label for="Task' . htmlspecialchars($task["id"]) . '" class="text-xl cursor-pointer ' . ($isPastDue ? 'line-through text-gray-500' : 'peer-checked:line-through peer-checked:text-gray-500') . '">';
                 echo htmlspecialchars($task["title"]);
                 echo '</label>';
                 echo '</div>';
                 echo '<div class="ml-auto">';
-                echo '<h3 class="text-xl ' . ($isToday ? 'text-red-800' : 'text-black') . ' mr-8">' . htmlspecialchars($formattedFinishDate) . '</h3>';
+                echo '<h3 class="text-xl ' . ($isToday || $isPastDue ? 'text-red-800' : 'text-black') . ' mr-8">' . htmlspecialchars($formattedFinishDate) . '</h3>';
                 echo '</div>';
                 echo '</div>';
             }

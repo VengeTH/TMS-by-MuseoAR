@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Just+Me+Again+Down+Here&family=Kablammo&family=Righteous&display=swap");
 html {
-	/* overflow: hidden; */
+	overflow: hidden;
 	height: 100%;
 }
 body {
