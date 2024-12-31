@@ -12,6 +12,7 @@
 </head>
 <body style="display:flex; min-height:100vh;">
     <?php
+        // session_start(); // Remove this line
         if(!isset($_GET['tab'])) {
             header("Location: /dashboard?tab=dashboard");
         }

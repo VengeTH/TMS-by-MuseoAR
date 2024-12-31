@@ -20,10 +20,20 @@
             </div>
         </div>
         <div class="menu">
-            <li>
-                <ul>Edit Profile</ul>
-                <ul>Change Password</ul>
-            </li>
+            <ul>
+                <a href="#">
+                <li>Edit Profile</li>
+                </a>
+                <a href="#">
+                <li>Change Password</li>
+                </a>
+                <a id="del" href="#">
+                <li>Delete Account</li>
+                </a>
+            </ul>
+        </div>
+        <div class="changeProf">
+            <h3>Profile Photo</h3>
         </div>
     </div>
 </div>
