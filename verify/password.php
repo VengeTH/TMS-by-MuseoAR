@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Management by MuseoAR</title>
+    <title>Set Password - OrgaNiss</title>
     <link rel="icon" href="/img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="/css/newPass.css">
     <script  src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

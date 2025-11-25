@@ -1,7 +1,7 @@
 <div class="footer">
-    <a href="/aboutUs.php">About Us</a>
-    <p>MuseoAR Developers</p>
-    <a href="/contactUs.php">Contact Us</a>
+    <a href="/pages/about.php">About Us</a>
+    <p><strong>The Heedful</strong> Developers</p>
+    <a href="/pages/contact.php">Contact Us</a>
     <a href="mailto:museoar2024@gmail.cpm">MuseoAR2024@gmail.com</a>
 </div>
 

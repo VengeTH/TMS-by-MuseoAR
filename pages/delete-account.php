@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Management by MuseoAR</title>
+    <title>Delete Account - OrgaNiss</title>
     <link rel="stylesheet" href="/css/deleteAcc.css">
     <link rel="icon" href="/img/logo.png" type="image/x-icon">
 </head>
 <body>
     <?php
-        include "headerWhite.php";
+        include dirname(__DIR__) . "/components/headerWhite.php";
     ?>
     <div class="deleteAccUpper">
         <h1>Delete Account</h1>
@@ -21,7 +21,7 @@
     <div class="steps">
         <h1>How To Delete your Account and Data</h1>
         <ol>
-            <li>Log in to your account: <span style="color:gray;">Visit <a href="organiss.free.nf" style="color:blue; text-decoration: none;"> Organiss Website</a> and log in with your credentials</span></li>
+            <li>Log in to your account: <span style="color:gray;">Visit the <strong>OrgaNiss</strong> website and log in with your credentials</span></li>
             <li>Navigate to Account Settings: <span style="color:gray;">Once logged in, go to your profile or account settings page.
             </span></li>
             <li>Request Data Deletion: <span style="color:gray;">Look for the "Delete Account" option in the settings. Click on it to begin the deletion process.
@@ -36,7 +36,8 @@
         </ol>
     </div>
     <?php
-        include "footer2.php";
+        include dirname(__DIR__) . "/components/footer2.php";
     ?>
 </body>
 </html>
+

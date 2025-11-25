@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "db.php"; // Include your database connection
+require_once dirname(__DIR__) . "/db/db.php"; // * Include your database connection
 //! recommend using api here.
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	// Check if a file was uploaded

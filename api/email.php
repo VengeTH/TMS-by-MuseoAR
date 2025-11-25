@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__DIR__) . "/db.php";
+require_once dirname(__DIR__) . "/db/db.php";
 session_start();
 
 $id = $_POST["id"];

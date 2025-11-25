@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Management by MuseoAR</title>
+    <title>Contact Us - OrgaNiss</title>
     <link rel="stylesheet" href="/css/contactUs.css">
     <link rel="icon" href="/img/logo.png" type="image/x-icon">
 </head>
 <body>
-    <?php include "components/headerWhite.php" ?>
+    <?php include dirname(__DIR__) . "/components/headerWhite.php" ?>
     <div class="contactUsUpper">
         <h1>Contact Us</h1>
-        <p>We’d love to hear from you! If you have any questions, feedback, or suggestions about OrgaNiss, feel free to reach out using the form below.</p>
+        <p>We'd love to hear from you! If you have any questions, feedback, or suggestions about <strong>OrgaNiss</strong>, feel free to reach out using the form below.</p>
     </div>
     <div class="getInTouch">
         <h1>Get in Touch</h1>
@@ -75,45 +75,45 @@
             return true;
         }
     </script>
-</body>
-            <?php
-            use PHPMailer\PHPMailer\PHPMailer;
-            use PHPMailer\PHPMailer\Exception;
+    <?php
+        use PHPMailer\PHPMailer\PHPMailer;
+        use PHPMailer\PHPMailer\Exception;
 
-            require 'vendor/autoload.php';
+        require dirname(__DIR__) . '/vendor/autoload.php';
 
-            include "components/footer2.php";
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                $name = htmlspecialchars($_POST['name']);
-                $email = htmlspecialchars($_POST['email']);
-                $message = htmlspecialchars($_POST['message']);
+        include dirname(__DIR__) . "/components/footer2.php";
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $name = htmlspecialchars($_POST['name']);
+            $email = htmlspecialchars($_POST['email']);
+            $message = htmlspecialchars($_POST['message']);
 
-                $mail = new PHPMailer(true);
-                try {
-                    //Server settings
-                    $mail->isSMTP();
-                    $mail->Host = 'smtp.gmail.com'; // Update with your SMTP host
-                    $mail->SMTPAuth = true;
-                    $mail->Username = 'organizzbymuseoar@gmail.com'; // Update with your email
-                    $mail->Password = 'juli-anne2024'; // Update with your email password
-                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-                    $mail->Port = 587;
+            $mail = new PHPMailer(true);
+            try {
+                // * Server settings
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = 'organizzbymuseoar@gmail.com';
+                $mail->Password = 'juli-anne2024';
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                $mail->Port = 587;
 
-                    //Recipients
-                    $mail->setFrom($email, $name);
-                    $mail->addAddress('museoar2024@gmail.com');
+                // * Recipients
+                $mail->setFrom($email, $name);
+                $mail->addAddress('museoar2024@gmail.com');
 
-                    //Content
-                    $mail->isHTML(true);
-                    $mail->Subject = 'Contact Us Form Submission';
-                    $mail->Body    = "Name: $name<br>Email: $email<br>Message: $message";
+                // * Content
+                $mail->isHTML(true);
+                $mail->Subject = 'Contact Us Form Submission';
+                $mail->Body    = "Name: $name<br>Email: $email<br>Message: $message";
 
-                    $mail->send();
-                    echo 'Email successfully sent.';
-                } catch (Exception $e) {
-                    echo "Email sending failed. Mailer Error: {$mail->ErrorInfo}";
-                }
+                $mail->send();
+                echo 'Email successfully sent.';
+            } catch (Exception $e) {
+                echo "Email sending failed. Mailer Error: {$mail->ErrorInfo}";
             }
-            ?>
+        }
+    ?>
+</body>
 </html>
-</div>
+

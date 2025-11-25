@@ -1,49 +1,49 @@
 <?php
-// Include the database connection file
-include 'db.php';
-require 'vendor/autoload.php'; // Include PHPMailer
+// * Include the database connection file
+require_once dirname(__DIR__) . "/db/db.php";
+require dirname(__DIR__) . '/vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-// Initialize the database connection
+// * Initialize the database connection
 $db = new db();
 $conn = $db->getConnection();
 
-// Check if the form is submitted
+// * Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['current_email']) && isset($_POST['new_email'])) {
-    // Get the current email and new email from the POST request
+    // * Get the current email and new email from the POST request
     $currentEmail = $_POST['current_email'];
     $newEmail = $_POST['new_email'];
 
-    // Validate the inputs
+    // * Validate the inputs
     if (!empty($currentEmail) && !empty($newEmail) && filter_var($currentEmail, FILTER_VALIDATE_EMAIL) && filter_var($newEmail, FILTER_VALIDATE_EMAIL)) {
-        // Generate a random authentication code
+        // * Generate a random authentication code
         $authCode = rand(100000, 999999);
 
-        // Store the authentication code and new email in the session
+        // * Store the authentication code and new email in the session
         session_start();
         $_SESSION['auth_code'] = $authCode;
         $_SESSION['new_email'] = $newEmail;
         $_SESSION['current_email'] = $currentEmail;
 
-        // Send the authentication code to the new email address using PHPMailer
+        // * Send the authentication code to the new email address using PHPMailer
         $mail = new PHPMailer(true);
         try {
-            // Server settings
+            // * Server settings
             $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com'; // Set the SMTP server to send through
+            $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = 'organizzbymuseoar@gmail.com'; // SMTP username
-            $mail->Password = 'juli-anne2024'; // SMTP password
+            $mail->Username = 'organizzbymuseoar@gmail.com';
+            $mail->Password = 'juli-anne2024';
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
 
-            // Recipients
-            $mail->setFrom('no-reply@museoar.com', 'MuseoAR');
+            // * Recipients
+            $mail->setFrom('no-reply@organiss.com', 'OrgaNiss');
             $mail->addAddress($newEmail);
 
-            // Content
+            // * Content
             $mail->isHTML(true);
             $mail->Subject = 'Email Change Verification Code';
             $mail->Body = "Your verification code is: $authCode";
@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['current_email']) && is
     }
 }
 
-// Close the database connection
+// * Close the database connection
 $conn->close();
 ?>
 
@@ -67,10 +67,10 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Change Email</title>
+    <title>Change Email - OrgaNiss</title>
 </head>
 <body>
-    <form method="POST" action="changeEmail.php">
+    <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
         <label for="current_email">Current Email:</label>
         <input type="email" id="current_email" name="current_email" required><br><br>
         <label for="new_email">New Email:</label>
@@ -79,3 +79,4 @@ $conn->close();
     </form>
 </body>
 </html>
+

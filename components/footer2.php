@@ -1,6 +1,6 @@
 <div class="footer">
     <div class="containerDev">
-        <p>&copy; 2024 OrgaNiss Developers. All Rights Reserved.</p>
+        <p>&copy; 2024 <strong>The Heedful</strong> Developers. All Rights Reserved.</p>
         <p>Email: <a href="mailto:museoar2024@gmail.com">museoar2024@gmail.com</a></p>
     </div>
 </div>

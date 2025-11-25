@@ -1,6 +1,6 @@
 <?php
 // Include the database connection file
-include 'db.php';
+require_once dirname(__DIR__) . "/db/db.php";
 
 // Initialize the database connection
 $db = new db();
