@@ -48,6 +48,9 @@
         <span class="otherText">
             OTHER
         </span>
+        <a href="/dashboard/weekly-planner.php" class="helpButton links">
+                AI Weekly Planner
+        </a>
         <a href="?tab=help" class="helpButton links <?php echo ($_GET["tab"] == 'help') ? 'active' : ''; ?>">
                 Help
         </a>
