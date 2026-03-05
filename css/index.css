@@ -1,173 +1,209 @@
-@import url("https://fonts.googleapis.com/css2?family=Just+Me+Again+Down+Here&family=Kablammo&family=Righteous&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Righteous&display=swap");
+
+:root {
+  --color-bg: #f1f5f9;
+  --color-surface: #ffffff;
+  --color-border: #e2e8f0;
+  --color-text: #0f172a;
+  --color-text-muted: #64748b;
+  --color-accent: #2563eb;
+  --color-accent-hover: #1d4ed8;
+  --color-primary: #0f172a;
+  --color-footer: #0f172a;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 4px 10px -5px rgba(0, 0, 0, 0.04);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --transition: 150ms ease;
+}
+
+html {
+  height: 100%;
+}
 
 body.index {
-	margin: 0;
-	height: auto;
-	background-color: #e4e4e4;
-	display: flex;
-	flex-wrap: wrap;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+  margin: 0;
+  min-height: 100%;
+  min-height: 100vh;
+  background: var(--color-bg);
+  font-family: "Outfit", "Righteous", system-ui, sans-serif;
+  color: var(--color-text);
+  display: flex;
+  flex-direction: column;
 }
-/*
-*  1. use relative to change the position if it'you want it to be overlapping.
-*  2. How did I get 12rem? 6rem for the header and 6rem for the footer. (estimated only)
-*  3. Another variant of layouting
-*/
+
 .wrapper {
-	/* 2 */
-	min-height: calc(100vh - 12rem);
-	display: flex;
-	position: relative;
-	width: 100%;
-	/* use relative to change the position if it'you want it to be overlapping. */
-	/* top: -55vh; */
+  flex: 1 1 auto;
+  display: flex;
+  min-height: 0;
 }
+
+/* Right column - login form */
 .right {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	min-width: 50%;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.right-inner {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
 }
 
 .bilog {
-	position: relative;
-	/* 1. */
-	/*
-	top: 8vh;
-	left: 72.5vw;
-	width: 8vw; */
-	height: 8vw;
+  height: 64px;
+  width: 64px;
+  object-fit: contain;
 }
 
 .title {
-	margin: 0 0 0.5rem 0;
-	width: fit-content;
-	font-size: 30px;
-	font-family: "Kablammo", system-ui;
-	font-optical-sizing: auto;
-	color: black;
-	font-weight: 900;
-	position: relative;
-	/* 1. */
-	/* top: 4vh;
-	left: 66.3vw; */
-	letter-spacing: 0.15em;
+  margin: 0;
+  font-family: "Righteous", "Outfit", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: 0.08em;
 }
 
 .LoginForm {
-	display: flex;
-	position: relative;
-	flex-direction: column;
-	/* top: -1vh;
-	left: 65vw; */
-	background-color: white;
-	color: #321c24;
-	min-height: 50vh;
-	min-width: 50vh;
-	border-radius: 0.8em;
-	justify-content: space-evenly;
-	align-items: flex-start;
-	box-sizing: border-box;
-	padding: 20px;
-	font-family: "Righteous", sans-serif;
-	font-style: normal;
-	font-weight: 100;
+  width: 100%;
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  border: 1px solid var(--color-border);
 }
 
 .form-wrapper {
-	width: 100%;
-	position: relative;
-	/* padding: 1em; */
-	/* 1. */
-	/* left: -0.8vw;
-	top: -1.5vh; */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-wrapper label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
 }
 
 .form-text {
-	background-color: #eeeeee;
-	border: 0px transparent;
-	border-radius: 0.3em;
-	/* width: 21.5vw; */
-	width: 100%;
-	font-size: 1rem;
-	padding: 1rem 30px;
-	max-width: calc(100% - 60px);
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  box-sizing: border-box;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.form-text:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.form-text::placeholder {
+  color: #94a3b8;
 }
 
 .rememberMe {
-	position: relative;
-	/* 1. */
-	/* left: 2vh;
-	top: -3vh; */
-	/* padding-top: 1em;
-	width: fit-content;
-	height: 3vh; */
-	/* 3. */
-	display: inline-block;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
 }
 
-.rememberMe [type="checkbox"]:checked {
-	accent-color: #000;
+.rememberMe input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--color-primary);
+  cursor: pointer;
 }
 
-.rememberMe p {
-	position: relative;
-	/* 1. */
-	/* top: -6vh;
-	left: 1.4vw; */
-	font-size: 20px;
+.rememberMe span {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
 }
 
 .ContinueButton {
-	position: relative;
-	/* 1. */
-	/* left: 0.5vw; */
-	background-color: black;
-	color: white;
-	text-align: center;
-	border-radius: 30em;
-	margin-left: auto;
-	width: 21.5vw;
-	height: 5vh;
-	font-family: "Righteous", sans-serif;
-	font-style: normal;
-	font-weight: 400;
-	/* margin-bottom: 1em; */
+  width: 100%;
+  padding: 0.875rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  color: white;
+  background: var(--color-primary);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+}
+
+.ContinueButton:hover {
+  background: #1e293b;
+}
+
+.ContinueButton:active {
+  transform: scale(0.99);
 }
 
 .Register {
-	position: relative;
-	left: 7.5vw;
-	display: block;
-	color: blue;
-	text-decoration: none;
-	text-align: center;
-	font-family: "Roboto", sans-serif;
-	font-weight: 100;
-	font-size: 13px;
-	width: fit-content;
+  font-size: 0.875rem;
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--transition);
+}
+
+.Register:hover {
+  color: var(--color-accent-hover);
+  text-decoration: underline;
 }
 
 .errorMessage {
-	display: block;
-	white-space: nowrap;
-	position: relative;
-	top: -14vh;
-	left: 50%;
-	color: red;
-	font-size: 15px;
-	transform: translateX(-50%);
-	font-family: "Righteous", sans-serif;
-	font-weight: 100;
-	width: fit-content;
-	text-align: center;
-	margin-top: 10px;
-	animation-delay: 1s;
+  display: block;
+  color: #dc2626;
+  font-size: 0.875rem;
+  text-align: center;
+  margin-top: 0.5rem;
 }
 
 .errorMessage:empty {
-	display: none;
+  display: none;
+}
+
+/* Responsive: stack on small screens */
+@media (max-width: 768px) {
+  .wrapper {
+    flex-direction: column;
+  }
+
+  .welcome {
+    min-height: 200px;
+    padding: 2rem 1rem;
+  }
+
+  .welcome h1 {
+    font-size: 2.5rem !important;
+  }
+
+  .right {
+    padding: 1.5rem;
+  }
 }

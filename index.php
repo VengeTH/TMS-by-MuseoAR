@@ -75,23 +75,26 @@ require_once __DIR__ . "/components/json-ld-organization.php";
     <div class="wrapper">
         <?php include_once __DIR__ . "/components/welcomeMessage.php"; ?>
         <div class="right">
-            <img src="/img/logo.png" class="bilog">
-            <h1 class="title">ORGANISS</h1>
-            <form action="" method="post" class="LoginForm">
-                <div class="form-wrapper">
-                    Email
-                    <input type="text" name="email" class="form-text" value="<?php echo htmlspecialchars($email); ?>" required>
-                </div>
-                <div class="form-wrapper">
-                    Password
-                    <input type="password" name="password" class="form-text" required>
-                </div>
-                <div class="rememberMe">
-                    <p><input type="checkbox" name="remember" checked>Remember me</p>
-                </div>
-                <button type="submit" class="ContinueButton">Continue</button>
-                <a href="/user/register" class="Register">Don't have an account</a>
-            </form>
+            <div class="right-inner">
+                <img src="/img/logo.png" class="bilog" alt="OrgaNiss">
+                <h1 class="title">ORGANISS</h1>
+                <form action="" method="post" class="LoginForm">
+                    <div class="form-wrapper">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" class="form-text" placeholder="you@example.com" value="<?php echo htmlspecialchars($email); ?>" required>
+                    </div>
+                    <div class="form-wrapper">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" class="form-text" placeholder="••••••••" required>
+                    </div>
+                    <label class="rememberMe">
+                        <input type="checkbox" name="remember" checked>
+                        <span>Remember me</span>
+                    </label>
+                    <button type="submit" class="ContinueButton">Continue</button>
+                    <a href="/user/register" class="Register">Don&rsquo;t have an account? Register</a>
+                </form>
+            </div>
         </div>
     </div>
     <?php

@@ -10,8 +10,9 @@ class Task{
         $username = safeEnv("DB_USER", "root");
         $password = safeEnv("DB_PASS", "");
         $database = safeEnv("DB_NAME", "TaskManagementDB");
+        $port = (int) safeEnv("DB_PORT", "3306");
 
-        $this->conn = new mysqli($host, $username, $password, $database);
+        $this->conn = new mysqli($host, $username, $password, $database, $port);
         if ($this->conn->connect_error) {
             die("Connection failed: " . $this->conn->connect_error);
         }

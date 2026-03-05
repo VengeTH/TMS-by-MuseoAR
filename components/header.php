@@ -1,94 +1,78 @@
-<div class="header">
-    <div class="logo-wrapper">
-        <img src="/img/logo.png" class="logo" class="logo">
-        <div class="titleBesideLogo">
-            <h1>ORGANISS</h1>
-        </div>
-    </div>
-    <div class="menu">
-        <a href="/">Sign in</a>
-        <a href="/user/register.php" id="register">Register</button></a>
-    </div>
-</div>
-<!-- welcome css -->
+<header class="header">
+    <a href="/" class="logo-wrapper">
+        <img src="/img/logo.png" class="logo" alt="OrgaNiss">
+        <span class="titleBesideLogo">ORGANISS</span>
+    </a>
+    <nav class="menu">
+        <a href="/" class="menu-link">Sign in</a>
+        <a href="/user/register" class="menu-link menu-link--primary">Register</a>
+    </nav>
+</header>
 <style>
-/* LESSON : NEVER USE COPILOT WITHOUT UNDERSTANDING THE MEANING OF THE CODE.  */
-/* this is a good example on where you could use display grid. msg me pag di mo gets. --gelo */
-/* .body::before {
-    content: "";
-    background-image: url('/img/bg.jpg');
-    background-size: cover;
-    background-position: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 100%;
-    z-index: -1;
-} */
-/* THIS LINE OF CODE IS NOT EVEN BEING APPLIED! */
-.header{
+.header {
     width: 100%;
-    background-color: black !important;
-    display: flex;
-}
-.logo-wrapper{
-    /* the culprit on why everything is shifting. */
-    /* position: relative;
-    top: .2vh;
-    left: .8vw; */
+    background: #0f172a;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    height: 4rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
-.logo{
-    max-width: 5rem;
-    max-height: 5rem;
-}
-.titleBesideLogo{
-    position: relative;
-    /* the culprit on why everything is shifting. Bad use of positioning.*/
-    /* top: -13vh;
-    left: 7.5vw; */
-    font-family: "Kablammo", system-ui;
-    font-size: 1.25rem;
-    font-weight: 100;
-    color: white;
-}
-.menu{
-    position: relative;
-    /* the culprit on why everything is shifting. */
-    margin-left: auto;
-    margin-right: 2vw;
+
+.logo-wrapper {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    /* top: -22.5vh;
-    left: 88.5vw; */
-    width: fit-content;
-    font-family: "Righteous", sans-serif;
-}
-.menu a{
-    display: flex;
+    gap: 0.75rem;
     text-decoration: none;
-    color: black;
-    background-color : white;
-    border-radius: 7px;
-    border: 1px solid black;
-    padding: 1rem 2rem;
-    text-align: center;
-    height: .5rem;
-    align-items: center;
-}
-/* just use id for here. Lemme guess, used copilot and never thought of it again. */
-/* .menu a[href="/user/register.php"] button{
-    background-color: #2c2c2c;
-    color: white;
-} */
-#register{
-    background-color: #2c2c2c;
     color: white;
 }
 
+.logo {
+    width: 2.5rem;
+    height: 2.5rem;
+    object-fit: contain;
+}
+
+.titleBesideLogo {
+    font-family: "Righteous", system-ui, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.menu-link {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    font-family: "Outfit", system-ui, sans-serif;
+    text-decoration: none;
+    color: #0f172a;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    transition: background 150ms ease, border-color 150ms ease;
+}
+
+.menu-link:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+}
+
+.menu-link--primary {
+    background: #2563eb;
+    color: white;
+    border-color: #2563eb;
+}
+
+.menu-link--primary:hover {
+    background: #1d4ed8;
+    border-color: #1d4ed8;
+}
 </style>
