@@ -10,7 +10,6 @@
 </header>
 <style>
 .header {
-    width: 100%;
     background: #0f172a;
     display: flex;
     align-items: center;
