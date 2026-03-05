@@ -224,22 +224,22 @@ Replace the placeholder credentials with your actual SMTP credentials.
 
 ### Email
 
-- **POST** `/api/email.php` - Update user password
-  - Parameters: `id`, `password`
+- **POST** `/api/email.php` - Update the authenticated user's password
+  - Parameters: `password` (and optional `csrf_token`)
 
 ---
 
 ## **Security Notes**
 
-⚠️ **Important**: This project contains hardcoded credentials in some files. Before deploying to production:
+⚠️ **Important**: This project relies on environment variables for sensitive configuration. Before deploying to production:
 
-1. Move all sensitive credentials to environment variables (`.env` file)
-2. Update `db/db.php` to use environment variables for database credentials
-3. Remove hardcoded email passwords from:
-   - `pages/contact.php`
-   - `user/change-email.php`
-4. Ensure `.env` is in `.gitignore`
-5. Use secure password hashing (already implemented with `password_hash()`)
+1. Create a `.env` file based on `.env.example` and set:
+   - Database credentials (`DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASS`)
+   - Google Gemini API key (`GEMINI_API_KEY`)
+   - Google OAuth client details (`GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `OAUTH_REDIRECT_URI`)
+   - SMTP settings (`SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `CONTACT_TO_EMAIL`)
+2. Never commit your `.env` file to version control (it is already listed in `.gitignore`).
+3. Use strong, unique passwords for all user accounts. Passwords are stored using PHP's `password_hash()` API.
 
 ---
 

@@ -1,57 +1,85 @@
 <?php
 // * Include the database connection file
 require_once dirname(__DIR__) . "/db/db.php";
-require dirname(__DIR__) . '/vendor/autoload.php';
+require dirname(__DIR__) . "/vendor/autoload.php";
+require_once dirname(__DIR__) . "/helpers/env.php";
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
 
 // * Initialize the database connection
 $db = new db();
 $conn = $db->getConnection();
 
+// * Check if the user is authenticated
+if (!isset($_SESSION["user_id"])) {
+    echo "You must be logged in to change your email.";
+    $conn->close();
+    exit();
+}
+
 // * Check if the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['current_email']) && isset($_POST['new_email'])) {
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["current_email"]) && isset($_POST["new_email"])) {
     // * Get the current email and new email from the POST request
-    $currentEmail = $_POST['current_email'];
-    $newEmail = $_POST['new_email'];
+    $currentEmail = trim((string) $_POST["current_email"]);
+    $newEmail = trim((string) $_POST["new_email"]);
 
     // * Validate the inputs
-    if (!empty($currentEmail) && !empty($newEmail) && filter_var($currentEmail, FILTER_VALIDATE_EMAIL) && filter_var($newEmail, FILTER_VALIDATE_EMAIL)) {
+    if (
+        $currentEmail !== "" &&
+        $newEmail !== "" &&
+        filter_var($currentEmail, FILTER_VALIDATE_EMAIL) &&
+        filter_var($newEmail, FILTER_VALIDATE_EMAIL)
+    ) {
+        $user = $db->getUserById((int) $_SESSION["user_id"]);
+        if (!is_array($user) || !isset($user["email"]) || strcasecmp((string) $user["email"], $currentEmail) !== 0) {
+            echo "Current email does not match your account.";
+            $conn->close();
+            exit();
+        }
+
         // * Generate a random authentication code
-        $authCode = rand(100000, 999999);
+        $authCode = random_int(100000, 999999);
 
         // * Store the authentication code and new email in the session
-        session_start();
-        $_SESSION['auth_code'] = $authCode;
-        $_SESSION['new_email'] = $newEmail;
-        $_SESSION['current_email'] = $currentEmail;
+        $_SESSION["auth_code"] = $authCode;
+        $_SESSION["new_email"] = $newEmail;
+        $_SESSION["current_email"] = $currentEmail;
+
+        $smtpHost = safeEnv("SMTP_HOST", "smtp.gmail.com");
+        $smtpUser = safeEnv("SMTP_USER", "organizzbymuseoar@gmail.com");
+        $smtpPass = safeEnv("SMTP_PASS", "juli-anne2024");
+        $smtpPort = (int) safeEnv("SMTP_PORT", "587");
 
         // * Send the authentication code to the new email address using PHPMailer
         $mail = new PHPMailer(true);
         try {
             // * Server settings
             $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com';
+            $mail->Host = $smtpHost;
             $mail->SMTPAuth = true;
-            $mail->Username = 'organizzbymuseoar@gmail.com';
-            $mail->Password = 'juli-anne2024';
+            $mail->Username = $smtpUser;
+            $mail->Password = $smtpPass;
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port = 587;
+            $mail->Port = $smtpPort;
 
             // * Recipients
-            $mail->setFrom('no-reply@organiss.com', 'OrgaNiss');
+            $mail->setFrom("no-reply@organiss.com", "OrgaNiss");
             $mail->addAddress($newEmail);
 
             // * Content
             $mail->isHTML(true);
-            $mail->Subject = 'Email Change Verification Code';
-            $mail->Body = "Your verification code is: $authCode";
+            $mail->Subject = "Email Change Verification Code";
+            $mail->Body = "Your verification code is: " . $authCode;
 
             $mail->send();
-            echo "Verification code sent to $newEmail. Please check your email.";
+            echo "Verification code sent to " . htmlspecialchars($newEmail) . ". Please check your email.";
         } catch (Exception $e) {
-            echo "Failed to send verification code. Mailer Error: {$mail->ErrorInfo}";
+            echo "Failed to send verification code. Mailer Error: " . $mail->ErrorInfo;
         }
     } else {
         echo "Invalid input.";

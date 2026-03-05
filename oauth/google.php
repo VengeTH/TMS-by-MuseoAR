@@ -1,5 +1,6 @@
 <?php
 require_once dirname(__DIR__) . "/vendor/autoload.php";
+require_once dirname(__DIR__) . "/helpers/env.php";
 /**
  * Google Oauth class
  * usage:
@@ -13,12 +14,14 @@ class googleOauth {
 	// constructor
 	public function __construct() {
 		$this->client = new Google_Client();
-		$this->client->setClientId(
-			"353540925058-rjjiqh9293el9qqn73100t8am2ahc4cm.apps.googleusercontent.com",
-		);
-		$this->client->setClientSecret("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");
-		// $this->client->setRedirectUri("http://localhost/Task%20Management/main/google-callback.php");
-		$this->client->setRedirectUri("http://localhost/oauth/google-callback.php");
+
+		$clientId = safeEnv("GOOGLE_CLIENT_ID", "353540925058-rjjiqh9293el9qqn73100t8am2ahc4cm.apps.googleusercontent.com");
+		$clientSecret = safeEnv("GOOGLE_CLIENT_SECRET", "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");
+		$redirectUri = safeEnv("OAUTH_REDIRECT_URI", "http://localhost/oauth/google-callback.php");
+
+		$this->client->setClientId($clientId);
+		$this->client->setClientSecret($clientSecret);
+		$this->client->setRedirectUri($redirectUri);
 		$this->client->addScope(Google_Service_Oauth2::USERINFO_EMAIL);
 		$this->client->addScope(Google_Service_Oauth2::USERINFO_PROFILE);
 	}

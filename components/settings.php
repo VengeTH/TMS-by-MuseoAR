@@ -21,18 +21,18 @@
         </div>
         <div class="menu">
             <ul>
-                <a href="#">
+                <a href="/dashboard?tab=settings#profile">
                 <li>Edit Profile</li>
                 </a>
-                <a href="#">
+                <a href="/verify/password">
                 <li>Change Password</li>
                 </a>
-                <a id="del" href="#">
+                <a id="del" href="/pages/delete-account">
                 <li>Delete Account</li>
                 </a>
             </ul>
         </div>
-        <div class="changeProf">
+        <div class="changeProf" id="profile">
             <h3>Profile Photo</h3>
         </div>
     </div>

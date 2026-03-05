@@ -4,15 +4,20 @@
 	$db->functionName($email, $password);
 	you can add your own functions here. to have a centralized database connection.
 */
+
+require_once dirname(__DIR__) . "/helpers/env.php";
+
 class db {
 
 	public $conn;
+
 	public function __construct() {
-		$host = "localhost"; // Database host
-		$db = "TaskManagementDB"; // Database name
-		$user = "root"; // Database username
-		$pass = ""; // Database password
-		$this->conn = new mysqli($host, $user, $pass, $db);
+		$host = safeEnv("DB_HOST", "localhost");
+		$dbName = safeEnv("DB_NAME", "TaskManagementDB");
+		$user = safeEnv("DB_USER", "root");
+		$pass = safeEnv("DB_PASS", "");
+
+		$this->conn = new mysqli($host, $user, $pass, $dbName);
 		if ($this->conn->connect_error) {
 			die("Connection failed: " . $this->conn->connect_error);
 		}

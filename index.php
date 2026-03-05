@@ -59,6 +59,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OrgaNiss - Task Management System</title>
+<?php
+$seo_title = "OrgaNiss - Task Management System";
+$seo_description = "Sign in to OrgaNiss. Organize tasks, set reminders, and plan your week with AI. Your personal task manager.";
+$seo_canonical = "/";
+require_once __DIR__ . "/components/seo-meta.php";
+require_once __DIR__ . "/components/json-ld-organization.php";
+?>
     <link rel="stylesheet" href="/css/index.css">
     <link rel="icon" href="/img/logo.png" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

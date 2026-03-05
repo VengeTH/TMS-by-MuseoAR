@@ -2,23 +2,24 @@
 // Include the database connection file
 require_once dirname(__DIR__) . "/db/db.php";
 
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
+
 // Initialize the database connection
 $db = new db();
 $conn = $db->getConnection();
 
 // Check if the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['auth_code'])) {
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["auth_code"])) {
     // Get the authentication code from the POST request
-    $authCode = $_POST['auth_code'];
-
-    // Start the session to access stored data
-    session_start();
+    $authCode = trim((string) $_POST["auth_code"]);
 
     // Validate the authentication code
-    if ($authCode == $_SESSION['auth_code']) {
+    if (isset($_SESSION["auth_code"]) && hash_equals((string) $_SESSION["auth_code"], $authCode)) {
         // Get the new email and current email from the session
-        $newEmail = $_SESSION['new_email'];
-        $currentEmail = $_SESSION['current_email'];
+        $newEmail = isset($_SESSION["new_email"]) ? (string) $_SESSION["new_email"] : "";
+        $currentEmail = isset($_SESSION["current_email"]) ? (string) $_SESSION["current_email"] : "";
 
         // Prepare the SQL statement to update the email
         $stmt = $conn->prepare("UPDATE users SET email = ? WHERE email = ?");
@@ -54,7 +55,7 @@ $conn->close();
     <title>Verify Email</title>
 </head>
 <body>
-    <form method="POST" action="verifyEmail.php">
+    <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <label for="auth_code">Verification Code:</label>
         <input type="text" id="auth_code" name="auth_code" required><br><br>
         <button type="submit">Verify</button>

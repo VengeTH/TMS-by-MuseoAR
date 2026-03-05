@@ -1,13 +1,17 @@
 <?php
+require_once dirname(__DIR__) . "/helpers/env.php";
+
 class Task{
     private $conn;
-    private $host = "localhost";
-    private $username = "root";
-    private $password = "";
-    private $database = "TaskManagementDB";
     private $tableName = "tasks";
+
     public function __construct(){
-        $this->conn = new mysqli($this->host, $this->username, $this->password, $this->database);
+        $host = safeEnv("DB_HOST", "localhost");
+        $username = safeEnv("DB_USER", "root");
+        $password = safeEnv("DB_PASS", "");
+        $database = safeEnv("DB_NAME", "TaskManagementDB");
+
+        $this->conn = new mysqli($host, $username, $password, $database);
         if ($this->conn->connect_error) {
             die("Connection failed: " . $this->conn->connect_error);
         }
@@ -30,24 +34,30 @@ class Task{
         $stmt->close();
         return $isSuccess;
     }
+
     public function getTasks($userId, $orderBasis = "priority", $order = "DESC"){
-        $sql = "SELECT * FROM ". $this->tableName. " WHERE user_id = ? ORDER BY ?";
-        if($order == "ASC"){
-            $sql .= " ASC";
-        }else{
-            $sql .= " DESC";
-        }
+        $allowedCols = ["priority", "finish_date", "title", "created_at", "id"];
+        $column = in_array($orderBasis, $allowedCols, true) ? $orderBasis : "priority";
+        $direction = strtoupper($order) === "ASC" ? "ASC" : "DESC";
+
+        $sql = "SELECT * FROM " . $this->tableName . " WHERE user_id = ? ORDER BY " . $column . " " . $direction;
+
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("is", $userId, $orderBasis);
+        if ($stmt === false) {
+            return null;
+        }
+        $stmt->bind_param("i", $userId);
         $stmt->execute();
         $result = $stmt->get_result();
-        if($result->num_rows > 0){
-            $tasks = array();
-            while($row = $result->fetch_assoc()){
+        if ($result->num_rows > 0) {
+            $tasks = [];
+            while ($row = $result->fetch_assoc()) {
                 $tasks[] = $row;
             }
+            $stmt->close();
             return $tasks;
         }
+        $stmt->close();
         return null;
     }
     public function getTask($taskId, $userId){

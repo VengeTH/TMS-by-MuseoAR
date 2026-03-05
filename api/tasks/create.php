@@ -1,6 +1,6 @@
 <?php
 require_once dirname(__DIR__, 2) . "/db/tasks.php";
-session_start();
+require_once dirname(__DIR__, 2) . "/helpers/auth.php";
 
 header("Content-Type: application/json; charset=utf-8");
 
@@ -9,16 +9,12 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     exit();
 }
 
-if (!isset($_SESSION["user_id"])) {
-    echo json_encode(["success" => false, "message" => "Unauthorized."]);
-    exit();
-}
+$userId = requireAuthJson();
 
 $title = isset($_POST["title"]) ? trim((string) $_POST["title"]) : "";
 $details = isset($_POST["details"]) ? trim((string) $_POST["details"]) : "";
 $finishDate = isset($_POST["finishDate"]) ? trim((string) $_POST["finishDate"]) : "";
 $priority = isset($_POST["priority"]) ? trim((string) $_POST["priority"]) : "low";
-$userId = (int) $_SESSION["user_id"];
 
 if ($title === "" || mb_strlen($title) > 200) {
     echo json_encode(["success" => false, "message" => "Task title is required and must be at most 200 characters."]);

@@ -12,6 +12,13 @@ if (isset($_SESSION["user_id"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OrgaNiss - Register</title>
+<?php
+$seo_title = "OrgaNiss - Create Account";
+$seo_description = "Create your free OrgaNiss account. Start organizing tasks, setting reminders, and using AI-powered weekly planning.";
+$seo_canonical = "/user/register";
+require_once dirname(__DIR__) . "/components/seo-meta.php";
+require_once dirname(__DIR__) . "/components/json-ld-organization.php";
+?>
     <link rel="icon" href="/img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/register.css">

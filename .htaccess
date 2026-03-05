@@ -1,4 +1,8 @@
 RewriteEngine On
+RewriteBase /
+
+# Sitemap: serve sitemap.php as sitemap.xml for crawlers
+RewriteRule ^sitemap\.xml$ sitemap.php [L]
 
 # In case of 500 or 404 do this
 # (change the first dashboard to be the url)

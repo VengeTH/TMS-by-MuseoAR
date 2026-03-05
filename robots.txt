@@ -1,9 +1,20 @@
 # Robots.txt for OrgaNiss Task Management System
 User-agent: *
 Allow: /
+Allow: /user/register
+Allow: /pages/
+Allow: /termsAndConditions
+
 Disallow: /api/
+Disallow: /dashboard/
+Disallow: /verify/
+Disallow: /oauth/
 Disallow: /db/
 Disallow: /helpers/
+Disallow: /components/
 Disallow: /vendor/
 Disallow: /node_modules/
+Disallow: /uploads/
+
+Sitemap: /sitemap.xml
 

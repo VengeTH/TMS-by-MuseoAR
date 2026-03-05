@@ -1,6 +1,6 @@
 <?php
     require_once dirname(__DIR__) . "/db/tasks.php";
-    $db = new task();
+    $db = new Task();
     $completedToday = $db->getCompletedTodayCount($_SESSION["user_id"]);
     $streakDays = $db->getCompletionStreakDays($_SESSION["user_id"]);
 ?>

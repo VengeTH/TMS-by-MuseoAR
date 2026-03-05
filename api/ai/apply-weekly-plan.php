@@ -1,6 +1,6 @@
 <?php
 require_once dirname(__DIR__, 2) . "/db/tasks.php";
-session_start();
+require_once dirname(__DIR__, 2) . "/helpers/auth.php";
 
 header("Content-Type: application/json; charset=utf-8");
 
@@ -9,12 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     exit();
 }
 
-if (!isset($_SESSION["user_id"])) {
-    echo json_encode(["success" => false, "message" => "Unauthorized."]);
-    exit();
-}
-
-$userId = (int) $_SESSION["user_id"];
+$userId = requireAuthJson();
 
 $raw = file_get_contents("php://input");
 /** @var mixed $decoded */

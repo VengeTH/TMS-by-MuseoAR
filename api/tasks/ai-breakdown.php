@@ -1,7 +1,7 @@
 <?php
 require_once dirname(__DIR__, 2) . "/db/tasks.php";
 require_once dirname(__DIR__, 2) . "/helpers/ai.php";
-session_start();
+require_once dirname(__DIR__, 2) . "/helpers/auth.php";
 
 header("Content-Type: application/json; charset=utf-8");
 
@@ -10,12 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     exit();
 }
 
-if (!isset($_SESSION["user_id"])) {
-    echo json_encode(["success" => false, "message" => "Unauthorized."]);
-    exit();
-}
-
-$userId = (int) $_SESSION["user_id"];
+$userId = requireAuthJson();
 
 $title = isset($_POST["task_title"]) ? trim((string) $_POST["task_title"]) : "";
 $parentTaskId = isset($_POST["parent_task_id"]) ? (int) $_POST["parent_task_id"] : 0;

@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - OrgaNiss</title>
+<?php
+$seo_title = "Contact Us - OrgaNiss";
+$seo_description = "Get in touch with the OrgaNiss team. Questions, feedback, or support for our task management system. STI Academic Center, Las Piñas.";
+$seo_canonical = "/pages/contact";
+require_once dirname(__DIR__) . "/components/seo-meta.php";
+require_once dirname(__DIR__) . "/components/json-ld-organization.php";
+?>
     <link rel="stylesheet" href="/css/contactUs.css">
     <link rel="icon" href="/img/logo.png" type="image/x-icon">
 </head>
@@ -28,20 +35,20 @@
         <div class="containerEmail">
             <img src="/img/email.png" alt="Email Icon">
             <h2>E-Mail:</h2>
-            <a href="mailto:museoar2024@gmail.com">
-                <p>museoar2024@gmail.com</p>
+            <a href="mailto:prinzesadsad@theheeful.me">
+                <p>prinzesadsad@theheeful.me</p>
             </a>
         </div>
         <div class="containerFollowUs">
             <h2>Follow Us:</h2>
             <div class="socialMedia">
-                <a href="https://www.facebook.com/STIMuseoAR" target="_blank">
+                <a href="https://www.facebook.com/theheedful" target="_blank">
                     <img src="/img/facebook.png" alt="Facebook Icon">
                 </a>
-                <a href="https://twitter.com/STIMuseoAR" target="_blank">
+                <a href="https://twitter.com/theheedful" target="_blank">
                     <img src="/img/twitter.png" alt="Twitter Icon">
                 </a>
-                <a href="https://www.instagram.com/stimuseoar/" target="_blank">
+                <a href="https://www.instagram.com/theheedful/" target="_blank">
                     <img src="/img/instagram.png" alt="Instagram Icon">
                 </a>
             </div>
@@ -79,38 +86,45 @@
         use PHPMailer\PHPMailer\PHPMailer;
         use PHPMailer\PHPMailer\Exception;
 
-        require dirname(__DIR__) . '/vendor/autoload.php';
+        require dirname(__DIR__) . "/vendor/autoload.php";
+        require_once dirname(__DIR__) . "/helpers/env.php";
 
         include dirname(__DIR__) . "/components/footer2.php";
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $name = htmlspecialchars($_POST['name']);
-            $email = htmlspecialchars($_POST['email']);
-            $message = htmlspecialchars($_POST['message']);
+            $name = htmlspecialchars($_POST["name"]);
+            $email = htmlspecialchars($_POST["email"]);
+            $message = htmlspecialchars($_POST["message"]);
+
+            $smtpHost = safeEnv("SMTP_HOST", "smtp.gmail.com");
+            $smtpUser = safeEnv("SMTP_USER", "organizzbymuseoar@gmail.com");
+            $smtpPass = safeEnv("SMTP_PASS", "juli-anne2024");
+            $smtpPort = (int) safeEnv("SMTP_PORT", "587");
+            $toAddress = safeEnv("CONTACT_TO_EMAIL", "prinzesadsad@theheeful.me");
 
             $mail = new PHPMailer(true);
             try {
                 // * Server settings
                 $mail->isSMTP();
-                $mail->Host = 'smtp.gmail.com';
+                $mail->Host = $smtpHost;
                 $mail->SMTPAuth = true;
-                $mail->Username = 'organizzbymuseoar@gmail.com';
-                $mail->Password = 'juli-anne2024';
+                $mail->Username = $smtpUser;
+                $mail->Password = $smtpPass;
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-                $mail->Port = 587;
+                $mail->Port = $smtpPort;
 
                 // * Recipients
                 $mail->setFrom($email, $name);
-                $mail->addAddress('museoar2024@gmail.com');
+                $mail->addAddress($toAddress);
 
                 // * Content
                 $mail->isHTML(true);
-                $mail->Subject = 'Contact Us Form Submission';
-                $mail->Body    = "Name: $name<br>Email: $email<br>Message: $message";
+                $mail->Subject = "Contact Us Form Submission";
+                $mail->Body    = "Name: " . $name . "<br>Email: " . $email . "<br>Message: " . $message;
 
                 $mail->send();
-                echo 'Email successfully sent.';
+                echo "Email successfully sent.";
             } catch (Exception $e) {
-                echo "Email sending failed. Mailer Error: {$mail->ErrorInfo}";
+                echo "Email sending failed. Mailer Error: " . $mail->ErrorInfo;
             }
         }
     ?>

@@ -2,7 +2,7 @@
     <a href="/pages/about.php">About Us</a>
     <p><strong>The Heedful</strong> Developers</p>
     <a href="/pages/contact.php">Contact Us</a>
-    <a href="mailto:museoar2024@gmail.cpm">MuseoAR2024@gmail.com</a>
+    <a href="mailto:prinzesadsad@theheeful.me">prinzesadsad@theheeful.me</a>
 </div>
 
 <style>
