@@ -4,3 +4,5 @@ npm-debug.log
 yarn-error.log
 composer.phar
 pnpm-lock.yaml
+.env
+/uploads/
