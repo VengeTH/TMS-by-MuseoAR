@@ -4,8 +4,9 @@ session_start();
 // Update the following variables
 $facebook_oauth_app_id = "582728114360758";
 $facebook_oauth_app_secret = "b1a43ff61b5ee96571613dc08a1dab60";
-// Must be the direct URL to the facebook.php file
-$facebook_oauth_redirect_uri = "https://localhost/oauth/facebook.php";
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+$domainName = $_SERVER['HTTP_HOST'];
+$facebook_oauth_redirect_uri = $protocol . $domainName . "/oauth/facebook.php";
 $facebook_oauth_version = "v18.0";
 
 // Include the database connection file

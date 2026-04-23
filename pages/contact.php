@@ -18,7 +18,7 @@ require_once dirname(__DIR__) . "/components/json-ld-organization.php";
 <body>
     <?php include dirname(__DIR__) . "/components/header.php" ?>
     
-    <div class="wrapper">
+    <div class="page-wrapper">
         <div class="contactUsUpper">
             <h1>Contact Us</h1>
             <p>We'd love to hear from you! If you have any questions, feedback, or suggestions about <strong>OrgaNiss</strong>, feel free to reach out using the form below.</p>
@@ -32,7 +32,7 @@ require_once dirname(__DIR__) . "/components/json-ld-organization.php";
                     <img src="/img/location.png" alt="Location Marker" class="info-icon">
                     <div class="info-details">
                         <h3>Address</h3>
-                        <p>STI Academic Center, Alabang-Zapote Road, corner V.Guinto, Las Piñas, 1740 Metro Manila</p>
+                        <p>Alabang, Muntinlupa</p>
                     </div>
                 </div>
 
@@ -40,7 +40,7 @@ require_once dirname(__DIR__) . "/components/json-ld-organization.php";
                     <img src="/img/telephone.png" alt="Phone Icon" class="info-icon">
                     <div class="info-details">
                         <h3>Contact Number</h3>
-                        <p>+63 912 3456 789</p>
+                        <p>+639937172004</p>
                     </div>
                 </div>
 
@@ -57,8 +57,7 @@ require_once dirname(__DIR__) . "/components/json-ld-organization.php";
                         <h3>Follow Us</h3>
                         <div class="socialMedia">
                             <a href="https://www.facebook.com/TheHeedfulPH" target="_blank"><img src="/img/facebook.png" alt="Facebook Icon"></a>
-                            <a href="https://twitter.com/theheedful" target="_blank"><img src="/img/twitter.png" alt="Twitter Icon"></a>
-                            <a href="https://www.instagram.com/theheedful/" target="_blank"><img src="/img/instagram.png" alt="Instagram Icon"></a>
+                            <a href="https://github.com/VengeTH" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="Github Icon" style="filter: invert(1);"></a>
                         </div>
                     </div>
                 </div>
@@ -93,6 +92,8 @@ require_once dirname(__DIR__) . "/components/json-ld-organization.php";
             </div>
         </div>
     </div>
+
+    <?php include dirname(__DIR__) . "/components/footer.php"; ?>
 
     <script>
         function validateForm() {

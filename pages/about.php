@@ -18,7 +18,7 @@ require_once dirname(__DIR__) . "/components/json-ld-organization.php";
 <body>
     <?php include dirname(__DIR__) . "/components/header.php"; ?>
 
-    <div class="wrapper">
+    <div class="page-wrapper">
         <div class="aboutUsUpper">
             <h1>About The Heedful</h1>
             <p>Building Tomorrow's Leading Technology Company</p>

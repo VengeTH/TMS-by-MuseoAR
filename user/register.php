@@ -57,7 +57,7 @@ require_once dirname(__DIR__) . "/components/json-ld-organization.php";
                                 event.preventDefault();
                                 Swal.fire({
                                     title: 'Terms and Conditions',
-                                    html: '<iframe id="termsFrame" src="/termsAndConditions.html" width="100%" height="550px" style="border:none;"></iframe>',
+                                    html: '<iframe id="termsFrame" src="/termsAndConditions.html" width="100%" height="60vh" style="border:none;"></iframe>',
                                     width: '80%',
                                     showCloseButton: true,
                                     focusConfirm: false,
@@ -69,7 +69,7 @@ require_once dirname(__DIR__) . "/components/json-ld-organization.php";
                                                 const scrollHeight = termsFrame.contentDocument.documentElement.scrollHeight;
                                                 const scrollTop = termsFrame.contentDocument.documentElement.scrollTop;
                                                 const clientHeight = termsFrame.contentDocument.documentElement.clientHeight;
-                                                if (scrollTop + clientHeight >= scrollHeight) {
+                                                if (Math.ceil(scrollTop + clientHeight) >= scrollHeight - 50) {
                                                     Swal.getConfirmButton().disabled = false;
                                                 }
                                             });
@@ -87,7 +87,7 @@ require_once dirname(__DIR__) . "/components/json-ld-organization.php";
                     <button type="submit" class="createAccButton">Create Account</button>
                     <p class="altSeparator">Or register with</p>
                     <div class="altContainer">
-                        <a href="/oauth/google-callback?login=true">
+                        <a href="/oauth/google-callback.php?login=true">
                             <div class="googleButton">Google</div>
                         </a>
                         <a href="/oauth/facebook.php">
