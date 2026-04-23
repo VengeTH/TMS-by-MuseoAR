@@ -15,7 +15,7 @@ if (isset($_SESSION["user_id"])) {
 <?php
 $seo_title = "OrgaNiss - Create Account";
 $seo_description = "Create your free OrgaNiss account. Start organizing tasks, setting reminders, and using AI-powered weekly planning.";
-$seo_canonical = "/user/register";
+$seo_canonical = "/user/register.php";
 require_once dirname(__DIR__) . "/components/seo-meta.php";
 require_once dirname(__DIR__) . "/components/json-ld-organization.php";
 ?>

@@ -1,8 +1,8 @@
 <footer class="footer">
     <div class="footer-inner">
-        <a href="/pages/about">About Us</a>
+        <a href="/pages/about.php">About Us</a>
         <span class="footer-brand"><strong>The Heedful</strong> Enterprise Systems</span>
-        <a href="/pages/contact">Contact Us</a>
+        <a href="/pages/contact.php">Contact Us</a>
         <a href="mailto:prinzesadsad@theheeful.me">prinzesadsad@theheeful.me</a>
     </div>
 </footer>
