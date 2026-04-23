@@ -1,7 +1,52 @@
-<div class="help-container" style="padding: 2rem; max-width: 960px; margin: 0 auto;">
-    <h2 style="margin-bottom: 1rem;">Help &amp; Guide</h2>
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap");
 
-    <section style="margin-bottom: 1.5rem;">
+    .help-container {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 2rem;
+        color: #ffffff;
+        background: #1a1a1a;
+        border: 1px solid #424242;
+        border-radius: 1rem;
+        font-family: "Inter", system-ui, sans-serif;
+    }
+
+    .help-container h2,
+    .help-container h3 {
+        font-family: "Space Grotesk", "Inter", sans-serif;
+        color: #ffffff;
+    }
+
+    .help-container h2 {
+        margin-bottom: 1rem;
+        font-size: 2rem;
+    }
+
+    .help-container section {
+        margin-bottom: 1.5rem;
+    }
+
+    .help-container p,
+    .help-container li {
+        color: #bdbdbd;
+        line-height: 1.6;
+    }
+
+    .help-container ul {
+        margin: 0;
+        padding-left: 1.2rem;
+    }
+
+    .help-container strong {
+        color: #ffffff;
+    }
+</style>
+
+<div class="help-container">
+    <h2>Help &amp; Guide</h2>
+
+    <section>
         <h3>Getting Started</h3>
         <p>
             Use the <strong>Dashboard</strong> tab to see a quick overview of your tasks and progress,
@@ -9,7 +54,7 @@
         </p>
     </section>
 
-    <section style="margin-bottom: 1.5rem;">
+    <section>
         <h3>Managing Tasks</h3>
         <ul>
             <li><strong>Create a task</strong>: Click the New Task button, then provide a title, optional details, a finish date, and priority.</li>
@@ -19,7 +64,7 @@
         </ul>
     </section>
 
-    <section style="margin-bottom: 1.5rem;">
+    <section>
         <h3>AI Features</h3>
         <ul>
             <li><strong>AI Task Breakdown</strong>: From a task, trigger the AI breakdown to automatically generate smaller subtasks based on the task title.</li>
@@ -28,7 +73,7 @@
         </ul>
     </section>
 
-    <section style="margin-bottom: 1.5rem;">
+    <section>
         <h3>Account &amp; Security</h3>
         <ul>
             <li><strong>Change password</strong>: Use the Settings menu and the password change flow to update your password.</li>

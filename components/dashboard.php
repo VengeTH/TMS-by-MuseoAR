@@ -67,7 +67,7 @@
             left.style.gap = '0.5rem';
 
             const toggle = document.createElement('span');
-            toggle.textContent = childrenByParent[task.id] && childrenByParent[task.id].length > 0 ? '▶' : '';
+            toggle.textContent = childrenByParent[task.id] && childrenByParent[task.id].length > 0 ? '>' : '';
             toggle.style.fontWeight = 'bold';
             toggle.style.color = '#ffc107';
 
@@ -107,7 +107,7 @@
                 row.style.padding = '4px 0';
 
                 const subTitle = document.createElement('div');
-                subTitle.textContent = `• ${sub.title}`;
+                subTitle.textContent = `- ${sub.title}`;
                 subTitle.style.flex = '3';
 
                 const subFinish = document.createElement('div');
@@ -123,10 +123,10 @@
                 header.addEventListener('click', () => {
                     if (children.style.display === 'none') {
                         children.style.display = 'block';
-                        toggle.textContent = '▼';
+                        toggle.textContent = 'v';
                     } else {
                         children.style.display = 'none';
-                        toggle.textContent = '▶';
+                        toggle.textContent = '>';
                     }
                 });
             }
@@ -272,7 +272,7 @@
             </div>
             <div style="margin-left:auto; margin-right:3rem;display:flex;align-items:center;gap:1rem;">
                 <button class="newTaskButton" onclick="showNewTaskModal()">+ New Task</button>
-                <a href="?tab=settings" class="user-profile">
+                <a href="?tab=profile" class="user-profile" title="Profile & Account">
                         <?php $profilePicture = !empty($user["profile_picture"])
                         	? htmlspecialchars($user["profile_picture"])
                         	: "/img/defaultPFP.png"; ?>
@@ -301,35 +301,36 @@
                 <div class="date">
                     <?php include "../components/calendar.php"; ?>
                 </div>
-                <div class="tasks" id="taskContainer" style="font-family:'Rethink Sans', sans-serif;">
+                <div class="tasks" id="taskContainer">
                 </div>
             </div>
             <div class="secondChild">
                 <div class="stats">
-                    <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <div class="bg-white rounded-lg shadow border border-gray-200 p-3" style="background:#1a1a1a;border-color:#424242;">
-                            <div class="text-xs text-gray-400">AI Weekly Planner</div>
-                            <div class="mt-1 flex items-center justify-between">
-                                <div class="text-sm text-gray-200">Let AI organize your week.</div>
-                                <a href="/dashboard/weekly-planner.php" class="text-xs text-yellow-400 hover:underline">Open</a>
+                    <div class="stats-grid">
+                        <div class="dashboard-stat-card">
+                            <div class="dashboard-stat-label">AI Weekly Planner</div>
+                            <div class="dashboard-stat-row">
+                                <div class="dashboard-stat-text">Let AI organize your week.</div>
+                                <a href="/dashboard/weekly-planner.php" class="dashboard-stat-link">Open</a>
                             </div>
                         </div>
-                        <div class="bg-white rounded-lg shadow border border-gray-200 p-3" style="background:#1a1a1a;border-color:#424242;">
-                            <div class="text-xs text-gray-400">Tasks Completed Today</div>
-                            <div class="mt-1 text-xl font-semibold text-yellow-400"><?php echo (int) $completedToday; ?></div>
+                        <div class="dashboard-stat-card">
+                            <div class="dashboard-stat-label">Tasks Completed Today</div>
+                            <div class="dashboard-stat-value"><?php echo (int) $completedToday; ?></div>
                         </div>
-                        <div class="bg-white rounded-lg shadow border border-gray-200 p-3" style="background:#1a1a1a;border-color:#424242;">
-                            <div class="text-xs text-gray-400">Productivity Score</div>
-                            <div class="mt-1 text-xl font-semibold text-yellow-400">—</div>
+                        <div class="dashboard-stat-card">
+                            <div class="dashboard-stat-label">Productivity Score</div>
+                            <div class="dashboard-stat-value"><?php echo min(100, max(0, ((int) $completedToday * 10) + ((int) $streakDays * 5))); ?></div>
                         </div>
-                        <div class="bg-white rounded-lg shadow border border-gray-200 p-3" style="background:#1a1a1a;border-color:#424242;">
-                            <div class="text-xs text-gray-400">Streak Counter</div>
-                            <div class="mt-1 text-xl font-semibold text-yellow-400"><?php echo (int) $streakDays; ?> days</div>
+                        <div class="dashboard-stat-card">
+                            <div class="dashboard-stat-label">Streak Counter</div>
+                            <div class="dashboard-stat-value"><?php echo (int) $streakDays; ?> days</div>
                         </div>
                     </div>
                 </div>
                 <div class="news">
-                    news
+                    <div class="news-title">Latest News</div>
+                    <div class="news-body">No updates yet. Announcements and product improvements will appear here.</div>
                 </div>
             </div>
         </div>

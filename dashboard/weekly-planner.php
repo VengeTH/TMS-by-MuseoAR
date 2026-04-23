@@ -15,17 +15,20 @@ if ($tasks === null) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Weekly Planner - OrgaNiss</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap");
+    </style>
 </head>
-<body class="min-h-screen bg-gray-100">
+<body class="min-h-screen bg-[#0f0f0f] text-white">
     <div class="max-w-6xl mx-auto py-8 px-4">
         <div class="flex items-center justify-between mb-6">
-            <h1 class="text-2xl font-bold">AI Weekly Planner</h1>
-            <a href="/dashboard?tab=dashboard" class="text-blue-600 hover:underline text-sm">← Back to Dashboard</a>
+            <h1 class="text-2xl font-bold" style="font-family: 'Space Grotesk', 'Inter', sans-serif;">AI Weekly Planner</h1>
+            <a href="/dashboard?tab=dashboard" class="text-yellow-400 hover:underline text-sm">← Back to Dashboard</a>
         </div>
 
-        <div class="bg-white rounded-xl shadow mb-6 p-4">
+        <div class="bg-[#1a1a1a] rounded-xl shadow mb-6 p-4 border border-[#424242]">
             <h2 class="text-lg font-semibold mb-2">Generate Plan</h2>
-            <p class="text-sm text-gray-600 mb-4">
+            <p class="text-sm text-[#bdbdbd] mb-4">
                 Select which tasks to include in your weekly plan. AI will distribute them from Monday to Sunday.
             </p>
             <div class="flex flex-col gap-2 max-h-64 overflow-y-auto mb-4" id="taskSelection">
@@ -33,15 +36,15 @@ if ($tasks === null) {
             </div>
             <button
                 id="generatePlanBtn"
-                class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm"
+                class="px-4 py-2 bg-[#ffc107] text-[#0f0f0f] rounded hover:bg-[#ffb300] text-sm font-semibold"
             >
                 Generate Weekly Plan with AI
             </button>
         </div>
 
-        <div class="bg-white rounded-xl shadow p-4">
+        <div class="bg-[#1a1a1a] rounded-xl shadow p-4 border border-[#424242]">
             <h2 class="text-lg font-semibold mb-4">Weekly Plan</h2>
-            <div id="planEmpty" class="text-sm text-gray-500">
+            <div id="planEmpty" class="text-sm text-[#bdbdbd]">
                 No plan generated yet. Use the button above to create one.
             </div>
             <div id="planBoard" class="hidden grid grid-cols-1 md:grid-cols-4 lg:grid-cols-7 gap-3 text-sm">
@@ -50,7 +53,7 @@ if ($tasks === null) {
             <div class="mt-4 flex justify-end">
                 <button
                     id="applyPlanBtn"
-                    class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 text-sm hidden"
+                    class="px-4 py-2 bg-[#ffc107] text-[#0f0f0f] rounded hover:bg-[#ffb300] text-sm font-semibold hidden"
                 >
                     Apply Plan to Tasks
                 </button>
@@ -133,7 +136,7 @@ if ($tasks === null) {
 
             weekdays.forEach(day => {
                 const col = document.createElement("div");
-                col.className = "flex flex-col bg-gray-50 rounded-lg p-2 min-h-32";
+                col.className = "flex flex-col bg-[#2b2b2b] rounded-lg p-2 min-h-32 border border-[#424242]";
 
                 const header = document.createElement("div");
                 header.className = "font-semibold mb-2";
@@ -149,7 +152,7 @@ if ($tasks === null) {
 
                 titles.forEach(title => {
                     const item = document.createElement("div");
-                    item.className = "px-2 py-1 bg-white rounded border border-gray-200";
+                    item.className = "px-2 py-1 bg-[#1a1a1a] rounded border border-[#424242] text-white";
                     item.textContent = title;
                     list.appendChild(item);
 
@@ -163,7 +166,7 @@ if ($tasks === null) {
 
                 if (titles.length === 0) {
                     const emptyItem = document.createElement("div");
-                    emptyItem.className = "text-xs text-gray-400";
+                    emptyItem.className = "text-xs text-[#bdbdbd]";
                     emptyItem.textContent = "No tasks";
                     list.appendChild(emptyItem);
                 }

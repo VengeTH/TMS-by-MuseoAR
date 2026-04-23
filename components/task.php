@@ -1,14 +1,47 @@
 <head>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        *{
-            font-family: "Righteous", sans-serif;
+        @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap");
+
+        * {
+            box-sizing: border-box;
+            font-family: "Inter", system-ui, sans-serif;
+        }
+
+        .task-shell {
+            background: #1a1a1a;
+            border: 1px solid #424242;
+            color: #ffffff;
+        }
+
+        .task-shell-header {
+            border-bottom: 1px solid #424242;
+            color: #bdbdbd;
+        }
+
+        .task-shell-subheader {
+            border-bottom: 1px solid #424242;
+            color: #ffffff;
+        }
+
+        .task-title-text {
+            color: #ffffff;
+        }
+
+        .task-date-text {
+            color: #bdbdbd;
+        }
+
+        .task-subtask-panel {
+            background: #141414;
+            border-bottom: 1px solid #424242;
+            color: #bdbdbd;
         }
     </style>
 </head>
 <div class="p-4 flex flex-col w-full gap-4 items-stretch">
-    <div class="flex flex-col w-full bg-white min-h-32 lg:min-h-96 rounded-xl shadow-md flex-grow">
-        <div class="flex w-full border-b-2 border-gray-500 p-4">
+    <div class="task-shell flex flex-col w-full min-h-32 lg:min-h-96 rounded-xl shadow-md flex-grow">
+        <div class="task-shell-header flex w-full p-4">
             <?php
             require_once dirname(__DIR__) . "/db/tasks.php";
             $db = new Task();
@@ -16,12 +49,12 @@
             ?>
             <h3 class="text-xl">My Task (<span id="taskCount"><?php echo $taskCount; ?></span>)</h3>
             <div class="ml-auto flex gap-4">
-                <button class="text-xl text-red-600" onclick="deleteMarkedTasks()">Delete</button>
-                <button class="text-xl">Mark as Read</button>
+                <button class="text-xl text-red-400" onclick="deleteMarkedTasks()">Delete</button>
+                <button class="text-xl text-yellow-400">Mark as Read</button>
             </div>
         </div>
         <div class="flex flex-col w-full">
-            <div class="flex w-full border-b-2 border-black p-2">
+            <div class="task-shell-subheader flex w-full p-2">
                 <div class="flex gap-4 items-center justify-center">
                 <!-- Checkbox -->
                 <!-- Label for the checkbox -->
@@ -33,7 +66,7 @@
                 </label>
                 </div>
                 <div class="ml-auto">
-                    <h3 class="text-xl text-black">Due Date</h3>
+                    <h3 class="text-xl text-white">Due Date</h3>
                 </div>
             </div>
             <?php
@@ -65,26 +98,26 @@
                 $hasChildren = isset($childrenByParent[(int) $task["id"]]) && count($childrenByParent[(int) $task["id"]]) > 0;
                 $isCompleted = isset($task["is_completed"]) && (int) $task["is_completed"] === 1;
 
-                echo '<div class="flex w-full border-b-2 border-black p-2 task" data-task-row="' . htmlspecialchars($task["id"]) . '">';
+                echo '<div class="flex w-full border-b border-[#424242] p-2 task" data-task-row="' . htmlspecialchars($task["id"]) . '">';
                 echo '<div class="flex gap-4 items-center justify-center">';
                 echo '<button type="button" class="text-lg font-bold ml-2 toggle-subtasks" data-parent-id="' . htmlspecialchars($task["id"]) . '" style="width:1.5rem;">' . ($hasChildren ? '▶' : '') . '</button>';
                 echo '<input type="checkbox" name="Task' . htmlspecialchars($task["id"]) . '" id="Task' . htmlspecialchars($task["id"]) . '" class="peer task-checkbox" data-task-id="' . htmlspecialchars($task["id"]) . '" ' . ($isCompleted ? 'checked' : '') . ' />';
-                echo '<label for="Task' . htmlspecialchars($task["id"]) . '" class="text-xl cursor-pointer ' . ($isCompleted ? 'line-through text-gray-500' : ($isPastDue ? 'line-through text-gray-500' : 'peer-checked:line-through peer-checked:text-gray-500')) . '">';
+                echo '<label for="Task' . htmlspecialchars($task["id"]) . '" class="text-xl cursor-pointer task-title-text ' . ($isCompleted ? 'line-through text-gray-500' : ($isPastDue ? 'line-through text-gray-500' : 'peer-checked:line-through peer-checked:text-gray-500')) . '">';
                 echo htmlspecialchars($task["title"]);
                 echo '</label>';
                 echo '</div>';
                 echo '<div class="ml-auto">';
-                echo '<h3 class="text-xl ' . ($isToday || $isPastDue ? 'text-red-800' : 'text-black') . ' mr-8">' . htmlspecialchars($formattedFinishDate) . '</h3>';
+                echo '<h3 class="text-xl ' . ($isToday || $isPastDue ? 'text-red-400' : 'task-date-text') . ' mr-8">' . htmlspecialchars($formattedFinishDate) . '</h3>';
                 echo '</div>';
                 echo '</div>';
 
                 if ($hasChildren) {
-                    echo '<div class="hidden flex flex-col w-full border-b-2 border-black px-14 py-2 bg-gray-50" data-subtasks="' . htmlspecialchars($task["id"]) . '">';
+                    echo '<div class="hidden flex flex-col w-full px-14 py-2 task-subtask-panel" data-subtasks="' . htmlspecialchars($task["id"]) . '">';
                     foreach ($childrenByParent[(int) $task["id"]] as $subtask) {
                         $subIsCompleted = isset($subtask["is_completed"]) && (int) $subtask["is_completed"] === 1;
                         echo '<div class="flex items-center gap-3 py-1" data-task-row="' . htmlspecialchars($subtask["id"]) . '">';
                         echo '<input type="checkbox" class="task-checkbox" data-task-id="' . htmlspecialchars($subtask["id"]) . '" ' . ($subIsCompleted ? 'checked' : '') . ' />';
-                        echo '<span class="text-sm ' . ($subIsCompleted ? 'line-through text-gray-500' : 'text-gray-800') . '">' . htmlspecialchars($subtask["title"]) . '</span>';
+                        echo '<span class="text-sm ' . ($subIsCompleted ? 'line-through text-gray-500' : 'text-gray-300') . '">' . htmlspecialchars($subtask["title"]) . '</span>';
                         echo '</div>';
                     }
                     echo '</div>';
@@ -93,8 +126,8 @@
         ?>
         </div>
     </div>
-    <div class="flex flex-col w-full bg-white min-h-32 lg:min-h-96 rounded-xl shadow-md flex-grow">
-        <div class="flex w-full border-b-2 border-gray-500 p-4">
+    <div class="task-shell flex flex-col w-full min-h-32 lg:min-h-96 rounded-xl shadow-md flex-grow">
+        <div class="task-shell-header flex w-full p-4">
             <h3 class="text-xl">Latest News</h3>
         </div>
         <div class="flex flex-col w-full">

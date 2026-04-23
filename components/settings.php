@@ -1,39 +1,32 @@
-<?php require_once dirname(__DIR__) . "/db/db.php";?>
-<div class="container">
-    <div class="upperContainer">
-        <div class="cover">
-            <img src="/img/defaultCover.png" class="cover" width=100%>
-        </div>
-        <div class="profile">
-            <div class="profilePic">
-                <?php $profilePicture = !empty($user["profile_picture"])
-                    ? htmlspecialchars($user["profile_picture"])
-                    : "/img/defaultPFP.png"; ?>
-                <img src="<?php echo $profilePicture; ?>" alt="Profile Picture" class="profile-picture" style="background-color:#627885;">
+<div class="settings-page">
+    <div class="settings-card">
+        <h2>Settings</h2>
+        <p class="settings-lead">Manage your app preferences and workspace behavior.</p>
+
+        <div class="settings-group">
+            <div class="settings-row">
+                <div>
+                    <h3>Interface</h3>
+                    <p>Keep the dashboard aligned with The Heedful dark-first style.</p>
+                </div>
+                <span class="settings-badge">Default</span>
             </div>
-            <div class="settingsTitle">
-                <h2>Settings</h2>
-                <p><?php
-                $userDetails = $db -> getUser($_SESSION["user_id"]);
-                echo htmlspecialchars($userDetails["email"]);
-                ?></p>
+
+            <div class="settings-row">
+                <div>
+                    <h3>Email Updates</h3>
+                    <p>Control reminders and activity summaries sent to your inbox.</p>
+                </div>
+                <span class="settings-badge settings-badge-muted">Soon</span>
             </div>
-        </div>
-        <div class="menu">
-            <ul>
-                <a href="/dashboard?tab=settings#profile">
-                <li>Edit Profile</li>
-                </a>
-                <a href="/verify/password">
-                <li>Change Password</li>
-                </a>
-                <a id="del" href="/pages/delete-account">
-                <li>Delete Account</li>
-                </a>
-            </ul>
-        </div>
-        <div class="changeProf" id="profile">
-            <h3>Profile Photo</h3>
+
+            <div class="settings-row">
+                <div>
+                    <h3>AI Planning</h3>
+                    <p>Configure how weekly plans are generated from your tasks.</p>
+                </div>
+                <a href="/dashboard/weekly-planner.php" class="settings-link">Open Planner</a>
+            </div>
         </div>
     </div>
 </div>

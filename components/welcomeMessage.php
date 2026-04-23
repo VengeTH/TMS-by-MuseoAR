@@ -24,7 +24,7 @@
 .welcome-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(255, 193, 7, 0.3) 0%, rgba(255, 179, 0, 0.22) 35%, rgba(107, 107, 107, 0.55) 100%);
+    background: linear-gradient(135deg, rgba(15, 15, 15, 0.7) 0%, rgba(15, 15, 15, 0.42) 52%, rgba(255, 193, 7, 0.12) 100%);
 }
 
 .welcome-content {

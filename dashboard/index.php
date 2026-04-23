@@ -69,6 +69,8 @@
             require_once dirname(__DIR__)."/components/task.php";
         } else if ($active == "help") {
             require_once dirname(__DIR__)."/components/help.php";
+        } else if ($active == "profile") {
+            require_once dirname(__DIR__)."/components/profile.php";
         } else if ($active == "settings") {
             require_once dirname(__DIR__)."/components/settings.php";
         }

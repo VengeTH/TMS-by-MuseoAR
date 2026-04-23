@@ -13,12 +13,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap");
 
 .header {
-<<<<<<< HEAD
     width: 100%;
     background: #0f0f0f;
-=======
-    background: #0f172a;
->>>>>>> 24ced267ae5b431263b838fd8c840853d2d9738f
     display: flex;
     align-items: center;
     justify-content: space-between;
