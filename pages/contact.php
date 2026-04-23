@@ -7,7 +7,7 @@
 <?php
 $seo_title = "Contact Us - OrgaNiss";
 $seo_description = "Get in touch with the OrgaNiss team. Questions, feedback, or support for our task management system. STI Academic Center, Las Piñas.";
-$seo_canonical = "/pages/contact";
+$seo_canonical = "/pages/contact.php";
 require_once dirname(__DIR__) . "/components/seo-meta.php";
 require_once dirname(__DIR__) . "/components/json-ld-organization.php";
 ?>

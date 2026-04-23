@@ -7,7 +7,7 @@
 <?php
 $seo_title = "About Us - OrgaNiss";
 $seo_description = "Learn about OrgaNiss, the task management system by The Heedful. Organize tasks, reminders, and AI planning for students and professionals.";
-$seo_canonical = "/pages/about";
+$seo_canonical = "/pages/about.php";
 require_once dirname(__DIR__) . "/components/seo-meta.php";
 require_once dirname(__DIR__) . "/components/json-ld-organization.php";
 ?>

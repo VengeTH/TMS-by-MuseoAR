@@ -1,9 +1,9 @@
 # Robots.txt for OrgaNiss Task Management System
 User-agent: *
 Allow: /
-Allow: /user/register
+Allow: /user/register.php
 Allow: /pages/
-Allow: /termsAndConditions
+Allow: /termsAndConditions.html
 
 Disallow: /api/
 Disallow: /dashboard/
