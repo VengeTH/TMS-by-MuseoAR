@@ -2,6 +2,7 @@
     <a href="/" class="logo-wrapper">
         <img src="/img/logo.png" class="logo" alt="OrgaNiss">
         <span class="titleBesideLogo">ORGANISS</span>
+        <span class="brand-tag">The Heedful System</span>
     </a>
     <nav class="menu">
         <a href="/" class="menu-link">Sign in</a>
@@ -9,15 +10,17 @@
     </nav>
 </header>
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap");
+
 .header {
     width: 100%;
-    background: #0f172a;
+    background: #0f0f0f;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 1.5rem;
     height: 4rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid #2b2b2b;
 }
 
 .logo-wrapper {
@@ -25,7 +28,7 @@
     align-items: center;
     gap: 0.75rem;
     text-decoration: none;
-    color: white;
+    color: #ffffff;
 }
 
 .logo {
@@ -35,10 +38,21 @@
 }
 
 .titleBesideLogo {
-    font-family: "Righteous", system-ui, sans-serif;
-    font-size: 1.25rem;
-    font-weight: 500;
+    font-family: "Space Grotesk", "Inter", system-ui, sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
     letter-spacing: 0.05em;
+}
+
+.brand-tag {
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.7rem;
+    color: #0f0f0f;
+    background: #ffc107;
+    padding: 0.2rem 0.45rem;
+    border-radius: 999px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
 }
 
 .menu {
@@ -51,28 +65,34 @@
     padding: 0.5rem 1.25rem;
     font-size: 0.875rem;
     font-weight: 500;
-    font-family: "Outfit", system-ui, sans-serif;
+    font-family: "Inter", system-ui, sans-serif;
     text-decoration: none;
-    color: #0f172a;
-    background: white;
-    border: 1px solid #e2e8f0;
+    color: #ffffff;
+    background: #1a1a1a;
+    border: 1px solid #424242;
     border-radius: 8px;
     transition: background 150ms ease, border-color 150ms ease;
 }
 
 .menu-link:hover {
-    background: #f8fafc;
-    border-color: #cbd5e1;
+    background: #2b2b2b;
+    border-color: #ffc107;
 }
 
 .menu-link--primary {
-    background: #2563eb;
-    color: white;
-    border-color: #2563eb;
+    background: #ffc107;
+    color: #0f0f0f;
+    border-color: #ffc107;
 }
 
 .menu-link--primary:hover {
-    background: #1d4ed8;
-    border-color: #1d4ed8;
+    background: #ffb300;
+    border-color: #ffb300;
+}
+
+@media (max-width: 720px) {
+    .brand-tag {
+        display: none;
+    }
 }
 </style>

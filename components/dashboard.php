@@ -32,7 +32,7 @@
     function loadTasks() {
         const taskContainer = document.getElementById('taskContainer');
         taskContainer.innerHTML = `
-            <div class="taskHeader" style="display: flex; justify-content: space-between; font-weight: bold; padding: 10px; border-bottom: 2px solid #ccc;">
+            <div class="taskHeader" style="display: flex; justify-content: space-between; font-weight: bold; padding: 10px; border-bottom: 1px solid #424242; color: #bdbdbd;">
                 <div style="flex: 2;">Title</div>
                 <div style="flex: 3;">Details</div>
                 <div style="flex: 1;">Finish Date</div>
@@ -46,10 +46,10 @@
         parents.forEach((task, index) => {
             const wrapper = document.createElement('div');
             wrapper.classList.add('task-group');
-            wrapper.style.border = '1px solid #ccc';
+            wrapper.style.border = '1px solid #424242';
             wrapper.style.borderRadius = '5px';
             wrapper.style.marginBottom = '10px';
-            wrapper.style.backgroundColor = '#f9f9f9';
+            wrapper.style.backgroundColor = '#1a1a1a';
             if (index === 0) {
                 wrapper.style.marginTop = '1rem';
             }
@@ -59,6 +59,7 @@
             header.style.justifyContent = 'space-between';
             header.style.padding = '10px';
             header.style.cursor = 'pointer';
+            header.style.color = '#ffffff';
 
             const left = document.createElement('div');
             left.style.display = 'flex';
@@ -68,6 +69,7 @@
             const toggle = document.createElement('span');
             toggle.textContent = childrenByParent[task.id] && childrenByParent[task.id].length > 0 ? '▶' : '';
             toggle.style.fontWeight = 'bold';
+            toggle.style.color = '#ffc107';
 
             const titleEl = document.createElement('div');
             titleEl.textContent = task.title;
@@ -96,6 +98,7 @@
             const children = document.createElement('div');
             children.style.display = 'none';
             children.style.padding = '0 1.5rem 0.5rem 2.5rem';
+            children.style.color = '#bdbdbd';
 
             (childrenByParent[task.id] || []).forEach(sub => {
                 const row = document.createElement('div');
@@ -304,24 +307,24 @@
             <div class="secondChild">
                 <div class="stats">
                     <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <div class="bg-white rounded-lg shadow border border-gray-200 p-3">
-                            <div class="text-xs text-gray-500">AI Weekly Planner</div>
+                        <div class="bg-white rounded-lg shadow border border-gray-200 p-3" style="background:#1a1a1a;border-color:#424242;">
+                            <div class="text-xs text-gray-400">AI Weekly Planner</div>
                             <div class="mt-1 flex items-center justify-between">
-                                <div class="text-sm text-gray-700">Let AI organize your week.</div>
-                                <a href="/dashboard/weekly-planner.php" class="text-xs text-blue-600 hover:underline">Open</a>
+                                <div class="text-sm text-gray-200">Let AI organize your week.</div>
+                                <a href="/dashboard/weekly-planner.php" class="text-xs text-yellow-400 hover:underline">Open</a>
                             </div>
                         </div>
-                        <div class="bg-white rounded-lg shadow border border-gray-200 p-3">
-                            <div class="text-xs text-gray-500">Tasks Completed Today</div>
-                            <div class="mt-1 text-xl font-semibold text-green-700"><?php echo (int) $completedToday; ?></div>
+                        <div class="bg-white rounded-lg shadow border border-gray-200 p-3" style="background:#1a1a1a;border-color:#424242;">
+                            <div class="text-xs text-gray-400">Tasks Completed Today</div>
+                            <div class="mt-1 text-xl font-semibold text-yellow-400"><?php echo (int) $completedToday; ?></div>
                         </div>
-                        <div class="bg-white rounded-lg shadow border border-gray-200 p-3">
-                            <div class="text-xs text-gray-500">Productivity Score</div>
-                            <div class="mt-1 text-xl font-semibold text-indigo-700">—</div>
+                        <div class="bg-white rounded-lg shadow border border-gray-200 p-3" style="background:#1a1a1a;border-color:#424242;">
+                            <div class="text-xs text-gray-400">Productivity Score</div>
+                            <div class="mt-1 text-xl font-semibold text-yellow-400">—</div>
                         </div>
-                        <div class="bg-white rounded-lg shadow border border-gray-200 p-3">
-                            <div class="text-xs text-gray-500">Streak Counter</div>
-                            <div class="mt-1 text-xl font-semibold text-orange-600"><?php echo (int) $streakDays; ?> days</div>
+                        <div class="bg-white rounded-lg shadow border border-gray-200 p-3" style="background:#1a1a1a;border-color:#424242;">
+                            <div class="text-xs text-gray-400">Streak Counter</div>
+                            <div class="mt-1 text-xl font-semibold text-yellow-400"><?php echo (int) $streakDays; ?> days</div>
                         </div>
                     </div>
                 </div>

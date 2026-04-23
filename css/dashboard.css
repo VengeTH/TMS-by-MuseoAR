@@ -1,4 +1,4 @@
-    @import url('https://fonts.googleapis.com/css2?family=Just+Me+Again+Down+Here&family=Kablammo&family=Righteous&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
     *{
         box-sizing: border-box;
         margin: 0;
@@ -7,7 +7,9 @@
         text-decoration: none;
     }
     body{
-        background-color: #dfdadb;
+        background-color: #0f0f0f;
+        color: #ffffff;
+        font-family: "Inter", sans-serif;
     }
     .welcome{
         /* position: relative; */
@@ -20,9 +22,9 @@
         font-size: 26px;
         /* left: 1.5vw; */
         transform: translateY(50%);
-        font-family: "Righteous", sans-serif;
-        font-weight: 100;
-        color: #0b1215;
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 500;
+        color: #ffffff;
     }
     .nilalaman{
         padding: 0.5rem;
@@ -33,7 +35,7 @@
         min-height: calc(100vh - 10rem);
         flex-wrap: wrap;
         gap: 1rem;
-        background-color: #fffafa;
+        background-color: #1a1a1a;
         /* top: 4vh; */
         /* left: 1vw; */
         border-radius: 1em;
@@ -85,10 +87,10 @@
         color: #fff;
         border-top-color: #931414;
     } */
-     a.links.active{
+      a.links.active{
         position:relative;
-        background: rgba(147,20,20,1);
-        color: white;
+          background: #2b2b2b;
+          color: #ffc107;
      }
 
      a.links.active::before{
@@ -97,28 +99,30 @@
         top: 0;
         left: 0;
         content:'';
-        background-color: #490707;
-        width: 1.5rem;
+          background-color: #ffc107;
+          width: 0.3rem;
      }
      a.links{
-        border-bottom: 1px solid #dbd6d6;
+          border-bottom: 1px solid #2b2b2b;
         text-decoration: none;
-        color:unset;
+          color:#ffffff;
         padding: 2rem 3rem;
-        font-family: "Righteous", sans-serif;
+          font-family: "Inter", sans-serif;
      }
      a.links:hover{
-        background: rgba(147,20,20,1);
-        color: white;
+          background: #2b2b2b;
+          color: #ffc107;
      }
      .hide-border{
         border: none !important;
      }
     .otherText{
         /* margin: 8rem 1rem 1rem 2rem; */
-        font-family: "Righteous", sans-serif;
-        font-size: 20px;
-        color: #351f27
+        font-family: "Inter", sans-serif;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #bdbdbd
     }
     .logoutCont{
         /* position: relative; */
@@ -131,22 +135,24 @@
     .logoutButton{
         margin: auto 0 3rem;
         display: flex;
-        background-color: #931414;
-        color: #fffafa;
+        background-color: #ffc107;
+        color: #0f0f0f;
         width: 18vw;
         height: 5vh;
         border-radius: 1em;
         text-align: center;
         align-items: center;
         justify-content: center;
-        font-family: "Righteous", sans-serif;
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
         cursor: pointer;
         pointer-events: auto;
     }
     .upperTab{
         width: 100%;
         display: flex;
-        background-color: #171717;
+        background-color: #1a1a1a;
+        border: 1px solid #2b2b2b;
         flex-direction: row;
         flex-wrap: nowrap;
         align-items: center;
@@ -157,7 +163,7 @@
         height: 10vh;
         /* top: -91.5vh; */
         /* left: 26vw; */
-        font-family: "Righteous", sans-serif;
+        font-family: "Inter", sans-serif;
     }
     .searchBar{
         max-width: 100%;
@@ -172,23 +178,24 @@
         border-radius: 1em;
         border: none;
         /* padding-left: 1em; */
-        font-family: "Righteous", sans-serif;
+        font-family: "Inter", sans-serif;
         font-size: 20px;
     }
     .searchInput{
         width: 100%;
         /* position: relative; */
-        background-color: #eeeeee;
+        background-color: #2b2b2b;
+        color: #ffffff;
         /* top: 6.5vh; */
         /* width: 27vw; */
         /* left: -2.5vw; */
         /* height: 6.5vh; */
         /* height: 100%; */
         padding: 1rem 0;
-        border: 0px;
+        border: 1px solid #424242;
         border-radius: 1.2em;
         font-size: 18px;
-        font-family: "Righteous", sans-serif;
+        font-family: "Inter", sans-serif;
     }
     .searchButton{
         position: absolute;
@@ -199,11 +206,12 @@
         transform: translateY(-50%);
         /* width: 10vw;
         height: 6.5vh; */
-        background-color: #931414;
-        color: #fffafa;
+        background-color: #ffc107;
+        color: #0f0f0f;
         border-radius: 1em;
         border: 0px;
-        font-family: "Righteous", sans-serif;
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
         cursor: pointer;
         pointer-events: auto;
         box-shadow: 3px #0b1215;
@@ -214,8 +222,8 @@
         outline: none;
         border: none;
         display: flex;
-        background-color: black;
-        color: #fffafa;
+        background-color: #ffc107;
+        color: #0f0f0f;
         border-radius: .9em;
         width: 12vw;
         height: 7vh;
@@ -226,6 +234,8 @@
         cursor: pointer;
         pointer-events: auto;
         font-size: 22px;
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
     }
     a [href="#kalokohan"]{
         width: fit-content;
@@ -246,7 +256,7 @@
         /* width: 65%; */
         border-radius: 50%;
         object-fit: cover;
-        border: 2px solid #931414;
+        border: 2px solid #ffc107;
     }
     .time{
         /* position: relative; */

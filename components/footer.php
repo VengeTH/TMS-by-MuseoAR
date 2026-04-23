@@ -1,7 +1,7 @@
 <footer class="footer">
     <div class="footer-inner">
         <a href="/pages/about">About Us</a>
-        <span class="footer-brand"><strong>The Heedful</strong> Developers</span>
+        <span class="footer-brand"><strong>The Heedful</strong> Enterprise Systems</span>
         <a href="/pages/contact">Contact Us</a>
         <a href="mailto:prinzesadsad@theheeful.me">prinzesadsad@theheeful.me</a>
     </div>
@@ -11,8 +11,9 @@
     flex-shrink: 0;
     margin-top: auto;
     width: 100%;
-    background: #0f172a;
+    background: #0f0f0f;
     padding: 1rem 1.5rem;
+    border-top: 1px solid #2b2b2b;
 }
 
 .footer-inner {
@@ -27,21 +28,21 @@
 
 .footer a {
     font-size: 0.875rem;
-    color: #e2e8f0;
+    color: #bdbdbd;
     text-decoration: none;
     transition: color 150ms ease;
 }
 
 .footer a:hover {
-    color: white;
+    color: #ffc107;
 }
 
 .footer-brand {
     font-size: 0.875rem;
-    color: #94a3b8;
+    color: #bdbdbd;
 }
 
 .footer-brand strong {
-    color: #e2e8f0;
+    color: #ffffff;
 }
 </style>
