@@ -114,7 +114,7 @@ The-Heedful/
 Before you begin, ensure you have the following installed:
 
 - **PHP** 7.4 or higher
-- **MySQL** 5.7 or higher
+- **MySQL** 5.7 or higher, or **PostgreSQL** 13+
 - **Composer** (for PHP dependencies)
 - **Node.js** and **npm** (for JavaScript dependencies)
 - **Web Server** (Apache/Nginx) or PHP built-in server
@@ -154,8 +154,11 @@ This will install:
 
 ### 4. Database Setup
 
-1. Create a MySQL database named `TaskManagementDB` (or update the name in `db/db.php`).
-2. Create the necessary tables. You'll need at minimum:
+1. Create a database named `TaskManagementDB` (or set a different name in your environment variables).
+2. Create the necessary tables. Use one of these files:
+  - `schema.sql` (MySQL)
+  - `schema-postgres.sql` (PostgreSQL)
+3. You'll need at minimum:
    - `users` table with columns: `id`, `first_name`, `last_name`, `email`, `password`, `profile_picture`
    - `tasks` table with columns: `id`, `user_id`, `title`, `details`, `finish_date`, `priority`
 
@@ -163,6 +166,11 @@ This will install:
 
 1. Create a `.env` file in the root directory (see `helpers/env.php` for reference).
 2. Configure your database credentials and OAuth credentials.
+3. For DB connection, set either:
+   - `DATABASE_URL` (recommended in production), for example:
+     - PostgreSQL: `postgres://USER:PASS@HOST:5432/DB_NAME`
+     - MySQL: `mysql://USER:PASS@HOST:3306/DB_NAME`
+   - Or explicit variables: `DB_DRIVER`, `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASS`
 
 ### 6. Configure OAuth (Optional)
 
@@ -234,7 +242,7 @@ Replace the placeholder credentials with your actual SMTP credentials.
 ⚠️ **Important**: This project relies on environment variables for sensitive configuration. Before deploying to production:
 
 1. Create a `.env` file based on `.env.example` and set:
-   - Database credentials (`DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASS`)
+  - Database connection (`DATABASE_URL` or `DB_DRIVER`, `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASS`)
    - Google Gemini API key (`GEMINI_API_KEY`)
    - Google OAuth client details (`GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `OAUTH_REDIRECT_URI`)
    - SMTP settings (`SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `CONTACT_TO_EMAIL`)

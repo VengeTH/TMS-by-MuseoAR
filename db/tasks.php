@@ -1,20 +1,16 @@
 <?php
 require_once dirname(__DIR__) . "/helpers/env.php";
+require_once __DIR__ . "/connection.php";
 
 class Task{
     private $conn;
     private $tableName = "tasks";
 
     public function __construct(){
-        $host = safeEnv("DB_HOST", "localhost");
-        $username = safeEnv("DB_USER", "root");
-        $password = safeEnv("DB_PASS", "");
-        $database = safeEnv("DB_NAME", "TaskManagementDB");
-        $port = (int) safeEnv("DB_PORT", "3306");
-
-        $this->conn = new mysqli($host, $username, $password, $database, $port);
-        if ($this->conn->connect_error) {
-            die("Connection failed: " . $this->conn->connect_error);
+        try {
+            $this->conn = create_db_connection();
+        } catch (Throwable $error) {
+            die("Connection failed: " . $error->getMessage());
         }
    }
     public function addTask($title, $details, $finishDate, $priority, $userId, $parentTaskId = null){
