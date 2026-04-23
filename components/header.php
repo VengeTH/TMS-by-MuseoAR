@@ -8,7 +8,7 @@
     </a>
     <nav class="menu" aria-label="Primary">
         <a href="/" class="menu-link">Sign in</a>
-        <a href="/user/register" class="menu-link menu-link--primary">Register</a>
+        <a href="/user/register.php" class="menu-link menu-link--primary">Register</a>
     </nav>
 </header>
 <style>

@@ -92,7 +92,7 @@ require_once __DIR__ . "/components/json-ld-organization.php";
                         <span>Remember me</span>
                     </label>
                     <button type="submit" class="ContinueButton">Continue</button>
-                    <a href="/user/register" class="Register">Don&rsquo;t have an account? Register</a>
+                    <a href="/user/register.php" class="Register">Don&rsquo;t have an account? Register</a>
                 </form>
             </div>
         </div>
