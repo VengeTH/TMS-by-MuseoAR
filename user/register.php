@@ -85,7 +85,7 @@ require_once dirname(__DIR__) . "/components/json-ld-organization.php";
                         </script>
                     </div>
                     <button type="submit" class="createAccButton">Create Account</button>
-                    <p>----------------------- Or register with -----------------------</p>
+                    <p class="altSeparator">Or register with</p>
                     <div class="altContainer">
                         <a href="/oauth/google-callback?login=true">
                             <div class="googleButton">Google</div>

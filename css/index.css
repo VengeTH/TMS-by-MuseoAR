@@ -32,6 +32,13 @@ body.index {
   color: var(--color-text);
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 .wrapper {
