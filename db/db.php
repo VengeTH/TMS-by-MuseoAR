@@ -169,5 +169,46 @@ class db {
 		$sql = "SELECT * FROM tasks";
 		return $this->conn->query($sql);
 	}
+
+	public function verifyUserPassword($id, $password) {
+		$stmt = $this->conn->prepare("SELECT password FROM users WHERE id = ?");
+		$stmt->bind_param("i", $id);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		$row = $result->fetch_assoc();
+		$stmt->close();
+
+		if (!$row || empty($row["password"])) {
+			return false;
+		}
+
+		return password_verify($password, $row["password"]);
+	}
+
+	public function deleteUserAccountById($userId) {
+		$this->conn->begin_transaction();
+		try {
+			$deleteTasks = $this->conn->prepare("DELETE FROM tasks WHERE user_id = ?");
+			$deleteTasks->bind_param("i", $userId);
+			$deleteTasks->execute();
+			$deleteTasks->close();
+
+			$deleteUser = $this->conn->prepare("DELETE FROM users WHERE id = ?");
+			$deleteUser->bind_param("i", $userId);
+			$deleteUser->execute();
+			$affected = $deleteUser->affected_rows;
+			$deleteUser->close();
+
+			if ($affected !== 1) {
+				throw new Exception("User deletion failed.");
+			}
+
+			$this->conn->commit();
+			return true;
+		} catch (Throwable $error) {
+			$this->conn->rollback();
+			return false;
+		}
+	}
 }
 ?>

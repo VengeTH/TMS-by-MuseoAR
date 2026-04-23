@@ -1,95 +1,96 @@
-<head>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap");
+<?php
+require_once dirname(__DIR__) . "/db/tasks.php";
 
-        * {
-            box-sizing: border-box;
-            font-family: "Inter", system-ui, sans-serif;
-        }
+$db = new Task();
+$tasks = $db->getTasks($_SESSION["user_id"]);
+if ($tasks === null) {
+    $tasks = [];
+}
 
-        .task-shell {
-            background: #1a1a1a;
-            border: 1px solid #424242;
-            color: #ffffff;
-        }
+$isDemoTaskMode = count($tasks) === 0;
+if ($isDemoTaskMode) {
+    $tasks = [
+        [
+            "id" => -1,
+            "title" => "Prepare weekly roadmap",
+            "details" => "Set sprint priorities and identify blockers.",
+            "finish_date" => date("Y-m-d H:i:s", strtotime("Friday 6 pm")),
+            "priority" => 3,
+            "parent_task_id" => null,
+            "is_completed" => 0,
+        ],
+        [
+            "id" => -2,
+            "title" => "Client follow-up emails",
+            "details" => "Reply to open threads and confirm next steps.",
+            "finish_date" => date("Y-m-d H:i:s", strtotime("Wednesday 3 pm")),
+            "priority" => 2,
+            "parent_task_id" => null,
+            "is_completed" => 0,
+        ],
+        [
+            "id" => -3,
+            "title" => "Review overdue tasks",
+            "details" => "Close completed items and reschedule pending work.",
+            "finish_date" => date("Y-m-d H:i:s", strtotime("Thursday 10 am")),
+            "priority" => 2,
+            "parent_task_id" => null,
+            "is_completed" => 0,
+        ],
+        [
+            "id" => -4,
+            "title" => "Team stand-up notes",
+            "details" => "Summarize blockers and share the daily plan.",
+            "finish_date" => date("Y-m-d H:i:s", strtotime("Tuesday 9 am")),
+            "priority" => 1,
+            "parent_task_id" => null,
+            "is_completed" => 0,
+        ],
+    ];
+}
 
-        .task-shell-header {
-            border-bottom: 1px solid #424242;
-            color: #bdbdbd;
-        }
+$taskCountDisplay = count($tasks);
+$parents = [];
+$childrenByParent = [];
 
-        .task-shell-subheader {
-            border-bottom: 1px solid #424242;
-            color: #ffffff;
+foreach ($tasks as $task) {
+    if (!isset($task["parent_task_id"]) || $task["parent_task_id"] === null) {
+        $parents[] = $task;
+    } else {
+        $pid = (int) $task["parent_task_id"];
+        if (!isset($childrenByParent[$pid])) {
+            $childrenByParent[$pid] = [];
         }
+        $childrenByParent[$pid][] = $task;
+    }
+}
+?>
 
-        .task-title-text {
-            color: #ffffff;
-        }
-
-        .task-date-text {
-            color: #bdbdbd;
-        }
-
-        .task-subtask-panel {
-            background: #141414;
-            border-bottom: 1px solid #424242;
-            color: #bdbdbd;
-        }
-    </style>
-</head>
-<div class="p-4 flex flex-col w-full gap-4 items-stretch">
-    <div class="task-shell flex flex-col w-full min-h-32 lg:min-h-96 rounded-xl shadow-md flex-grow">
-        <div class="task-shell-header flex w-full p-4">
-            <?php
-            require_once dirname(__DIR__) . "/db/tasks.php";
-            $db = new Task();
-            $taskCount = $db->getTaskCount($_SESSION["user_id"]);
-            ?>
-            <h3 class="text-xl">My Task (<span id="taskCount"><?php echo $taskCount; ?></span>)</h3>
-            <div class="ml-auto flex gap-4">
-                <button class="text-xl text-red-400" onclick="deleteMarkedTasks()">Delete</button>
-                <button class="text-xl text-yellow-400">Mark as Read</button>
+<div class="task-page">
+    <section class="task-panel task-panel--main">
+        <header class="task-panel__header">
+            <h2>My Task (<?php echo $taskCountDisplay; ?>)</h2>
+            <div class="task-panel__actions">
+                <button class="task-action task-action--danger" onclick="deleteMarkedTasks()">Delete</button>
+                <button class="task-action">Mark as Read</button>
             </div>
+        </header>
+
+        <?php if ($isDemoTaskMode): ?>
+            <div class="task-demo-note">
+                Demo tasks are loaded so you can visualize the system before adding real work.
+            </div>
+        <?php endif; ?>
+
+        <div class="task-table task-table--head">
+            <div>Task</div>
+            <div>Details</div>
+            <div>Due Date</div>
         </div>
-        <div class="flex flex-col w-full">
-            <div class="task-shell-subheader flex w-full p-2">
-                <div class="flex gap-4 items-center justify-center">
-                <!-- Checkbox -->
-                <!-- Label for the checkbox -->
-                <label
-                    for="Task1"
-                    class="text-xl cursor-pointer peer-checked:line-through peer-checked:text-gray-500 ml-8"
-                >
-                    Task/s
-                </label>
-                </div>
-                <div class="ml-auto">
-                    <h3 class="text-xl text-white">Due Date</h3>
-                </div>
-            </div>
-            <?php
-            $tasks = $db->getTasks($_SESSION["user_id"]);
-            if ($tasks == null){
-                $tasks = [];
-            }
-            $parents = [];
-            $childrenByParent = [];
-            foreach ($tasks as $task) {
-                if (!isset($task["parent_task_id"]) || $task["parent_task_id"] === null) {
-                    $parents[] = $task;
-                } else {
-                    $pid = (int) $task["parent_task_id"];
-                    if (!isset($childrenByParent[$pid])) {
-                        $childrenByParent[$pid] = [];
-                    }
-                    $childrenByParent[$pid][] = $task;
-                }
-            }
 
-            foreach ($parents as $task) {
-
+        <div class="task-table-wrap">
+            <?php foreach ($parents as $task): ?>
+                <?php
                 $currentDate = new DateTime('now', new DateTimeZone('Asia/Manila'));
                 $finishDate = new DateTime($task["finish_date"], new DateTimeZone('Asia/Manila'));
                 $formattedFinishDate = $finishDate->format("m-d-y h:i A");
@@ -97,51 +98,86 @@
                 $isPastDue = $finishDate < $currentDate;
                 $hasChildren = isset($childrenByParent[(int) $task["id"]]) && count($childrenByParent[(int) $task["id"]]) > 0;
                 $isCompleted = isset($task["is_completed"]) && (int) $task["is_completed"] === 1;
+                ?>
+                <article class="task-item-row" data-task-row="<?php echo htmlspecialchars((string) $task["id"]); ?>">
+                    <div class="task-item-col task-item-col--title">
+                        <button type="button" class="task-toggle-subtasks" data-parent-id="<?php echo htmlspecialchars((string) $task["id"]); ?>">
+                            <?php echo $hasChildren ? "▶" : ""; ?>
+                        </button>
+                        <input
+                            type="checkbox"
+                            class="task-checkbox"
+                            data-task-id="<?php echo htmlspecialchars((string) $task["id"]); ?>"
+                            <?php echo $isCompleted ? "checked" : ""; ?>
+                        >
+                        <span class="task-item-title <?php echo ($isCompleted || $isPastDue) ? "is-done" : ""; ?>">
+                            <?php echo htmlspecialchars((string) $task["title"]); ?>
+                        </span>
+                    </div>
+                    <div class="task-item-col task-item-col--details">
+                        <?php echo htmlspecialchars((string) ($task["details"] ?? "")); ?>
+                    </div>
+                    <div class="task-item-col task-item-col--date <?php echo ($isToday || $isPastDue) ? "is-alert" : ""; ?>">
+                        <?php echo htmlspecialchars($formattedFinishDate); ?>
+                    </div>
+                </article>
 
-                echo '<div class="flex w-full border-b border-[#424242] p-2 task" data-task-row="' . htmlspecialchars($task["id"]) . '">';
-                echo '<div class="flex gap-4 items-center justify-center">';
-                echo '<button type="button" class="text-lg font-bold ml-2 toggle-subtasks" data-parent-id="' . htmlspecialchars($task["id"]) . '" style="width:1.5rem;">' . ($hasChildren ? '▶' : '') . '</button>';
-                echo '<input type="checkbox" name="Task' . htmlspecialchars($task["id"]) . '" id="Task' . htmlspecialchars($task["id"]) . '" class="peer task-checkbox" data-task-id="' . htmlspecialchars($task["id"]) . '" ' . ($isCompleted ? 'checked' : '') . ' />';
-                echo '<label for="Task' . htmlspecialchars($task["id"]) . '" class="text-xl cursor-pointer task-title-text ' . ($isCompleted ? 'line-through text-gray-500' : ($isPastDue ? 'line-through text-gray-500' : 'peer-checked:line-through peer-checked:text-gray-500')) . '">';
-                echo htmlspecialchars($task["title"]);
-                echo '</label>';
-                echo '</div>';
-                echo '<div class="ml-auto">';
-                echo '<h3 class="text-xl ' . ($isToday || $isPastDue ? 'text-red-400' : 'task-date-text') . ' mr-8">' . htmlspecialchars($formattedFinishDate) . '</h3>';
-                echo '</div>';
-                echo '</div>';
+                <?php if ($hasChildren): ?>
+                    <div class="task-subtasks is-hidden" data-subtasks="<?php echo htmlspecialchars((string) $task["id"]); ?>">
+                        <?php foreach ($childrenByParent[(int) $task["id"]] as $subtask): ?>
+                            <?php $subIsCompleted = isset($subtask["is_completed"]) && (int) $subtask["is_completed"] === 1; ?>
+                            <div class="task-subtask-row" data-task-row="<?php echo htmlspecialchars((string) $subtask["id"]); ?>">
+                                <input
+                                    type="checkbox"
+                                    class="task-checkbox"
+                                    data-task-id="<?php echo htmlspecialchars((string) $subtask["id"]); ?>"
+                                    <?php echo $subIsCompleted ? "checked" : ""; ?>
+                                >
+                                <span class="<?php echo $subIsCompleted ? "is-done" : ""; ?>">
+                                    <?php echo htmlspecialchars((string) $subtask["title"]); ?>
+                                </span>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+    </section>
 
-                if ($hasChildren) {
-                    echo '<div class="hidden flex flex-col w-full px-14 py-2 task-subtask-panel" data-subtasks="' . htmlspecialchars($task["id"]) . '">';
-                    foreach ($childrenByParent[(int) $task["id"]] as $subtask) {
-                        $subIsCompleted = isset($subtask["is_completed"]) && (int) $subtask["is_completed"] === 1;
-                        echo '<div class="flex items-center gap-3 py-1" data-task-row="' . htmlspecialchars($subtask["id"]) . '">';
-                        echo '<input type="checkbox" class="task-checkbox" data-task-id="' . htmlspecialchars($subtask["id"]) . '" ' . ($subIsCompleted ? 'checked' : '') . ' />';
-                        echo '<span class="text-sm ' . ($subIsCompleted ? 'line-through text-gray-500' : 'text-gray-300') . '">' . htmlspecialchars($subtask["title"]) . '</span>';
-                        echo '</div>';
-                    }
-                    echo '</div>';
-                }
-            }
-        ?>
+    <section class="task-panel">
+        <header class="task-panel__header">
+            <h3>Latest News</h3>
+        </header>
+        <div class="task-news-list">
+            <article class="task-news-item">
+                <div class="task-news-tag">Planner</div>
+                <h4>Weekly planning now supports demo tasks</h4>
+                <p>Sample tasks are available when your account has no current workload.</p>
+            </article>
+            <article class="task-news-item">
+                <div class="task-news-tag">UI</div>
+                <h4>Dashboard layout rebuilt for consistency</h4>
+                <p>The shell now keeps navigation fixed while content panels scroll independently.</p>
+            </article>
+            <article class="task-news-item">
+                <div class="task-news-tag">Profile</div>
+                <h4>Profile and settings scrolling behavior improved</h4>
+                <p>Account pages now stay accessible with stable spacing across desktop and mobile.</p>
+            </article>
         </div>
-    </div>
-    <div class="task-shell flex flex-col w-full min-h-32 lg:min-h-96 rounded-xl shadow-md flex-grow">
-        <div class="task-shell-header flex w-full p-4">
-            <h3 class="text-xl">Latest News</h3>
-        </div>
-        <div class="flex flex-col w-full">
-        </div>
-    </div>
+    </section>
 </div>
+
 <script>
-    // * Persist completion state (and auto-update parents) via API.
     function setTaskCompleted(taskId, completed) {
+        if (taskId <= 0) {
+            return Promise.resolve({ success: true });
+        }
         return fetch("/api/tasks/toggle-complete.php", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ task_id: taskId, completed: completed })
-        }).then(r => r.json());
+        }).then((r) => r.json());
     }
 
     document.addEventListener("change", (e) => {
@@ -149,188 +185,70 @@
         if (!el.classList.contains("task-checkbox")) {
             return;
         }
+
         const taskId = parseInt(el.getAttribute("data-task-id"), 10);
-        if (!taskId) {
-            return;
-        }
         const completed = el.checked === true;
 
         setTaskCompleted(taskId, completed).then((data) => {
             if (!data || !data.success) {
                 el.checked = !completed;
-                alert((data && data.message) ? data.message : "Could not update task status.");
                 return;
             }
-            // * Update label styling locally.
+
             const row = document.querySelector('[data-task-row="' + taskId + '"]');
-            if (row) {
-                const label = row.querySelector("label");
-                if (label) {
-                    if (completed) {
-                        label.classList.add("line-through", "text-gray-500");
-                    } else {
-                        label.classList.remove("line-through", "text-gray-500");
-                    }
-                }
-                const span = row.querySelector("span");
-                if (span) {
-                    if (completed) {
-                        span.classList.add("line-through", "text-gray-500");
-                    } else {
-                        span.classList.remove("line-through", "text-gray-500");
-                    }
-                }
+            if (!row) {
+                return;
             }
+
+            const title = row.querySelector(".task-item-title, span");
+            if (!title) {
+                return;
+            }
+
+            title.classList.toggle("is-done", completed);
         }).catch(() => {
             el.checked = !completed;
-            alert("Could not update task status. Please try again.");
         });
     });
 
-    // * Collapsible subtasks.
     document.addEventListener("click", (e) => {
         const btn = e.target;
-        if (!btn.classList.contains("toggle-subtasks")) {
+        if (!btn.classList.contains("task-toggle-subtasks")) {
             return;
         }
+
         const parentId = btn.getAttribute("data-parent-id");
         const panel = document.querySelector('[data-subtasks="' + parentId + '"]');
         if (!panel) {
             return;
         }
-        if (panel.classList.contains("hidden")) {
-            panel.classList.remove("hidden");
-            btn.textContent = "▼";
-        } else {
-            panel.classList.add("hidden");
-            btn.textContent = "▶";
-        }
+
+        const hidden = panel.classList.contains("is-hidden");
+        panel.classList.toggle("is-hidden", !hidden);
+        btn.textContent = hidden ? "▼" : "▶";
     });
-
-    function showNewTaskModal() {
-        Swal.fire({
-            title: 'New Task',
-            html: `
-                <input type="text" id="taskTitle" class="swal2-input" placeholder="Task Title *" required>
-                <textarea id="taskDetails" class="swal2-textarea" placeholder="Task Details"></textarea>
-                <input type="datetime-local" id="finishDate" class="swal2-input" required>
-                <select id="taskPriority" class="swal2-select">
-                    <option value="low">Low Priority</option>
-                    <option value="medium">Medium Priority</option>
-                    <option value="high">High Priority</option>
-                </select>
-                <label style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;font-size:0.9rem;">
-                    <input type="checkbox" id="useAiBreakdown" />
-                    <span>Generate subtasks using AI</span>
-                </label>
-            `,
-            showCancelButton: true,
-            confirmButtonText: 'Save',
-            cancelButtonText: 'Cancel',
-            preConfirm: () => {
-                const title = document.getElementById('taskTitle').value;
-                const finishDate = document.getElementById('finishDate').value;
-
-                if (!title.trim()) {
-                    Swal.showValidationMessage('Task title is required');
-                    return false;
-                }
-                if (!finishDate) {
-                    Swal.showValidationMessage('Finish date is required');
-                    return false;
-                }
-
-                return {
-                    title: title,
-                    details: document.getElementById('taskDetails').value,
-                    finishDate: finishDate,
-                    priority: document.getElementById('taskPriority').value,
-                    useAi: document.getElementById('useAiBreakdown').checked
-                }
-            }
-        }).then((result) => {
-            const postBody = new FormData();
-            if (result.isConfirmed) {
-                postBody.append('title', result.value.title);
-                postBody.append('details', result.value.details);
-                postBody.append('finishDate', result.value.finishDate);
-                postBody.append('priority', result.value.priority);
-                // Send data to server
-                fetch('/api/tasks/create', {
-                    method: 'POST',
-                    body: postBody
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if(data.success) {
-                        if (result.value.useAi) {
-                            Swal.fire({
-                                title: "Generating subtasks...",
-                                allowOutsideClick: false,
-                                didOpen: () => Swal.showLoading()
-                            });
-                            const aiBody = new FormData();
-                            aiBody.append("task_title", result.value.title);
-                            aiBody.append("parent_task_id", String(data.task_id));
-                            fetch("/api/tasks/ai-breakdown.php", {
-                                method: "POST",
-                                body: aiBody
-                            })
-                            .then(r => r.json())
-                            .then(aiData => {
-                                if (aiData && aiData.success) {
-                                    Swal.fire("Success!", "Task and AI-generated subtasks created. Refresh to see them.", "success");
-                                } else {
-                                    Swal.fire("Task created", "Main task saved. AI subtasks were not generated.", "info");
-                                }
-                            })
-                            .catch(() => {
-                                Swal.fire("Task created", "Main task saved. AI subtasks could not be generated.", "info");
-                            });
-                        } else {
-                            Swal.fire('Success!', 'Task created successfully. Refresh to see it.', 'success');
-                        }
-                    } else {
-                        Swal.fire('Error!', data.message || 'Failed to create task', 'error');
-                    }
-                });
-            }
-        });
-    }
 
     function deleteMarkedTasks() {
         const checkboxes = document.querySelectorAll('.task-checkbox:checked');
-        const taskIds = Array.from(checkboxes).map(checkbox => checkbox.getAttribute('data-task-id'));
+        const taskIds = Array.from(checkboxes)
+            .map((checkbox) => parseInt(checkbox.getAttribute('data-task-id'), 10))
+            .filter((id) => id > 0);
 
-        if (taskIds.length > 0) {
-            fetch('/api/tasks/delete', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ taskIds })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    checkboxes.forEach(checkbox => {
-                        const taskElement = checkbox.closest('.task');
-                        taskElement.remove(); // Remove the entire task element
-                    });
-                    alert('Tasks deleted successfully');
-                    updateTaskCount(-taskIds.length); // Update task count
-                } else {
-                    alert('Failed to delete tasks');
-                }
-            });
-        } else {
-            alert('No tasks selected for deletion');
+        if (taskIds.length === 0) {
+            return;
         }
-    }
 
-    function updateTaskCount(change) {
-        const taskCountElement = document.getElementById('taskCount');
-        const currentCount = parseInt(taskCountElement.textContent);
-        taskCountElement.textContent = currentCount + change;
+        fetch('/api/tasks/delete', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ taskIds })
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            if (!data.success) {
+                return;
+            }
+            window.location.reload();
+        });
     }
 </script>

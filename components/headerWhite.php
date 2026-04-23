@@ -1,93 +1,120 @@
-<div class="header">
-    <div class="logo-wrapper">
-        <img src="/img/logo.png" class="logo" class="logo">
-        <div class="titleBesideLogo">
-            <h1>ORGANISS</h1>
-        </div>
-    </div>
-    <div class="menu">
-        <a href="/">Sign in</a>
-        <a href="/user/register.php" id="register">Register</button></a>
-    </div>
+<div class="header header--light">
+    <a href="/" class="logo-wrapper">
+        <img src="/img/logo.png" class="logo" alt="OrgaNiss">
+        <span class="brand-copy">
+            <span class="titleBesideLogo">ORGANISS</span>
+            <span class="brand-tag">The Heedful System</span>
+        </span>
+    </a>
+    <nav class="menu" aria-label="Primary">
+        <a href="/" class="menu-link menu-link--light">Sign in</a>
+        <a href="/user/register.php" class="menu-link menu-link--primary">Register</a>
+    </nav>
 </div>
-<!-- welcome css -->
 <style>
-/* LESSON : NEVER USE COPILOT WITHOUT UNDERSTANDING THE MEANING OF THE CODE.  */
-/* this is a good example on where you could use display grid. msg me pag di mo gets. --gelo */
-/* .body::before {
-    content: "";
-    background-image: url('/img/bg.jpg');
-    background-size: cover;
-    background-position: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 100%;
-    z-index: -1;
-} */
-/* THIS LINE OF CODE IS NOT EVEN BEING APPLIED! */
-.header{
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap");
+
+.header {
     width: 100%;
-    background-color: white !important;
-    display: flex;
-}
-.logo-wrapper{
-    /* the culprit on why everything is shifting. */
-    /* position: relative;
-    top: .2vh;
-    left: .8vw; */
     display: flex;
     align-items: center;
-    justify-content: center;
-}
-.logo{
-    max-width: 5rem;
-    max-height: 5rem;
-}
-.titleBesideLogo{
-    position: relative;
-    /* the culprit on why everything is shifting. Bad use of positioning.*/
-    /* top: -13vh;
-    left: 7.5vw; */
-    font-family: "Kablammo", system-ui;
-    font-size: 1.25rem;
-    font-weight: 100;
-    color: black;
-}
-.menu{
-    position: relative;
-    /* the culprit on why everything is shifting. */
-    margin-left: auto;
-    margin-right: 2vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: 1rem;
-    /* top: -22.5vh;
-    left: 88.5vw; */
-    width: fit-content;
-}
-.menu a{
-    display: flex;
-    text-decoration: none;
-    color: black;
-    background-color : white;
-    border-radius: 7px;
-    border: 1px solid black;
-    padding: 1rem 2rem;
-    text-align: center;
-    height: .5rem;
-    align-items: center;
-}
-/* just use id for here. Lemme guess, used copilot and never thought of it again. */
-/* .menu a[href="/user/register.php"] button{
-    background-color: #2c2c2c;
-    color: white;
-} */
-#register{
-    background-color: #2c2c2c;
-    color: white;
+    padding: 0.9rem 1.5rem;
 }
 
+.header--light {
+    background: linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%);
+    border-bottom: 1px solid #e2e2e2;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+}
+
+.logo-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: #111111;
+}
+
+.logo {
+    width: 2.6rem;
+    height: 2.6rem;
+    object-fit: contain;
+}
+
+.brand-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.titleBesideLogo {
+    font-family: "Space Grotesk", "Inter", system-ui, sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+.brand-tag {
+    width: fit-content;
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.7rem;
+    color: #0f0f0f;
+    background: #ffc107;
+    padding: 0.2rem 0.5rem;
+    border-radius: 999px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.menu-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.65rem 1.15rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-family: "Inter", system-ui, sans-serif;
+    text-decoration: none;
+    color: #111111;
+    background: #ffffff;
+    border: 1px solid #d7d7d7;
+    border-radius: 999px;
+    transition: background 150ms ease, border-color 150ms ease, transform 150ms ease;
+}
+
+.menu-link:hover {
+    background: #f0f0f0;
+    border-color: #c8c8c8;
+    transform: translateY(-1px);
+}
+
+.menu-link--primary {
+    background: #ffc107;
+    color: #0f0f0f;
+    border-color: #ffc107;
+}
+
+.menu-link--primary:hover {
+    background: #ffb300;
+    border-color: #ffb300;
+}
+
+@media (max-width: 720px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .brand-tag {
+        display: none;
+    }
+}
 </style>

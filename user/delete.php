@@ -1,42 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete Account - OrgaNiss</title>
-    <link rel="stylesheet" href="/css/deleteAcc.css">
-    <link rel="icon" href="/img/logo.png" type="image/x-icon">
-</head>
-<body>
-    <?php
-        include dirname(__DIR__) . "/components/headerWhite.php";
-    ?>
-    <div class="deleteAccUpper">
-        <h1>Delete Account</h1>
-    </div>
-    <div class="nilalaman">
-        <h1>Overview</h1>
-        <p>We take your privacy seriously. If you wish to delete your account and all associated data from our system, please follow the instructions below. Once your data is deleted, it cannot be recovered.</p>
-    </div>
-    <div class="steps">
-        <h1>How To Delete your Account and Data</h1>
-        <ol>
-            <li>Log in to your account: <span style="color:gray;">Visit the <strong>OrgaNiss</strong> website and log in with your credentials</span></li>
-            <li>Navigate to Account Settings: <span style="color:gray;">Once logged in, go to your profile or account settings page.
-            </span></li>
-            <li>Request Data Deletion: <span style="color:gray;">Look for the "Delete Account" option in the settings. Click on it to begin the deletion process.
-            </span></li>
-            <li>Confirm Your Deletion Request: <span style="color:gray;">You will be asked to confirm that you want to permanently delete your account and all personal data associated with it. After confirming, your account and data will be permanently deleted.</span></li>
-    </div>
-    <div class="importantNotes">
-        <h1>Important Notes</h1>
-        <ol>
-            <li>Data Deletion is Final: <span style="color:gray;">Once your data is deleted, it cannot be recovered.</span></li>
-            <li>Processing Time: <span style="color:gray;">Data deletion may take up to 48 hours to be fully processed.</span></li>
-        </ol>
-    </div>
-    <?php
-        include dirname(__DIR__) . "/components/footer2.php";
-    ?>
-</body>
-</html>
+<?php
+require_once dirname(__DIR__) . "/helpers/sessionHandler.php";
+require_once dirname(__DIR__) . "/db/db.php";
+
+if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+    header("Location: /pages/delete-account");
+    exit();
+}
+
+$token = $_POST["csrf_token"] ?? "";
+$expectedToken = $_SESSION["delete_account_csrf"] ?? "";
+if ($token === "" || $expectedToken === "" || !hash_equals($expectedToken, $token)) {
+    $_SESSION["delete_account_error"] = "Invalid request token. Please try again.";
+    header("Location: /pages/delete-account");
+    exit();
+}
+
+$confirmText = trim((string) ($_POST["confirm_text"] ?? ""));
+$password = (string) ($_POST["password"] ?? "");
+
+if (strtoupper($confirmText) !== "DELETE") {
+    $_SESSION["delete_account_error"] = "Type DELETE exactly to confirm account removal.";
+    header("Location: /pages/delete-account");
+    exit();
+}
+
+$db = new db();
+$user = $db->getUserById($_SESSION["user_id"]);
+
+if (!$user) {
+    $_SESSION["delete_account_error"] = "User account was not found.";
+    header("Location: /pages/delete-account");
+    exit();
+}
+
+$hasPassword = !empty($user["password"]);
+if ($hasPassword && !$db->verifyUserPassword((int) $_SESSION["user_id"], $password)) {
+    $_SESSION["delete_account_error"] = "Password is incorrect.";
+    header("Location: /pages/delete-account");
+    exit();
+}
+
+$deleted = $db->deleteUserAccountById((int) $_SESSION["user_id"]);
+if (!$deleted) {
+    $_SESSION["delete_account_error"] = "Could not delete account right now. Please try again.";
+    header("Location: /pages/delete-account");
+    exit();
+}
+
+session_unset();
+session_destroy();
+header("Location: /?account_deleted=1");
+exit();

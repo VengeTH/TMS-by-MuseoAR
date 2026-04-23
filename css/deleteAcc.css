@@ -1,45 +1,191 @@
-@import url('https://fonts.googleapis.com/css2?family=Just+Me+Again+Down+Here&family=Kablammo&family=Righteous&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap");
 
-body{
-    background-color: white;
-    font-family: "Righteous", sans-serif;
+:root {
+  --bg: #0f0f0f;
+  --surface: #1a1a1a;
+  --surface-2: #2b2b2b;
+  --border: #424242;
+  --text: #ffffff;
+  --muted: #bdbdbd;
+  --accent: #ffc107;
+  --accent-hover: #ffb300;
+  --danger: #ff6767;
 }
-.deleteAccUpper{
-    display: flex;
-    background-color: black;
-    color: white;
-    left: 0;
-    right: 0;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    height: 15vh;
-    font-size: 24px;
-    letter-spacing: .1em;
+
+* {
+  box-sizing: border-box;
 }
-.nilalaman, .steps{
-    padding: 2% 2% 0% 2%;
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top right, rgba(255, 193, 7, 0.09), transparent 24%), var(--bg);
+  color: var(--text);
+  font-family: "Inter", system-ui, sans-serif;
+  padding: 1.2rem;
 }
-.steps{
-    padding-bottom: 2%;
+
+.delete-shell {
+  max-width: 56rem;
+  margin: 0 auto;
+  display: grid;
+  gap: 1rem;
 }
-.nilalaman h1, .steps h1{
-    font-size: 60px;
-    font-weight: 300;
+
+.delete-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: linear-gradient(180deg, #1a1a1a 0%, #161616 100%);
+  padding: 0.8rem 1rem;
 }
-.nilalaman p, .steps li{
-    font-size: 20px;
-    font-weight: 100;
-    text-wrap: wrap;
-    width: 90vw;
+
+.delete-back {
+  text-decoration: none;
+  color: var(--accent);
+  border: 1px solid var(--border);
+  border-radius: 0.7rem;
+  padding: 0.5rem 0.8rem;
+  font-weight: 700;
 }
-.importantNotes{
-    position: relative;
-    background-color: #e4e4e4;
-    width: 50vw;
-    left: 25%;
-    text-align: center;
+
+.delete-back:hover {
+  border-color: var(--accent);
 }
-.importantNotes ol{
-display: inline-block;
+
+.delete-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.delete-brand img {
+  width: 2.1rem;
+  height: 2.1rem;
+  object-fit: contain;
+}
+
+.delete-hero,
+.delete-panel {
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: linear-gradient(180deg, #1a1a1a 0%, #171717 100%);
+}
+
+.delete-hero {
+  padding: 1rem;
+}
+
+.delete-eyebrow {
+  margin: 0;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.72rem;
+}
+
+.delete-hero h1 {
+  margin: 0.45rem 0 0;
+  font-family: "Space Grotesk", "Inter", sans-serif;
+  font-size: 2rem;
+}
+
+.delete-hero p {
+  margin-top: 0.5rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.delete-alert {
+  border: 1px solid rgba(255, 103, 103, 0.35);
+  border-radius: 0.85rem;
+  background: rgba(255, 103, 103, 0.12);
+  color: #ffb3b3;
+  padding: 0.75rem 0.9rem;
+}
+
+.delete-panel {
+  padding: 1rem;
+}
+
+.delete-panel h2 {
+  margin: 0;
+  font-family: "Space Grotesk", "Inter", sans-serif;
+  font-size: 1.35rem;
+}
+
+.delete-panel ul {
+  margin: 0.75rem 0 0;
+  color: var(--muted);
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.delete-form {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.delete-form label {
+  font-weight: 600;
+}
+
+.delete-form input {
+  min-height: 2.7rem;
+  border-radius: 0.7rem;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  padding: 0 0.8rem;
+  outline: none;
+}
+
+.delete-form input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.16);
+}
+
+.delete-helper {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.delete-button {
+  margin-top: 0.5rem;
+  min-height: 2.8rem;
+  border: 1px solid transparent;
+  border-radius: 0.75rem;
+  background: var(--danger);
+  color: #1a0d0d;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  filter: brightness(0.95);
+}
+
+@media (max-width: 720px) {
+  body {
+    padding: 0.75rem;
+  }
+
+  .delete-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .delete-hero h1 {
+    font-size: 1.55rem;
+  }
 }

@@ -1,3 +1,24 @@
+<?php
+require_once dirname(__DIR__) . "/helpers/sessionHandler.php";
+require_once dirname(__DIR__) . "/db/db.php";
+
+$db = new db();
+$user = $db->getUserById($_SESSION["user_id"]);
+
+if (!$user) {
+    header("Location: /");
+    exit();
+}
+
+if (empty($_SESSION["delete_account_csrf"])) {
+    $_SESSION["delete_account_csrf"] = bin2hex(random_bytes(16));
+}
+
+$errorMessage = $_SESSION["delete_account_error"] ?? "";
+unset($_SESSION["delete_account_error"]);
+
+$hasPassword = !empty($user["password"]);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,36 +29,50 @@
     <link rel="icon" href="/img/logo.png" type="image/x-icon">
 </head>
 <body>
-    <?php
-        include dirname(__DIR__) . "/components/headerWhite.php";
-    ?>
-    <div class="deleteAccUpper">
-        <h1>Delete Account</h1>
-    </div>
-    <div class="nilalaman">
-        <h1>Overview</h1>
-        <p>We take your privacy seriously. If you wish to delete your account and all associated data from our system, please follow the instructions below. Once your data is deleted, it cannot be recovered.</p>
-    </div>
-    <div class="steps">
-        <h1>How To Delete your Account and Data</h1>
-        <ol>
-            <li>Log in to your account: <span style="color:gray;">Visit the <strong>OrgaNiss</strong> website and log in with your credentials</span></li>
-            <li>Navigate to Account Settings: <span style="color:gray;">Once logged in, go to your profile or account settings page.
-            </span></li>
-            <li>Request Data Deletion: <span style="color:gray;">Look for the "Delete Account" option in the settings. Click on it to begin the deletion process.
-            </span></li>
-            <li>Confirm Your Deletion Request: <span style="color:gray;">You will be asked to confirm that you want to permanently delete your account and all personal data associated with it. After confirming, your account and data will be permanently deleted.</span></li>
-    </div>
-    <div class="importantNotes">
-        <h1>Important Notes</h1>
-        <ol>
-            <li>Data Deletion is Final: <span style="color:gray;">Once your data is deleted, it cannot be recovered.</span></li>
-            <li>Processing Time: <span style="color:gray;">Data deletion may take up to 48 hours to be fully processed.</span></li>
-        </ol>
-    </div>
-    <?php
-        include dirname(__DIR__) . "/components/footer2.php";
-    ?>
+    <main class="delete-shell">
+        <header class="delete-header">
+            <a href="/dashboard?tab=profile" class="delete-back">Back to Profile</a>
+            <div class="delete-brand">
+                <img src="/img/logo.png" alt="OrgaNiss logo">
+                <span>The Heedful System</span>
+            </div>
+        </header>
+
+        <section class="delete-hero">
+            <p class="delete-eyebrow">Account Security</p>
+            <h1>Delete Account</h1>
+            <p>This action permanently removes your account and task history. This cannot be undone.</p>
+        </section>
+
+        <?php if ($errorMessage !== ""): ?>
+            <div class="delete-alert"><?php echo htmlspecialchars($errorMessage); ?></div>
+        <?php endif; ?>
+
+        <section class="delete-panel">
+            <h2>Before You Continue</h2>
+            <ul>
+                <li>All tasks and planning data will be permanently deleted.</li>
+                <li>Your profile details and account access will be removed immediately.</li>
+                <li>This operation cannot be reversed by support.</li>
+            </ul>
+
+            <form class="delete-form" method="POST" action="/user/delete.php">
+                <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION["delete_account_csrf"]); ?>">
+
+                <label for="confirmText">Type DELETE to confirm</label>
+                <input id="confirmText" name="confirm_text" type="text" autocomplete="off" required>
+
+                <?php if ($hasPassword): ?>
+                    <label for="password">Current password</label>
+                    <input id="password" name="password" type="password" autocomplete="current-password" required>
+                <?php else: ?>
+                    <p class="delete-helper">No password is required because this account uses a social sign-in method.</p>
+                <?php endif; ?>
+
+                <button type="submit" class="delete-button">Permanently Delete Account</button>
+            </form>
+        </section>
+    </main>
 </body>
 </html>
 
