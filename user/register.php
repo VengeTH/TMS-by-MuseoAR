@@ -34,7 +34,7 @@ require_once dirname(__DIR__) . "/components/json-ld-organization.php";
                 <p>Already have an account? <a href="/">Log in</a></p>
             </div>
             <div class="infoContainer">
-                <form action="" method="POST">
+                <form action="/user/register.php" method="POST">
                     <div class="nameCont">
                         <div class="firstNameCont">
                             <input type="text" name="firstName" class="firstNameBox" placeholder="First Name" value="<?php echo isset($_POST['firstName']) ? htmlspecialchars($_POST['firstName']) : ''; ?>" required>

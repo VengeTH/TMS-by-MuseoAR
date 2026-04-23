@@ -1,215 +1,224 @@
-@import url('https://fonts.googleapis.com/css2?family=Just+Me+Again+Down+Here&family=Kablammo&family=Righteous&display=swap');
-html{
-    height: 118.5rem;
-    overflow-x: hidden;
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap");
+
+body {
+    background-color: #0f0f0f;
+    color: #ffffff;
+    font-family: "Inter", system-ui, sans-serif;
+    margin: 0;
 }
-body{
-    background-color: #e4e4e4;
-    font-family: "Righteous", sans-serif;
-    height: 90vh;
+
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    padding-bottom: 5rem;
 }
-.contactUsUpper{
-    padding: 10px;
-    margin: 10px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+
+.contactUsUpper {
     text-align: center;
-    background-color: black;
-    color: white;
+    margin-bottom: 4rem;
+    padding: 3rem 1.5rem;
+    border-radius: 16px;
+    background: linear-gradient(180deg, #181818 0%, #131313 100%);
+    border: 1px solid #2b2b2b;
 }
-.getInTouch{
-    position: relative;
-    top: 28vh;
-    left: 8vw;
+
+.contactUsUpper h1 {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 2.5rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+    color: #ffffff;
 }
-.getInTouch h1{
-    font-size: 60px;
-    font-optical-sizing: auto;
-    color: black;
-    font-weight: 300;
-    letter-spacing: 0.03em;
+
+.contactUsUpper p {
+    color: #a0a0a0;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
 }
-.getInTouch p:first-of-type{
-    width: 40vw;
-}
-.getInTouch p:last-of-type a{
-    color: black;
-    text-decoration: none;
-}
-.containerAddress{
+
+.contact-content-grid {
     display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: auto auto;
-    gap: 10px;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
     align-items: start;
-    width: fit-content;
-    margin-top: 30px; /* Increase margin to lower the position */
 }
-.containerAddress img{
-    grid-row: span 2; /* Make the image span two rows */
-    width: 3.7vw;
-    height: auto;
-    justify-self: center; /* Center the image horizontally */
-    align-self: center; /* Center the image vertically */
-    margin-left: 10px; /* Move the image slightly to the right */
+
+@media (max-width: 850px) {
+    .contact-content-grid {
+        grid-template-columns: 1fr;
+    }
 }
-.containerAddress h2{
-    color: black;
+
+.getInTouch h2 {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 2.5rem;
+}
+
+.info-group {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #2b2b2b;
+}
+
+.info-group:last-child {
+    border-bottom: none;
+}
+
+.info-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    object-fit: contain;
+    background: #1f1f1f;
+    padding: 0.6rem;
+    border-radius: 12px;
+    border: 1px solid #333333;
+}
+
+.info-details h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.info-details p {
     margin: 0;
-    padding-left: 10px; /* Push the heading slightly to the right */
+    color: #a0a0a0;
+    line-height: 1.5;
 }
-.containerAddress p{
-    width: 50vw;
-    margin: 0;
-    padding-left: 10px; /* Push the paragraph slightly to the right */
-}
-.containerContact{
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: auto auto;
-    gap: 10px;
-    align-items: start;
-    width: fit-content;
-    margin-top: 30px; /* Increase margin to lower the position */
-}
-.containerContact img{
-    grid-row: span 2; /* Make the image span two rows */
-    width: 3.7vw;
-    height: auto;
-    justify-self: center; /* Center the image horizontally */
-    align-self: center; /* Center the image vertically */
-    margin-left: 10px; /* Move the image slightly to the right */
-}
-.containerContact h2{
-    color: black;
-    margin: 0;
-    padding-left: 10px; /* Push the heading slightly to the right */
-}
-.containerContact p{
-    width: 50vw;
-    margin: 0;
-    padding-left: 10px; /* Push the paragraph slightly to the right */
-}
-.containerEmail{
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: auto auto;
-    gap: 10px;
-    align-items: start;
-    width: fit-content;
-    margin-top: 30px; /* Increase margin to lower the position */
-}
-.containerEmail img{
-    grid-row: span 2; /* Make the image span two rows */
-    width: 3.7vw;
-    height: auto;
-    justify-self: center; /* Center the image horizontally */
-    align-self: center; /* Center the image vertically */
-    margin-left: 10px; /* Move the image slightly to the right */
-}
-.containerEmail h2{
-    color: black;
-    margin: 0;
-    padding-left: 10px; /* Push the heading slightly to the right */
-}
-.containerEmail p{
-    width: 50vw;
-    margin: 0;
-    padding-left: 10px; /* Push the paragraph slightly to the right */
-}
-.containerEmail a{
-    color: black;
+
+.info-details a {
+    color: #ffc107;
     text-decoration: none;
+    transition: color 0.2s;
 }
-.containerFollowUs a{
-    color: black;
-    text-decoration: none;
+
+.info-details a:hover {
+    color: #ffb300;
 }
-.containerFollowUs img{
-    width: 3.7vw;
-    height: auto;
-    justify-self: center; /* Center the image horizontally */
-    align-self: center; /* Center the image vertically */
-    margin-left: 10px; /* Move the image slightly to the right */
+
+.socialMedia {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
 }
-.contactForm{
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto auto auto auto auto;
-    gap: 10px;
-    position: relative;
-    left: 56vw;
-    top: -55vh;
-    height: auto;
-    width: 30vw;
-    padding: 3.5vw;
-    margin: 10px;
+
+.socialMedia img {
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0.5rem;
+    background: #1a1a1a;
+    border: 1px solid #333333;
+    border-radius: 12px;
+    transition: all 0.2s;
+}
+
+.socialMedia a:hover img {
+    background: #2b2b2b;
+    border-color: #ffc107;
+    transform: translateY(-2px);
+}
+
+.contactForm {
+    background: #111111;
+    padding: 2.5rem;
+    border-radius: 16px;
+    border: 1px solid #2b2b2b;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+.contactForm h2 {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.8rem;
+    margin-top: 0;
+    margin-bottom: 2rem;
+}
+
+.contactForm .form-wrapper {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.contactForm label {
+    margin-bottom: 0.5rem;
+    color: #dedede;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.contactForm input.form-text,
+.contactForm textarea.form-text {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: #ffffff;
+    padding: 0.8rem 1rem;
     border-radius: 10px;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-    font-family: "Righteous", sans-serif;
-    background-color: white;
-    color: #737373;
-    font-size: 2.5vh;
+    font-family: "Inter", sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.2s;
 }
 
-.contactForm h1{
-    font-family: "Righteous", sans-serif;
-    color: black;
-    font-size: 3vh;
-    margin: 0;
-    margin-bottom: 3rem;
-    font-size: 2em;
+.contactForm textarea.form-text {
+    resize: vertical;
+    min-height: 120px;
 }
 
-.contactForm label{
-    font-size: 2.5vh;
-    margin: 0 0 5px 0; /* Add space below each label */
+.contactForm input.form-text:focus,
+.contactForm textarea.form-text:focus {
+    outline: none;
+    border-color: #ffc107;
 }
 
-.contactForm input, .contactForm textarea{
-    width: 100%;
-    height: 5vh;
-    margin: 0 0 15px 0; /* Add space below each input/textarea */
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 7px 10px 0 #c4c4c4;
-    border: 0px solid transparent;
-    background-color: #eee;
-    font-size: 2.5vh;
-}
-
-.contactForm textarea {
-    height: 15vh;
-}
-
-.contactForm input[type="checkbox"]{
-    width: 5%;
-    height: 3vh;
-    margin: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid black;
-    box-shadow: 0 0px 0px 0 #c4c4c4;
-    background-color: #eee;
-}
-
-.contactForm input[type="checkbox"]:checked{
-    accent-color: #65558f;
-}
-
-.contactForm label[for="notice"]{
-    font-size: 1.5vh;
-}
-
-.contactForm button{
-    background-color: black;
-    color: white;
-    width: 100%;
-    height: 6vh;
-    margin: 20px 0;
-    padding: 12px;
-    border-radius: 1.5vw;
-    border: 1px solid black;
-    font-size: 2.2vh;
+.policy-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+    margin-top: 1.5rem;
     cursor: pointer;
+}
+
+.policy-label input[type="checkbox"] {
+    margin-top: 0.2rem;
+    accent-color: #ffc107;
+    width: 1.1rem;
+    height: 1.1rem;
+}
+
+.policy-label span {
+    color: #a0a0a0;
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+.ContinueButton {
+    background: #ffc107;
+    color: #000000;
+    border: none;
+    width: 100%;
+    padding: 1rem;
+    border-radius: 50px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    font-family: "Inter", sans-serif;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.ContinueButton:hover {
+    background: #ffb300;
+    transform: scale(1.02);
+}
+
+.ContinueButton:active {
+    transform: scale(0.98);
 }

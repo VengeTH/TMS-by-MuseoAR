@@ -12,66 +12,88 @@ require_once dirname(__DIR__) . "/components/seo-meta.php";
 require_once dirname(__DIR__) . "/components/json-ld-organization.php";
 ?>
     <link rel="stylesheet" href="/css/contactUs.css">
+    <link rel="stylesheet" href="/css/index.css">
     <link rel="icon" href="/img/logo.png" type="image/x-icon">
 </head>
 <body>
-    <?php include dirname(__DIR__) . "/components/headerWhite.php" ?>
-    <div class="contactUsUpper">
-        <h1>Contact Us</h1>
-        <p>We'd love to hear from you! If you have any questions, feedback, or suggestions about <strong>OrgaNiss</strong>, feel free to reach out using the form below.</p>
-    </div>
-    <div class="getInTouch">
-        <h1>Get in Touch</h1>
-        <div class="containerAddress">
-            <img src="/img/location.png" alt="Location Marker">
-            <h2>Address</h2>
-            <p>STI Academic Center, Alabang-Zapote Road, corner V.Guinto, Las Piñas, 1740 Metro Manila</p>
+    <?php include dirname(__DIR__) . "/components/header.php" ?>
+    
+    <div class="wrapper">
+        <div class="contactUsUpper">
+            <h1>Contact Us</h1>
+            <p>We'd love to hear from you! If you have any questions, feedback, or suggestions about <strong>OrgaNiss</strong>, feel free to reach out using the form below.</p>
         </div>
-        <div class="containerContact">
-            <img src="/img/telephone.png" alt="Phone Icon">
-            <h2>Contact Number</h2>
-            <p>+63 912 3456 789</p>
-        </div>
-        <div class="containerEmail">
-            <img src="/img/email.png" alt="Email Icon">
-            <h2>E-Mail:</h2>
-            <a href="mailto:prinzesadsad@theheeful.me">
-                <p>prinzesadsad@theheeful.me</p>
-            </a>
-        </div>
-        <div class="containerFollowUs">
-            <h2>Follow Us:</h2>
-            <div class="socialMedia">
-                <a href="https://www.facebook.com/theheedful" target="_blank">
-                    <img src="/img/facebook.png" alt="Facebook Icon">
-                </a>
-                <a href="https://twitter.com/theheedful" target="_blank">
-                    <img src="/img/twitter.png" alt="Twitter Icon">
-                </a>
-                <a href="https://www.instagram.com/theheedful/" target="_blank">
-                    <img src="/img/instagram.png" alt="Instagram Icon">
-                </a>
+
+        <div class="contact-content-grid">
+            <div class="getInTouch">
+                <h2>Get in Touch</h2>
+                
+                <div class="info-group">
+                    <img src="/img/location.png" alt="Location Marker" class="info-icon">
+                    <div class="info-details">
+                        <h3>Address</h3>
+                        <p>STI Academic Center, Alabang-Zapote Road, corner V.Guinto, Las Piñas, 1740 Metro Manila</p>
+                    </div>
+                </div>
+
+                <div class="info-group">
+                    <img src="/img/telephone.png" alt="Phone Icon" class="info-icon">
+                    <div class="info-details">
+                        <h3>Contact Number</h3>
+                        <p>+63 912 3456 789</p>
+                    </div>
+                </div>
+
+                <div class="info-group">
+                    <img src="/img/email.png" alt="Email Icon" class="info-icon">
+                    <div class="info-details">
+                        <h3>E-Mail</h3>
+                        <p><a href="mailto:prinzesadsad@theheeful.me">prinzesadsad@theheeful.me</a></p>
+                    </div>
+                </div>
+
+                <div class="info-group">
+                    <div class="info-details">
+                        <h3>Follow Us</h3>
+                        <div class="socialMedia">
+                            <a href="https://www.facebook.com/TheHeedfulPH" target="_blank"><img src="/img/facebook.png" alt="Facebook Icon"></a>
+                            <a href="https://twitter.com/theheedful" target="_blank"><img src="/img/twitter.png" alt="Twitter Icon"></a>
+                            <a href="https://www.instagram.com/theheedful/" target="_blank"><img src="/img/instagram.png" alt="Instagram Icon"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contactForm">
+                <form action="" method="post" onsubmit="return validateForm()">
+                    <h2>Send a Message</h2>
+                    
+                    <div class="form-wrapper">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" class="form-text" required>
+                    </div>
+
+                    <div class="form-wrapper">
+                        <label for="email">E-mail address</label>
+                        <input type="email" id="email" name="email" class="form-text" required>
+                    </div>
+
+                    <div class="form-wrapper">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" class="form-text" required></textarea>
+                    </div>
+
+                    <label class="rememberMe policy-label" for="notice">
+                        <input type="checkbox" id="notice" name="notice" value="notice" required>
+                        <span>By submitting this form, you agree to our Privacy Policy. Your data will be used solely to respond to your inquiries.</span>
+                    </label>
+
+                    <button type="submit" class="ContinueButton">Submit Message</button>
+                </form>
             </div>
         </div>
     </div>
-    <div class="contactForm">
-        <form action="" method="post" onsubmit="return validateForm()">
-            <h1>Send a Message</h1>
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" required>
 
-            <label for="email">E-mail address</label>
-            <input type="email" id="email" name="email" required>
-
-            <label for="message">Message</label>
-            <textarea id="message" name="message" required></textarea>
-
-            <input type="checkbox" id="notice" name="notice" value="notice" required>
-            <label for="notice">By submitting this form, you agree to the processing of your personal information in accordance with our Privacy Policy. Your data will be used solely to respond to your inquiries and provide the assistance you requested. We value your privacy and ensure the protection of your information.</label>
-
-            <button type="submit">Submit</button>
-        </form>
-    </div>
     <script>
         function validateForm() {
             var checkbox = document.getElementById('notice');
